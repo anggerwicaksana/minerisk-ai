@@ -1,5 +1,5 @@
 ---
-title: MineRisk AI Prospective Safety Forecasting
+title: MineRisk AI — AI-Powered Mine Safety Prediction System
 emoji: ⛏️
 colorFrom: red
 colorTo: indigo

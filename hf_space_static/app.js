@@ -486,7 +486,7 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#EF4444';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="color:#EF4444; font-weight:800;">[!]</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <strong style="color: #EF4444; font-size: 0.95rem;">TINDAKAN MITIGASI PRIORITAS TINGGI</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
@@ -497,7 +497,7 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#F97316';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="color:#F97316; font-weight:800;">[▲]</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <strong style="color: #F97316; font-size: 0.95rem;">PENGAWASAN INTENSIF DIPERLUKAN</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
@@ -508,7 +508,7 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#EAB308';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="color:#EAB308; font-weight:800;">[●]</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <strong style="color: #EAB308; font-size: 0.95rem;">PENGAWASAN RUTIN BERKALA</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
@@ -519,7 +519,7 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#10B981';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="color:#10B981; font-weight:800;">[✓]</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <strong style="color: #10B981; font-size: 0.95rem;">STATUS OPERASIONAL AMAN & STABIL</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">

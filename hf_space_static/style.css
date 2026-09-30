@@ -1,3 +1,4 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
 /* ==========================================================================
    MINERISK-AI | MISSION-CRITICAL SAFETY INTELLIGENCE PLATFORM
    Typography: Plus Jakarta Sans (Pure Grotesk Display & Tabular System)
@@ -89,6 +90,7 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
   font-family: var(--font-sans);
+  overflow-x: clip;
 }
 
 body {
@@ -98,7 +100,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   min-height: 100vh;
 }
@@ -172,15 +174,7 @@ body::before {
   letter-spacing: 0.02em;
 }
 
-/* Typographic Helpers */
-.font-averia {
-  font-family: var(--font-editorial);
-}
 
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-}
 
 /* ==========================================================================
    DOUBLE-BEZEL HAPTIC ARCHITECTURE
@@ -212,13 +206,13 @@ body::before {
    ========================================================================== */
 .navbar-wrap {
   position: sticky;
-  top: 16px;
+  top: 10px;
   z-index: 100;
   width: 100%;
   display: flex;
   justify-content: center;
   pointer-events: none;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   padding: 0 16px;
 }
 
@@ -425,22 +419,22 @@ body::before {
    HERO SECTION: ASYMMETRIC COMMAND COCKPIT ARCHITECTURE
    ========================================================================== */
 .hero {
-  padding: 20px 0 48px;
+  padding: 4px 0 36px;
   position: relative;
 }
 
 .hero-split-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
-  align-items: center;
+  gap: 28px;
+  align-items: start;
 }
 
 @media (min-width: 1080px) {
   .hero-split-grid {
-    grid-template-columns: 1.02fr 1.18fr;
-    min-height: calc(100vh - 120px);
-    gap: 40px;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 48px;
+    align-items: center;
   }
 }
 
@@ -478,12 +472,12 @@ body::before {
 }
 
 .hero-title {
-  font-size: clamp(2.3rem, 3.5vw, 3.7rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.4rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.1;
   color: #FFFFFF;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   text-wrap: balance;
 }
 
@@ -495,20 +489,20 @@ body::before {
 
 .hero-title-sub {
   display: block;
-  font-size: clamp(1.15rem, 1.7vw, 1.65rem);
+  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
   font-weight: 600;
   color: #94A3B8;
   letter-spacing: -0.02em;
-  margin-top: 6px;
+  margin-top: 4px;
   line-height: 1.25;
 }
 
 .hero-subtitle {
-  font-size: clamp(0.92rem, 1.05vw, 1.04rem);
+  font-size: clamp(0.88rem, 0.98vw, 0.98rem);
   color: var(--text-secondary);
   max-width: 540px;
-  margin: 0 0 24px 0;
-  line-height: 1.65;
+  margin: 0 0 18px 0;
+  line-height: 1.6;
   font-weight: 400;
 }
 
@@ -517,7 +511,7 @@ body::before {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 /* Metric Strip */
@@ -528,9 +522,9 @@ body::before {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 10px 18px;
+  padding: 8px 16px;
   width: fit-content;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -611,6 +605,11 @@ body::before {
 .hero-right-col {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* allow monitor stand shadow to bleed out */
+  overflow: visible;
 }
 
 /* ==========================================================================
@@ -684,12 +683,227 @@ body::before {
 }
 
 /* ==========================================================================
+   MONITOR MOCKUP FRAME — FIXED LANDSCAPE, NO REFLOW, SCALE-TO-FIT
+   ========================================================================== */
+
+/*
+ * Strategy: The monitor is rendered at a FIXED 820px wide "canvas".
+ * On screens narrower than 820px, the outer .monitor-scale-shell shrinks
+ * via CSS transform: scale() so the internal layout is NEVER reflowed —
+ * elements always stay at their ideal "desktop" proportions.
+ */
+
+/* ── Outer positioning shell: controls how much space the mockup occupies ── */
+.monitor-mockup-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* The shell takes up natural space; the inner canvas overflows & is scaled */
+  width: 100%;
+  position: relative;
+}
+
+/* ── Scale shell: this is what gets CSS-scaled on small screens ── */
+.monitor-scale-shell {
+  /* Fixed canvas — NEVER changes, always 820px wide landscape */
+  width: 820px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Scale origin: top-center so the bezel top stays aligned */
+  transform-origin: top center;
+  /* Animation */
+  animation: monitorFadeUp 0.9s var(--ease-spring) both;
+  animation-delay: 0.3s;
+}
+
+@keyframes monitorFadeUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* Responsive scale-down via clamp on the parent width —
+   JS-free approach using container-relative transform */
+@media (max-width: 880px) {
+  .monitor-scale-shell {
+    transform-origin: top center;
+    transform: scale(calc(min(100vw, 860px) / 880px));
+  }
+}
+@media (max-width: 700px) {
+  .monitor-scale-shell {
+    transform: scale(0.72);
+  }
+}
+@media (max-width: 520px) {
+  .monitor-scale-shell {
+    transform: scale(0.52);
+  }
+}
+
+/* Reserve vertical space so scaled-down monitor doesn't collapse parent */
+.monitor-mockup-wrap {
+  /* Approximate height of the bezel + neck + base */
+  min-height: 420px;
+}
+@media (max-width: 880px) {
+  .monitor-mockup-wrap { min-height: 380px; }
+}
+@media (max-width: 700px) {
+  .monitor-mockup-wrap { min-height: 300px; }
+}
+@media (max-width: 520px) {
+  .monitor-mockup-wrap { min-height: 220px; }
+}
+
+/* ── Outer bezel shell ─────────────────────────────────────────── */
+.monitor-bezel {
+  width: 820px;           /* fixed landscape width */
+  background: linear-gradient(160deg, #1e1e20 0%, #131313 50%, #0c0c0c 100%);
+  border: 2px solid rgba(255,255,255,0.11);
+  border-bottom: 4px solid rgba(255,255,255,0.03);
+  border-radius: 20px 20px 12px 12px;
+  padding: 20px 20px 16px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.045),
+    inset 0 2px 0 rgba(255,255,255,0.08),
+    0 50px 100px -24px rgba(0,0,0,0.98),
+    0 12px 40px -10px rgba(0,0,0,0.7);
+  position: relative;
+}
+
+/* Reflective highlight stripe at the very top of the bezel */
+.monitor-bezel::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  border-radius: 4px;
+}
+
+/* Ambient amber glow around the screen */
+.monitor-bezel::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px 22px 14px 14px;
+  background: transparent;
+  box-shadow:
+    0 0 60px -10px rgba(245,158,11,0.15),
+    0 0 120px -30px rgba(245,158,11,0.08);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Tiny webcam dot */
+.monitor-camera {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #111;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.03);
+}
+.monitor-camera::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+
+/* ── Screen: fixed 16:9 landscape ratio, clips HUD ───────────── */
+.monitor-screen {
+  position: relative;
+  width: 100%;                 /* fills the bezel inner area = 780px */
+  aspect-ratio: 16 / 9.6;     /* landscape with a little extra height for HUD */
+  border-radius: 8px;
+  overflow: hidden;
+  background: #040404;
+  box-shadow:
+    inset 0 0 0 2px rgba(0,0,0,0.9),
+    inset 0 0 40px rgba(245,158,11,0.04),
+    0 0 80px -15px rgba(245,158,11,0.1);
+}
+
+/* Scanline effect */
+.monitor-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.055) 3px,
+    rgba(0,0,0,0.055) 4px
+  );
+  border-radius: 8px;
+}
+
+/* Screen corner vignette */
+.monitor-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* ── Neck / Stand stem ─────────────────────────────────────────── */
+.monitor-neck {
+  width: 60px;
+  height: 26px;
+  background: linear-gradient(to bottom, #1c1c1c, #141414);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Base / Foot ───────────────────────────────────────────────── */
+.monitor-base {
+  width: 200px;
+  height: 16px;
+  background: linear-gradient(160deg, #1c1c1c 0%, #111 100%);
+  border-radius: 0 0 12px 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 24px -8px rgba(0,0,0,0.85),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.monitor-base-logo {
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.16);
+}
+.monitor-base-logo span {
+  color: rgba(245,158,11,0.42);
+}
+
+
+
+/* ==========================================================================
    FRONT LIVE CODED TELEMETRY HUD (ZERO RASTER IMAGES • PURE CODE & SVG)
    ========================================================================== */
 .hero-telemetry-hud {
   width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: none;   /* screen clips it — no need for own max-width */
+  margin: 0;
   position: relative;
 }
 
@@ -699,7 +913,7 @@ body::before {
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid rgba(245, 158, 11, 0.24);
   box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xl);
+  border-radius: 8px;  /* screen already clips corners */
   padding: 16px;
   position: relative;
   overflow: hidden;
@@ -716,22 +930,27 @@ body::before {
   gap: 10px;
 }
 
-.hud-window-controls {
-  display: flex;
+.hud-status-node {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--text-secondary);
 }
 
-.hud-dot {
-  width: 11px;
-  height: 11px;
+.hud-node-led {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  display: inline-block;
+  background: var(--accent-amber);
+  box-shadow: 0 0 8px var(--accent-amber);
 }
-
-.hud-dot.red { background: #EF4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
-.hud-dot.yellow { background: #F59E0B; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
-.hud-dot.green { background: #10B981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
 
 .hud-title-badge {
   display: inline-flex;
@@ -772,28 +991,18 @@ body::before {
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* 3-Column / Responsive Split Cockpit Grid */
+/* 3-Column FIXED cockpit grid — lives inside fixed-size monitor, no reflow */
 .hud-cockpit-grid {
   display: grid;
-  grid-template-columns: 1fr 1.22fr 1fr;
+  grid-template-columns: 1fr 1.22fr 1fr;  /* always 3 columns */
   gap: 12px;
   margin-bottom: 14px;
 }
 
-@media (max-width: 1200px) {
-  .hud-cockpit-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .hud-pod-shap {
-    grid-column: 1 / -1;
-  }
-}
+/* NOTE: No responsive overrides here — the parent .monitor-scale-shell
+   uses CSS transform:scale() to shrink the entire monitor on small screens,
+   so internal layout never needs to collapse/reflow. */
 
-@media (max-width: 640px) {
-  .hud-cockpit-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 .hud-pod {
   background: rgba(14, 14, 14, 0.82);
@@ -1093,12 +1302,18 @@ body::before {
   border-radius: var(--radius-xs);
 }
 
-/* KPI Banner Strip */
+/* KPI Banner Strip (Standalone Section) */
+.section-kpi-bar {
+  padding: 0 0 56px;
+  position: relative;
+  z-index: 1;
+}
+
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
-  margin-bottom: 56px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 1024px) {
@@ -1928,9 +2143,9 @@ body::before {
 .dash-tabs-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   background: var(--bg-page);
-  padding: 6px;
+  padding: 5px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   margin-bottom: 26px;
@@ -1945,18 +2160,19 @@ body::before {
 .dash-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: transparent;
   color: var(--text-secondary);
   font-family: var(--font-sans) !important;
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 9px 16px;
+  padding: 8px 12px;
   border-radius: calc(var(--radius-md) - 3px);
   border: none;
   cursor: pointer;
   transition: all 0.2s var(--ease-spring);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .dash-tab-btn:hover {

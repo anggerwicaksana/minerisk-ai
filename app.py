@@ -182,13 +182,13 @@ def inspect_single_mine(selected_mine_str: str):
 
     # Actionable Guidance
     if tier == "Critical":
-        rec = "⚠️ **CRITICAL ACTION REQUIRED:** Immediate on-site audit recommended. Focus inspection on S&S safety citations and overtime fatigue mitigation before start of next quarter."
+        rec = "**[CRITICAL ACTION REQUIRED]** Immediate on-site audit recommended. Focus inspection on S&S safety citations and overtime fatigue mitigation before start of next quarter."
     elif tier == "Elevated":
-        rec = "🟠 **ELEVATED HAZARD:** Prioritize inspection queue. Review hazard training programs and monitor hours worked to avoid worker fatigue spikes."
+        rec = "**[ELEVATED HAZARD]** Prioritize inspection queue. Review hazard training programs and monitor hours worked to avoid worker fatigue spikes."
     elif tier == "Moderate":
-        rec = "🟡 **MODERATE RISK:** Routine monitoring. Verify that past inspection citations have been fully abated."
+        rec = "**[MODERATE RISK]** Routine monitoring. Verify that past inspection citations have been fully abated."
     else:
-        rec = "🟢 **LOW RISK:** Operational parameters reflect stable safety performance. Maintain standard quarterly reporting."
+        rec = "**[LOW RISK]** Operational parameters reflect stable safety performance. Maintain standard quarterly reporting."
 
     return badge_html, summary_text, waterfall_fig, rec
 
@@ -282,13 +282,13 @@ def simulate_risk_scenario(
 
     advice = []
     if ss_ratio > 0.4:
-        advice.append("⚠️ **High S&S Violation Ratio:** Significant & Substantial violations are heavily driving risk upward. Prioritize remediation of serious electrical and roof-support citations.")
+        advice.append("**[High S&S Violation Ratio]** Significant & Substantial violations are heavily driving risk upward. Prioritize remediation of serious electrical and roof-support citations.")
     if hours_input > 100000 and prior_injuries > 1:
-        advice.append("🟠 **High Exposure & Incident Recurrence:** Operations with large workforces and recurring injuries require mandatory safety stand-downs.")
+        advice.append("**[High Exposure & Incident Recurrence]** Operations with large workforces and recurring injuries require mandatory safety stand-downs.")
     if insp_hours_input > 50 and viol_count_input == 0:
-        advice.append("🟢 **Positive Inspection Impact:** Substantial inspection hours with zero violations actively suppress risk score.")
+        advice.append("**[Positive Inspection Impact]** Substantial inspection hours with zero violations actively suppress risk score.")
     if not advice:
-        advice.append("ℹ️ Operational parameters are within acceptable statistical boundaries for this mine class.")
+        advice.append("Operational parameters are within acceptable statistical boundaries for this mine class.")
 
     recommendation_text = "\n\n".join(advice)
     return badge_html, waterfall_fig, recommendation_text
@@ -306,28 +306,28 @@ def build_gradio_app():
 
     with gr.Blocks(title="MineRisk-AI (SafeCast) | Predictive Safety Intelligence") as demo:
         gr.Markdown("""
-        # ⛏️ **MineRisk-AI (SafeCast)**
+        # **MineRisk-AI (SafeCast)**
         ### *Predictive Workplace Safety & Health (OSH) Risk Intelligence System*
         **Authoritative Data:** U.S. Mine Safety and Health Administration (MSHA, 2000–2025)  
         **Methodology:** Leakage-Proof Relational Star-Schema Panel • Strict Out-of-Time Temporal Split • Calibrated LightGBM • SHAP XAI
         """)
 
         if not artifacts_ready:
-            gr.Warning("⚠️ Model artifacts not yet generated. Please execute the training pipeline first.")
+            gr.Warning("Model artifacts not yet generated. Please execute the training pipeline first.")
             return demo
 
         bench = BENCHMARK_METRICS["test_metrics"]
 
         with gr.Row():
             gr.Markdown(f"""
-            | 📈 **PR-AUC (Precision-Recall)** | 🎯 **ROC-AUC Score** | 🚀 **Top-10% Decile Lift** | 🛡️ **Brier Score (Calibrated)** |
+            | **PR-AUC (Precision-Recall)** | **ROC-AUC Score** | **Top-10% Decile Lift** | **Brier Score (Calibrated)** |
             |:---:|:---:|:---:|:---:|
             | **`{bench['pr_auc']:.3f}`** | **`{bench['roc_auc']:.3f}`** | **`{bench['lift_top10']:.2f}x` higher risk** | **`{bench['calibrated_brier']:.4f}` (vs {bench['uncalibrated_brier']:.4f} raw)** |
             """)
 
         with gr.Tabs():
             # ======================== TAB 1: EXECUTIVE SURVEILLANCE ======================== #
-            with gr.Tab("🗺️ National Surveillance Map & Top-20"):
+            with gr.Tab("National Surveillance Map & Top-20"):
                 gr.Markdown("### **Executive Mine-Quarter Risk Surveillance Dashboard**")
                 with gr.Row():
                     state_dropdown = gr.Dropdown(
@@ -359,7 +359,7 @@ def build_gradio_app():
                     )
 
             # ======================== TAB 2: MINE RISK INSPECTOR ======================== #
-            with gr.Tab("🔍 Mine Risk Inspector & SHAP Deep-Dive"):
+            with gr.Tab("Mine Risk Inspector & SHAP Deep-Dive"):
                 gr.Markdown("### **Individual Mine Risk Profiler & Explainable AI (SHAP Waterfall)**")
                 
                 # Mine selection options
@@ -390,7 +390,7 @@ def build_gradio_app():
                 )
 
             # ======================== TAB 3: WHAT-IF SCENARIO SIMULATOR ======================== #
-            with gr.Tab("🧪 'What-If' Operational Risk Simulator"):
+            with gr.Tab("'What-If' Operational Risk Simulator"):
                 gr.Markdown("""
                 ### **Interactive Safety & Operational Risk Sandbox**
                 Adjust operational parameters, hours worked, and regulatory inspection outcomes below to simulate how intervention strategies impact next-quarter injury risk.
@@ -438,20 +438,20 @@ def build_gradio_app():
                     )
 
             # ---------------- Tab 4: Model Context Protocol (MCP) Agent Hub ---------------- #
-            with gr.TabItem("🤖 MCP Agent Tools & API", id="tab_mcp"):
+            with gr.TabItem("MCP Agent Tools & API", id="tab_mcp"):
                 gr.Markdown(
                     """
-                    ### 🔌 Model Context Protocol (MCP) Server Integration
+                    ### Model Context Protocol (MCP) Server Integration
                     This Space natively exposes an **MCP Server** via Streamable HTTP at `/gradio_api/mcp`. 
                     Any MCP-compatible AI agent (Claude Code, Cursor, Antigravity IDE, VSCode, Windsurf) can connect 
                     directly to this Space to query prospective safety risk and run counterfactual simulations autonomously.
 
-                    > 🌐 **Hugging Face Hub MCP Badge:** Follow the [Hugging Face Spaces MCP documentation](https://huggingface.co/docs/hub/spaces-mcp-servers).
+                    > **Hugging Face Hub MCP Badge:** Follow the [Hugging Face Spaces MCP documentation](https://huggingface.co/docs/hub/spaces-mcp-servers).
                     > Add this Space via [Hub MCP Settings](https://huggingface.co/settings/mcp) or connect using URL: `https://<space-name>.hf.space/gradio_api/mcp`.
                     """
                 )
 
-                with gr.Accordion("🛠️ Tool 1: predict_mine_risk(mine_id_or_name)", open=True):
+                with gr.Accordion("Tool 1: predict_mine_risk(mine_id_or_name)", open=True):
                     gr.Markdown("Queries prospective quarterly injury risk probability, risk tier badge, peer baseline, and top SHAP drivers.")
                     with gr.Row():
                         mcp_query_input = gr.Textbox(value="6265150", label="MSHA Mine ID or Name", placeholder="e.g. 6265150 or Valley")
@@ -464,7 +464,7 @@ def build_gradio_app():
                         api_name="predict_mine_risk",
                     )
 
-                with gr.Accordion("🛠️ Tool 2: simulate_safety_scenario(...)", open=False):
+                with gr.Accordion("Tool 2: simulate_safety_scenario(...)", open=False):
                     gr.Markdown("Simulates prospective risk outcome for custom operational parameters (hours, workforce, citations).")
                     with gr.Row():
                         sim_hrs = gr.Number(value=45000, label="Quarterly Hours Worked")
@@ -486,7 +486,7 @@ def build_gradio_app():
                         api_name="simulate_safety_scenario",
                     )
 
-                with gr.Accordion("🛠️ Tool 3: get_high_risk_surveillance_queue(...)", open=False):
+                with gr.Accordion("Tool 3: get_high_risk_surveillance_queue(...)", open=False):
                     gr.Markdown("Retrieves prioritized national surveillance queue ranked by calibrated injury risk.")
                     with gr.Row():
                         q_topn = gr.Slider(minimum=5, maximum=50, value=10, step=5, label="Top N Mines")
@@ -502,7 +502,7 @@ def build_gradio_app():
                         api_name="get_high_risk_surveillance_queue",
                     )
 
-                with gr.Accordion("🛠️ Tool 4: get_model_benchmark_info()", open=False):
+                with gr.Accordion("Tool 4: get_model_benchmark_info()", open=False):
                     gr.Markdown("Returns out-of-time test set (2024–2025) discrimination, calibration metrics, and ablation results.")
                     bench_mcp_btn = gr.Button("Invoke Tool: get_model_benchmark_info", variant="primary")
                     mcp_bench_output = gr.Markdown()

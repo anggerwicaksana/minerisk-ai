@@ -1,8 +1,8 @@
 ---
-title: MineRisk AI Sistem Prediksi Keselamatan Kerja Tambang
+title: MineRisk AI — AI-Powered Mine Safety Prediction System
 emoji: ⛏️
-colorFrom: red
-colorTo: indigo
+colorFrom: yellow
+colorTo: red
 sdk: static
 pinned: false
 tags:

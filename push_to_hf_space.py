@@ -12,49 +12,24 @@ REPO_ID = "anggerw/minerisk-ai"
 
 
 def deploy_to_spaces():
-    print(f"🚀 Deploying MineRisk-AI to Hugging Face Spaces: {REPO_ID}...")
+    print(f"🚀 Deploying MineRisk-AI Static Web Showcase to Hugging Face Spaces: {REPO_ID}...")
     api = HfApi()
 
-    # Upload root deployment files
-    root_files = ["app.py", "mcp_server.py", "requirements.txt", "README.md"]
-    for f in root_files:
-        path = BASE_DIR / f
-        if path.exists():
-            print(f"  Uploading {f}...")
-            api.upload_file(
-                path_or_fileobj=str(path),
-                path_in_repo=f,
-                repo_id=REPO_ID,
-                repo_type="space",
-            )
-
-    # Upload src folder
-    src_dir = BASE_DIR / "src"
-    if src_dir.exists():
-        print("  Uploading src/ module...")
+    static_dir = BASE_DIR / "hf_space_static"
+    if static_dir.exists():
+        print(f"  Uploading folder {static_dir} -> Space {REPO_ID}...")
         api.upload_folder(
-            folder_path=str(src_dir),
-            path_in_repo="src",
+            folder_path=str(static_dir),
             repo_id=REPO_ID,
             repo_type="space",
-        )
-
-    # Upload artifacts folder (lightweight model, metrics, and demo sample)
-    art_dir = BASE_DIR / "artifacts"
-    if art_dir.exists():
-        print("  Uploading artifacts/ (calibrated model, metadata, sample panel)...")
-        api.upload_folder(
-            folder_path=str(art_dir),
-            path_in_repo="artifacts",
-            repo_id=REPO_ID,
-            repo_type="space",
-            ignore_patterns=["*.tmp", "*checkpoint*"],
+            commit_message="feat: update title, canonical address, and bold amber favicon",
         )
 
     print("\n✅ Successfully deployed to Hugging Face Spaces!")
-    print(f"🌐 Live Web Demo: https://huggingface.co/spaces/{REPO_ID}")
-    print(f"🔌 MCP Endpoint:  https://{REPO_ID.replace('/', '-')}.hf.space/gradio_api/mcp")
+    print(f"🌐 Space URL:        https://huggingface.co/spaces/{REPO_ID}")
+    print(f"🌐 Direct Static:   https://{REPO_ID.replace('/', '-')}.static.hf.space/index.html")
 
 
 if __name__ == "__main__":
     deploy_to_spaces()
+
