@@ -46,6 +46,7 @@
           <li><a href="#masalah">Solusi</a></li>
           <li><a href="#kamus-istilah">Fitur</a></li>
           <li><a href="#sumber-data">Data</a></li>
+          <li><a href="#metode">Metode</a></li>
           <li><a href="#live-dashboard">Dasbor</a></li>
           <li><a href="#pengembang">Pengembang</a></li>
         </ul>
@@ -806,6 +807,170 @@
             <div class="source-body">
               Menilai faktor risiko alami, di mana tambang bawah tanah (*underground*) memiliki risiko gas metana dan runtuhan lebih tinggi dibanding tambang terbuka (*surface*).
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION: METODOLOGI & ANALISIS DATA (CARA MEMBANGUNNYA SECARA DETAIL)
+       ======================================================================== -->
+  <section id="metode" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Dapur Pengolahan & Sains Data</span>
+        <h2 class="section-title">
+          Bagaimana Saya Membangun MineRisk AI <br>
+          <em class="font-averia">Membongkar Perjalanan Data Mentah Menjadi Prediksi Akurat</em>
+        </h2>
+        <p class="section-subtext">
+          Langkah demi langkah bagaimana kami mengolah jutaan angka mentah pemerintah menjadi sistem peringatan dini yang siap pakai, dijelaskan dengan analogi sederhana yang ramah bagi semua kalangan.
+        </p>
+      </div>
+
+      <div class="methodology-grid">
+        <!-- Step 1 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 1 • DATA CLEANING</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Menyisir dan Merapikan Jutaan Catatan Mentah</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Ibarat menerima 14 tahun tumpukan buku catatan harian dari ribuan tambang, tugas pertama kita adalah merapikan coretan yang rusak, menghapus catatan ganda, dan menyusunnya rapi berurutan.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Kami mengunduh arsip resmi MSHA dari tahun 2012 hingga 2025. Tantangan terbesarnya adalah data mentah ini tersebar di tabel terpisah dengan format waktu yang berbeda, adanya nilai kosong, serta singkatan istilah hukum. Kami memfilter hanya tambang yang beroperasi aktif, memverifikasi konsistensi jam kerja, dan menstandardisasi format tanggal kuartalan.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>79.767 baris data bersih terverifikasi</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 2 • DATA MERGING</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Menyatukan 5 Potongan Puzzle Menjadi Satu Profil</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Seperti dokter yang menyatukan hasil cek darah, tensi, rontgen, dan riwayat alergi pasien ke dalam satu rekam medis lengkap agar tidak ada gejala yang terlewat.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Data jam kerja karyawan tidak akan banyak bercerita jika tidak digandengkan dengan data inspeksi dan catatan kecelakaan. Kami menggunakan nomor identitas unik tambang (*Mine ID*) dan periode kalender untuk mengunci korelasi antar-tabel. Tiap baris data akhir kini merangkum kisah lengkap operasional suatu tambang dalam jendela waktu 3 bulan.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>5 tabel federal terintegrasi sempurna</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 3 • FEATURE ENGINEERING</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Meracik Variabel Pintar yang Bernilai Nyata</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Daripada sekadar menghitung berapa banyak garam di dapur, koki yang pintar mengukur perbandingan antara takaran garam dan jumlah kuah sup agar rasanya pas.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Angka mentah seperti 50 pelanggaran bisa menyesatkan jika tambang tersebut mempekerjakan ribuan orang. Karena itu, kami meracik 42 variabel komposit cerdas, seperti rasio pelanggaran kritis per jam audit (*S&S Rate*), lonjakan jam lembur mendadak dibanding kuartal sebelumnya (*Fatigue Index*), dan jeda waktu sejak kunjungan inspektur terakhir.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>42 indikator prediktif K3 berbobot</span>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 4 • TEMPORAL VALIDATION</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Menguji Mesin Tanpa Curang Masa Depan</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Seperti melatih murid belajar menggunakan kumpulan soal tahun 2000 sampai 2023, lalu mengujinya dengan lembar ujian baru tahun 2024–2025 tanpa pernah membocorkan kunci jawabannya.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Banyak model AI tampak pintar di atas kertas karena mengacak data tanpa memedulikan alur waktu (*random split*), sehingga mesin mencuri intip pola masa depan. Kami menerapkan pemisahan waktu yang ketat (*Temporal Split*). Model hanya belajar dari data masa lalu, lalu diuji kemampuannya menebak kejadian di masa depan yang belum pernah ia lihat sama sekali.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>Bebas kebocoran masa depan (*Zero Leakage*)</span>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 5 • PROBABILITY CALIBRATION</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Memastikan Ramalan Probabilitas Selalu Jujur</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Jika prakiraan cuaca menyebut peluang hujan 70 persen, maka dari 10 hari dengan ramalan serupa, memang harus turun hujan sekitar 7 hari. Bukan ramalan asal tebak yang hiperbolis.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Kami memilih arsitektur *LightGBM* karena sangat tangguh membaca data numerik tambang. Namun model bawaan sering kali terlalu percaya diri. Kami menambahkan kalibrasi isotonik (*Isotonic Calibration*) agar persentase risiko yang disajikan benar-benar mencerminkan frekuensi kecelakaan di dunia nyata, terbukti lewat *Brier Score 0.2080* yang mendekati sempurna.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>Terkalibrasi ilmiah dengan skor Brier 0.2080</span>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="method-card">
+          <div class="method-header">
+            <span class="method-step-pill">LANGKAH 6 • EXPLAINABLE AI</span>
+            <div class="method-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <h3 class="method-title">Membongkar Alasan di Balik Setiap Angka</h3>
+          <div class="method-analogy-box">
+            <span class="method-analogy-label">Analogi Sederhana</span>
+            <p class="method-analogy-text">
+              Bukan cuma memberi tahu pasien bahwa tubuhnya kurang bugar, dokter yang bijak menerangkan bahwa penyebabnya adalah kurang tidur dan pola makan manis, lalu meresepkan jadwal istirahat.
+            </p>
+          </div>
+          <p class="method-analysis-desc">
+            Angka prediksi tidak berguna bagi pengawas tambang jika mereka tidak tahu harus berbuat apa. Melalui teknologi *SHAP (Shapley Additive Explanations)*, kami mengurai setiap pemicu risiko menjadi daftar tindakan yang jelas. Jika risiko tambang naik, pengawas langsung tahu apakah harus mengurangi jam lembur shift malam atau segera memperbaiki penyangga atap tambang.
+          </p>
+          <div class="method-foot-tag">
+            <span class="method-foot-dot"></span>
+            <span>Transparan tanpa kotak hitam (*Glass Box AI*)</span>
           </div>
         </div>
       </div>
