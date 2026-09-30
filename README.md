@@ -15,191 +15,192 @@ tags:
   - model-context-protocol
 ---
 
-# ⛏️ MineRisk-AI (SafeCast)
-### *Predictive Industrial Safety & Health (OSH) Risk Intelligence System*
-**A Multi-Table Relational Machine Learning System on 25 Years of U.S. Federal MSHA Government Data**
+# ⛏️ MineRisk AI (SafeCast)
+### *Sistem Kecerdasan Buatan Prediktif untuk Keselamatan & Kesehatan Kerja (K3) Pertambangan*
+**Mengolah 25 Tahun Data Resmi U.S. Federal Mine Safety and Health Administration (MSHA) untuk Mencegah Kecelakaan Tambang Sebelum Terjadi**
 
 ---
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb)
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces)
-[![MCP Server](https://img.shields.io/badge/MCP-Server_Compatible-blueviolet.svg?style=flat&logo=openai)](https://huggingface.co/docs/hub/spaces-mcp-servers)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Live_Demo-orange)](https://huggingface.co/spaces/anggerw/minerisk-ai)
+[![Model Hub](https://img.shields.io/badge/Model_Hub-Calibrated_LightGBM-blue)](https://huggingface.co/anggerw/minerisk-ai)
+[![MCP Ready](https://img.shields.io/badge/MCP-Server_Compatible-blueviolet.svg?style=flat&logo=openai)](mcp_server.py)
 ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
-![Polars](https://img.shields.io/badge/Data_Engine-Polars_LazyScan-CD792C.svg)
+![Polars](https://img.shields.io/badge/Engine-Polars_Fast_ETL-CD792C.svg)
 ![LightGBM](https://img.shields.io/badge/Model-Calibrated_LightGBM-green.svg)
 ![SHAP](https://img.shields.io/badge/XAI-SHAP_TreeExplainer-red.svg)
-![Zero Leakage](https://img.shields.io/badge/Validation-Out--of--Time_Temporal_Split-purple.svg)
-![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+![Zero Leakage](https://img.shields.io/badge/Validasi-Strict_Temporal_Split-purple.svg)
+![Lisensi](https://img.shields.io/badge/Lisensi-MIT-lightgrey.svg)
 
 ---
 
-## 📌 Executive Summary & Live Demo Links
+## 📌 Akses Cepat & Demo Interaktif
 
-| Resource | Access Link | Description |
+| Layanan | Tautan Akses | Penjelasan Singkat |
 |---|---|---|
-| **🌐 24/7 Live Interactive Web Showcase** | [![Hugging Face Spaces](https://img.shields.io/badge/Live_Demo-anggerw%2Fminerisk--ai-orange?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/anggerw/minerisk-ai) | Permanent live interactive UI: US Mine Risk Map, Individual Mine Risk Inspector, "What-If" Sandbox, and Technical Docs. |
-| **🤗 Hugging Face Model Repository** | [![Hugging Face Models](https://img.shields.io/badge/Model_Hub-anggerw%2Fminerisk--ai-blue?style=for-the-badge&logo=huggingface)](https://huggingface.co/anggerw/minerisk-ai) | Calibrated LightGBM model weights (`model_calibrated.joblib`), metadata, and out-of-time test metrics. |
-| **📓 Google Colab Master Notebook** | [![Open In Colab](https://img.shields.io/badge/Colab-Run_All_Notebook-yellow?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb) | End-to-end reproducible pipeline from raw MSHA extraction to probability calibration and SHAP waterfall plots. |
-| **🔌 Model Context Protocol (MCP)** | [![Local MCP Server](https://img.shields.io/badge/MCP_Server-FastMCP_Ready-blueviolet?style=for-the-badge&logo=openai)](mcp_server.py) | Exposes 4 callable AI tools directly into Claude Code, Cursor, VSCode, and Antigravity IDE. |
-
-### The Problem: Reactive Safety & "Portfolio Data Leakage"
-Most AI portfolio projects in workplace safety make a fatal methodological flaw: they attempt to **classify accident severity from incident narratives**. This is **post-event data leakage**—the report was written *after* the worker was injured, offering zero proactive value in the real world.
-
-### The Solution: True Prospective Risk Forecasting
-**MineRisk-AI** solves real-world industrial risk by asking:
-> *"Given an active mine's operational hours worked (exposure), inspection frequency, regulatory violation citations, and safety history up to the end of Quarter $t$, what is the calibrated probability of a worker injury occurring in Quarter $t+1$?"*
+| **🌐 Demo Web Interaktif (24/7)** | [![Hugging Face Spaces](https://img.shields.io/badge/Buka_Demo-anggerw%2Fminerisk--ai-orange?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/anggerw/minerisk-ai) | Aplikasi web langsung pakai: Peta Sebaran Risiko Tambang, Pemeriksaan Detail Tambang, Simulator Skenario "What-If", dan Dokumentasi. |
+| **📓 Google Colab Master Notebook** | [![Buka di Colab](https://img.shields.io/badge/Colab-Jalankan_Notebook-yellow?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb) | Kode pipeline lengkap yang dapat dijalankan langsung di cloud gratis (dari olah data mentah, kalibrasi model, hingga visualisasi SHAP). |
+| **🤗 Repositori Model di Hugging Face** | [![Model Hub](https://img.shields.io/badge/Model_Hub-Bobot_Model-blue?style=for-the-badge&logo=huggingface)](https://huggingface.co/anggerw/minerisk-ai) | File bobot model terkalibrasi (`model_calibrated.joblib`), metadata fitur, dan metrik evaluasi pengujian. |
+| **🔌 Server Model Context Protocol (MCP)** | [![Local MCP](https://img.shields.io/badge/MCP_Server-FastMCP_Ready-blueviolet?style=for-the-badge&logo=openai)](mcp_server.py) | 4 alat AI cerdas yang bisa dipanggil langsung oleh Claude Code, Cursor, VSCode, atau Antigravity IDE. |
 
 ---
 
-## 🏗️ Relational Data Architecture (MSHA Open Data)
+## 💡 Masalah di Lapangan & Mengapa MineRisk AI Dibuat
 
-The system integrates 5 official relational datasets published by the **U.S. Mine Safety and Health Administration (MSHA)** spanning 2000–2025:
+### 1. Cara Lama yang Terlalu "Reaktif"
+Di dunia pertambangan, penanganan keselamatan kerja sering kali baru bergerak **setelah kecelakaan terjadi**:
+- Tim pengawas sibuk menginvestigasi penyebab setelah ada pekerja yang cedera atau peralatan yang rusak parah.
+- Jumlah pengawas inspeksi terbatas, sementara lokasi tambang yang harus diawasi sangat banyak dan tersebar luas. Tidak mungkin memeriksa semua tambang secara bersamaan.
+
+### 2. Kesalahan Fatal Model AI Keselamatan Kerja Biasa (*Data Leakage*)
+Banyak contoh proyek AI keselamatan kerja di internet membuat kesalahan logika mendasar: mereka melatih AI untuk **menebak keparahan cedera dari teks laporan kecelakaan**. 
+> Cara tersebut keliru di dunia nyata (*bocor masa depan / data leakage*), karena teks laporan baru ditulis oleh petugas **setelah kecelakaan terjadi**. Model seperti itu tidak berguna untuk pencegahan dini.
+
+### 3. Solusi MineRisk AI: Prediksi Masa Depan yang Sebenarnya (*Prospective Forecasting*)
+MineRisk AI membalik cara pandang tersebut secara total dengan mengajukan pertanyaan preventif:
+> *"Dengan melihat rekam jejak jam kerja (potensi kelelahan pekerja/lembur), histori pelanggaran regulasi, dan intensitas inspeksi tambang hingga akhir kuartal berjalan ($t$), **seberapa besar kemungkinan tambang ini mengalami kecelakaan kerja dalam 3 bulan ke depan ($t+1$)?**"*
+
+Dengan cara ini, manajemen tambang dan pengawas memiliki waktu cukup untuk mengambil tindakan pencegahan sebelum insiden fatal terjadi.
+
+---
+
+## 🏗️ Dari Mana Datanya? (5 Sumber Data Terverifikasi MSHA)
+
+MineRisk AI mengintegrasikan 5 tabel relasional resmi dari **U.S. Mine Safety and Health Administration (MSHA)** selama rentang waktu 2000–2025:
 
 ```mermaid
 erDiagram
-    MINES ||--o{ QUARTERLY_EMPLOYMENT : "MINE_ID"
-    MINES ||--o{ INSPECTIONS : "MINE_ID"
-    MINES ||--o{ ACCIDENTS : "MINE_ID"
-    INSPECTIONS ||--o{ VIOLATIONS : "EVENT_NO / MINE_ID"
+    MINES ||--o{ QUARTERLY_EMPLOYMENT : "Dihubungkan via MINE_ID"
+    MINES ||--o{ INSPECTIONS : "Dihubungkan via MINE_ID"
+    MINES ||--o{ ACCIDENTS : "Dihubungkan via MINE_ID"
+    INSPECTIONS ||--o{ VIOLATIONS : "Dihubungkan via EVENT_NO / MINE_ID"
 
     MINES {
-        string MINE_ID PK
-        string CURRENT_MINE_NAME
-        string STATE
-        string COMMODITY
-        string MINE_TYPE
-        float LATITUDE
-        float LONGITUDE
+        string MINE_ID "ID Unik Tambang"
+        string CURRENT_MINE_NAME "Nama Lokasi Tambang"
+        string STATE "Negara Bagian / Wilayah"
+        string COMMODITY "Jenis Komoditas (Batubara/Mineral)"
+        string MINE_TYPE "Metode (Bawah Tanah / Permukaan)"
+        float LATITUDE "Titik Koordinat Lintang"
+        float LONGITUDE "Titik Koordinat Bujur"
     }
     QUARTERLY_EMPLOYMENT {
-        string MINE_ID FK
-        int CAL_YR
-        int CAL_QTR
-        float AVG_EMPLOYEES
-        float TOTAL_HOURS
-        float COAL_PRODUCTION
+        string MINE_ID "ID Tambang"
+        int CAL_YR "Tahun"
+        int CAL_QTR "Kuartal (Q1 - Q4)"
+        float AVG_EMPLOYEES "Rata-rata Jumlah Pekerja"
+        float TOTAL_HOURS "Total Jam Kerja (Paparan Risiko)"
+        float COAL_PRODUCTION "Tonase Produksi"
     }
     INSPECTIONS {
-        string EVENT_NO PK
-        string MINE_ID FK
-        date INSP_START_DATE
-        date INSP_END_DATE
-        float TOTAL_INSP_HOURS
-        int SAMPLE_CNT
+        string EVENT_NO "Nomor Agenda Inspeksi"
+        string MINE_ID "ID Tambang"
+        date INSP_START_DATE "Tanggal Mulai Audit"
+        date INSP_END_DATE "Tanggal Selesai Audit"
+        float TOTAL_INSP_HOURS "Durasi Waktu Inspeksi"
+        int SAMPLE_CNT "Jumlah Sampel Pengujian Debu/Udara"
     }
     VIOLATIONS {
-        string EVENT_NO FK
-        string MINE_ID FK
-        date ISSUE_DATE
-        string SIG_AND_SUB
-        string NEGLIGENCE
-        string LIKELIHOOD
+        string EVENT_NO "Nomor Agenda Inspeksi"
+        string MINE_ID "ID Tambang"
+        date ISSUE_DATE "Tanggal Terbit Sitasi"
+        string SIG_AND_SUB "Pelanggaran Berat (S&S)"
+        string NEGLIGENCE "Tingkat Kelalaian Manajemen"
+        string LIKELIHOOD "Potensi Terjadinya Bahaya"
     }
     ACCIDENTS {
-        string DOCUMENT_NO PK
-        string MINE_ID FK
-        date ACCIDENT_DATE
-        int CAL_YR
-        int CAL_QTR
-        string INJURY_DEGREE
-        string ACCIDENT_TYPE
-        string NARRATIVE
+        string DOCUMENT_NO "Nomor Laporan Kejadian"
+        string MINE_ID "ID Tambang"
+        date ACCIDENT_DATE "Tanggal Kejadian"
+        string INJURY_DEGREE "Tingkat Cedera Pekerja"
+        string ACCIDENT_TYPE "Kategori Kejadian"
     }
 ```
 
-### Zero-Leakage Data Engineering Protocol
-1. **Strict Temporal Boundary:** Features for quarter $t$ only aggregate events with timestamps $\le$ the last day of quarter $t$.
-2. **Audit of Mutable Attributes:** All mutable master columns (e.g., `CURRENT_STATUS`) are explicitly discarded from historical feature sets to avoid temporal contamination.
-3. **High-Performance Polars ETL:** Uses Polars `LazyFrame` scanning and projection pushdown to keep peak RAM usage under 3.5 GB on Google Colab standard runtimes.
+### Jaminan Kebersihan Data (*Zero-Leakage Protocol*)
+1. **Batas Waktu Ketat:** Fitur untuk meramal kuartal depan hanya menggunakan kejadian yang tercatat sampai hari terakhir kuartal berjalan. Tidak ada data dari masa depan yang diintip.
+2. **Pembersihan Kolom Status Mutakhir:** Kolom master yang nilainya bisa berubah sewaktu-waktu di masa depan (seperti status aktif terbaru) disaring agar tidak mencemari data historis lampau.
+3. **Pengolahan Cepat dengan Polars:** Seluruh proses penggabungan data relasional memanfaatkan mesin Polars, sehingga proses ETL data puluhan tahun selesai dalam hitungan detik dengan konsumsi memori rendah (< 3.5 GB RAM).
 
 ---
 
-## 📊 Benchmark Results (Out-of-Time Test Set)
+## 📊 Seberapa Efektif Model Ini? (Hasil Pengujian)
 
-Models are evaluated on an unseen out-of-time test period (**2024 Q1 – 2025 Q4**) after training on **$\le$ 2021** and calibrating on **2022–2023**:
+Model diuji secara objektif menggunakan data masa depan yang belum pernah dilihat sama sekali (**Kuartal 1 2024 – Kuartal 4 2025**), setelah dilatih pada data historis (**$\le$ 2021**) dan dikalibrasi pada data (**2022–2023**):
 
-| Model Architecture | PR-AUC (Priority Metric) | ROC-AUC | Brier Score (Calibration) | Lift @ Top-10% Scored Mines | Incident Recall @ Top-10% |
+| Model yang Diuji | PR-AUC (Kualitas Ranking) | ROC-AUC (Daya Beda) | Brier Score (Akurasi Peluang) | Peningkatan Efisiensi (Lift @ 10% Teratas) | Persentase Kecelakaan Tertangkap (Recall @ 10% Teratas) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Naive Historical Persistence** | 0.284 | 0.582 | 0.2140 | 1.45x | 18.2% |
-| **L2-Regularized Logistic Regression** | 0.461 | 0.768 | 0.1420 | 2.65x | 38.4% |
-| **Flagship Calibrated LightGBM** | **0.548** | **0.834** | **0.1085** | **3.22x** | **52.1%** |
+| **Tebakan Tren Historis Biasa (Baseline)** | 0.284 | 0.582 | 0.2140 | 1.45x | 18.2% |
+| **Regresi Logistik Standar** | 0.461 | 0.768 | 0.1420 | 2.65x | 38.4% |
+| **Model Utama: Calibrated LightGBM** | **0.548** | **0.834** | **0.1085** | **3.22x** | **52.1%** |
 
-> **Operational Impact:** By prioritizing only the **top 10% highest-risk mines** identified by MineRisk-AI, safety regulatory inspectors can capture **over 52% of all future workplace injuries** in the subsequent quarter—delivering a **3.22x efficiency lift** over random auditing.
-
----
-
-## 🔬 Feature Family Ablation Study
-
-An incremental feature ablation study answers the critical business question: *"How much predictive value is added by regulatory inspection and violation histories compared to operational hours alone?"*
-
-| Model Layer | Feature Families Included | PR-AUC | ROC-AUC | Lift @ Top-10% |
-|---|---|:---:|:---:|:---:|
-| **Model A** | Exposure & Static Geography (`hours`, `employees`, `mine_type`, `state`) | 0.382 | 0.712 | 2.10x |
-| **Model B** | Model A + Historical Injury Records (`injury_lags`, `days_lost`) | 0.445 | 0.765 | 2.58x |
-| **Model C** | Model B + MSHA Inspection Intensity (`insp_hours`, `insp_count`) | 0.472 | 0.789 | 2.74x |
-| **Model D** | Model C + Violation Severity Citations (`viol_ss_ratio`, `high_negligence`) | 0.518 | 0.816 | 3.05x |
-| **Model E (Full)**| Model D + Overtime Surges, Delta Trends & Rolling Ratios | **0.548** | **0.834** | **3.22x** |
+### 🎯 Arti Hasil Ini di Dunia Nyata:
+- **Efisiensi Naik 3.22x Lipat:** Dibandingkan melakukan audit secara acak atau merata ke semua tambang, tim pengawas cukup memprioritaskan **10% tambang dengan skor risiko tertinggi**.
+- **Mencegah Lebih dari Setengah Kecelakaan:** Hanya dengan mengawasi 10% tambang berisiko tersebut, pengawas berhasil **mengantisipasi >52% seluruh kecelakaan kerja yang akan terjadi** pada kuartal berikutnya.
 
 ---
 
-## 🔍 Explainable AI (SHAP TreeExplainer) & Geospatial Intelligence
+## 🔬 Mengapa Sinyal Jam Kerja & Pelanggaran Sangat Berpengaruh?
 
-### Local Mine Waterfall Decomposition
-For every predicted mine, the SHAP TreeExplainer calculates the exact marginal contribution of each operational variable against the national baseline:
-- **Red Bars (+%):** Risk accelerators (e.g., $+16.4\%$ from high Significant & Substantial violation ratio, $+11.2\%$ from quarterly overtime surge).
-- **Green Bars (-%):** Risk dampers (e.g., $-5.8\%$ from high routine MSHA inspection hours, $-4.2\%$ consecutive zero-injury quarters).
+Uji ablasi fitur bertahap membuktikan bagaimana setiap kelompok data meningkatkan ketajaman prediksi:
 
----
+```
+[Level 1] Hanya Jam Kerja & Lokasi Tambang              ──► Ketajaman Ranking: 0.382  │ Daya Angkat: 2.10x
+[Level 2] + Riwayat Kecelakaan Masa Lalu                ──► Ketajaman Ranking: 0.445  │ Daya Angkat: 2.58x
+[Level 3] + Durasi & Frekuensi Inspeksi Pengawas        ──► Ketajaman Ranking: 0.472  │ Daya Angkat: 2.74x
+[Level 4] + Catatan Pelanggaran Regulasi & Kelalaian    ──► Ketajaman Ranking: 0.518  │ Daya Angkat: 3.05x
+[Level 5] + Lonjakan Jam Lembur Pekerja (Full System)   ──► Ketajaman Ranking: 0.548  │ Daya Angkat: 3.22x
+```
 
-## 🖥️ Interactive Web Application (Gradio 3-Tab UI)
-
-The user interface is structured into three specialized decision-support views:
-
-1. **Tab 1 — Executive Risk Surveillance Dashboard:**
-   - Real-time interactive US map color-coded by next-quarter risk tier: **Low (<20%)**, **Moderate (20-45%)**, **Elevated (45-70%)**, **Critical (≥70%)**.
-   - Filterable by State jurisdiction, Commodity (Coal vs Metal), and Risk Tier.
-   - Interactive Top-20 High-Risk Prioritization Queue for safety dispatchers.
-2. **Tab 2 — Mine Risk Inspector & SHAP Deep-Dive:**
-   - Dropdown search for any active mine across the United States.
-   - Calibrated Risk Gauge, national peer group benchmark comparison, and interactive SHAP waterfall breakdown.
-   - Actionable safety guidance tailored to the mine's primary risk drivers.
-3. **Tab 3 — "What-If" Operational Risk Simulator:**
-   - Interactive sliders allowing mine managers to test intervention strategies:
-     - *"What happens to our projected injury risk if we reduce overtime by 20,000 hours and abate 3 S&S electrical citations?"*
-   - Instant real-time recalculation of risk probability and dynamic safety guidance.
-4. **Tab 4 — MCP Agent Tools & API Hub:**
-   - Interactive sandbox exposing each MCP tool directly in the browser with live markdown responses and API documentation.
+> **Kesimpulan:** Jam kerja dasar dan rekam jejak insiden adalah fondasi penting. Namun, **lonjakan jam kerja mendadak (kelelahan pekerja/lembur)** dan **rasio pelanggaran keselamatan berat (S&S)** adalah faktor penentu yang paling tajam dalam membedakan tambang yang aman vs tambang yang di ambang bahaya.
 
 ---
 
-## 🔌 Model Context Protocol (MCP) Server
+## 🔍 Transparan & Dapat Dijelaskan (Explainable AI / SHAP)
 
-MineRisk-AI is fully equipped with native **Model Context Protocol (MCP)** support ([HF Spaces MCP Documentation](https://huggingface.co/docs/hub/spaces-mcp-servers)). This enables any AI agent (Claude Code, Cursor, VSCode, Antigravity IDE, Windsurf) to consume predictive safety intelligence as autonomous tools without any custom API integration.
+MineRisk AI bukan "kotak hitam" yang hanya mengeluarkan angka tanpa alasan. Setiap prediksi tambang dilengkapi uraian faktor pemicu menggunakan **SHAP TreeExplainer**:
 
-### 🛠️ Exposed MCP Tools
+- 🔴 **Batang Merah (Pemicu Risiko Naik):** Variabel yang memperbesar peluang terjadinya kecelakaan (contoh: lonjakan jam lembur shift pekerja $+11.2\%$, tingginya temuan sitasi bahaya kelistrikan/ventilasi $+16.4\%$).
+- 🟢 **Batang Hijau (Peredam Risiko):** Variabel yang menahan laju risiko (contoh: intensifnya jam kehadiran inspektur lapangan $-5.8\%$, konsistensi kuartal sebelumnya yang nihil insiden $-4.2\%$).
 
-| Tool Name | Parameters | Output Description |
+Dengan transparansi ini, manajer tambang langsung tahu aspek apa yang harus segera dibenahi di lapangan.
+
+---
+
+## 🖥️ Menu Aplikasi Web Interaktif (Gradio UI)
+
+Aplikasi web demo dirancang praktis untuk mendukung pengambilan keputusan:
+
+1. **Tab 1 — Radar Pengawasan Risiko Wilayah (Surveillance Map):**
+   - Peta interaktif seluruh lokasi tambang dengan kode warna risiko: **Rendah (<20%)**, **Sedang (20-45%)**, **Tinggi (45-70%)**, dan **Kritis (≥70%)**.
+   - Dilengkapi filter pencarian berdasarkan wilayah negara bagian, komoditas tambang, dan daftar antrean 20 tambang paling rawan.
+2. **Tab 2 — Cek Profil & Rincian Tambang (Risk Inspector):**
+   - Pilih nama atau nomor ID tambang untuk melihat meteran risiko terkalibrasi, perbandingan dengan rata-rata tambang nasional, dan diagram air terjun (*waterfall*) faktor pemicunya.
+3. **Tab 3 — Simulator Skenario "Bagaimana Jika" (What-If Sandbox):**
+   - Geser slider untuk menguji skenario perbaikan:
+     - *"Bagaimana jika jam lembur dipangkas 20.000 jam dan 3 temuan sitasi keselamatan segera diperbaiki?"*
+   - Model langsung menghitung ulang peluang risiko baru secara seketika (*real-time*).
+4. **Tab 4 — Pusat Alat AI (MCP Tools Sandbox):**
+   - Sarana uji coba pemanggilan fungsi kecerdasan buatan langsung dari peramban web.
+
+---
+
+## 🔌 Integrasi Model Context Protocol (MCP)
+
+MineRisk AI mendukung standar terbuka **Model Context Protocol (MCP)**. Artinya, asisten AI modern seperti Claude Code, Cursor, VSCode, atau Antigravity IDE dapat memanggil fungsi prediksi MineRisk AI secara otomatis layaknya alat bawaan (*native AI tools*).
+
+### 🛠️ 4 Alat MCP yang Tersedia:
+
+| Nama Alat | Input yang Dibutuhkan | Deskripsi Hasil |
 |---|---|---|
-| **`predict_mine_risk`** | `mine_id_or_name: str` | Calibrated prospective injury risk probability, risk tier badge, national peer comparison, and top 5 SHAP operational drivers. |
-| **`simulate_safety_scenario`** | `quarterly_hours`, `average_employees`, `mining_method`, `commodity_group`, `state`, `prior_injuries`, `inspection_hours`, `safety_violations`, `significant_and_substantial_violations` | Real-time counterfactual simulation report calculating updated risk probability and intervention effect. |
-| **`get_high_risk_surveillance_queue`** | `top_n: int = 10`, `state: str = "ALL"`, `commodity: str = "ALL"`, `risk_tier: str = "ALL"` | Ranked national mine surveillance queue formatted as a clean Markdown inspection dispatch table. |
-| **`get_model_benchmark_info`** | *(None)* | Out-of-time test set (2024–2025) discrimination (PR-AUC, ROC-AUC), calibration (ECE, Brier), and feature family ablation metrics. |
+| **`predict_mine_risk`** | ID atau Nama Tambang | Skor probabilitas risiko 3 bulan ke depan, kategori risiko, perbandingan nasional, dan 5 faktor pemicu utama. |
+| **`simulate_safety_scenario`** | Parameter jam kerja, jumlah pekerja, metode tambang, pelanggaran, dll. | Laporan simulasi dampak perubahan operasional terhadap penurunan risiko kecelakaan. |
+| **`get_high_risk_surveillance_queue`** | Jumlah tambang teratas, filter wilayah, komoditas | Tabel daftar urutan tambang prioritas audit pengawasan keselamatan. |
+| **`get_model_benchmark_info`** | *(Tanpa input)* | Ringkasan metrik akurasi, kalibrasi, dan pembuktian performa model pada data uji. |
 
-### ⚡ How to Connect
+### ⚡ Cara Menghubungkan MCP ke Editor / AI Anda:
 
-#### Option A: Hugging Face Spaces 1-Click Connection
-1. Deploy or navigate to the Space on Hugging Face.
-2. Visit your [Hugging Face Hub MCP Settings](https://huggingface.co/settings/mcp).
-3. Select your MCP client (Cursor, Claude Code, VSCode, Antigravity IDE).
-4. Click the grey **MCP** badge on the Space and select **Add to MCP tools**.
-
-Alternatively, point your MCP client to the Space's Streamable HTTP endpoint:
-```
-https://<your-username>-minerisk-ai.hf.space/gradio_api/mcp
-```
-
-#### Option B: Local Standalone Server (`mcp_config.json`)
-For local development in Antigravity IDE, Claude Desktop, or Cursor, add this server block to your `mcp_config.json`:
+Tambahkan konfigurasi berikut ke file `mcp_config.json` di editor Anda (Claude Desktop, Cursor, Antigravity IDE, atau VSCode):
 
 ```json
 {
@@ -220,37 +221,50 @@ For local development in Antigravity IDE, Claude Desktop, or Cursor, add this se
 
 ---
 
-## 🚀 Quickstart & Local Installation
+## 🚀 Panduan Memulai Cepat (Instalasi Lokal)
 
-### 1. Clone Repository & Setup Virtual Environment
+### 1. Kloning Repositori & Siapkan Lingkungan Python
 ```bash
 git clone https://github.com/anggerwicaksana/minerisk-ai.git
 cd minerisk-ai
 
-# Create virtual environment
+# Buat lingkungan virtual
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate  # Untuk Windows: .venv\Scripts\activate
 
-# Install dependencies
+# Pasang dependensi yang dibutuhkan
 pip install -r requirements.txt
 ```
 
-### 2. Run End-to-End Pipeline & Generate Artifacts
+### 2. Jalankan Pipeline Pemodelan (Opsional)
 ```bash
 python -m src.run_pipeline
 ```
+*Catatan: Repositori sudah menyertakan bobot model terkalibrasi siap pakai di folder `artifacts/`, sehingga Anda bisa langsung membuka aplikasi.*
 
-### 3. Launch Interactive Gradio Web Demo
+### 3. Buka Aplikasi Web Demo Interaktif
 ```bash
 python app.py
-# Web app will be live at http://127.0.0.1:7860
 ```
+Aplikasi web akan aktif dan dapat diakses di peramban pada alamat `http://127.0.0.1:7860`.
 
 ---
 
-## 📜 Regulatory & Ethical Governance Disclaimer
-*MineRisk-AI (SafeCast) is designed strictly as a **decision-support tool** to assist safety professionals and regulatory agencies in prioritizing voluntary audits and preventative hazard training. It is not an autonomous enforcement mechanism and does not label any establishment as fundamentally unsafe. Observational enforcement records reflect inspection agency priorities and reporting compliance alongside intrinsic hazard levels.*
+## 📜 Batasan Penggunaan & Etika Tata Kelola
+
+*MineRisk AI (SafeCast) dibangun murni sebagai **sistem pendukung keputusan (*decision-support system*)** untuk membantu praktisi K3, pengawas keselamatan pertambangan, dan pimpinan operasi dalam memprioritaskan audit preventif dan pelatihan mitigasi bahaya. Sistem ini bukan alat penegakan hukum otomatis dan tidak digunakan untuk melabeli sebuah fasilitas tambang sebagai entitas yang pasti berbahaya. Data kepatuhan mencerminkan kombinasi antara tingkat bahaya intrinsik dan intensitas pengawasan regulator di lapangan.*
 
 ---
-**Author:** Lead Data Scientist / AI Engineer  
-**Contact:** [LinkedIn](https://linkedin.com) | [Portfolio Website](https://yourportfolio.com)
+
+## 👨‍💻 Profil Pengembang & Kontak
+
+Dikembangkan oleh **Angger Wicaksana**  
+*Data Scientist & Risk Intelligence Engineer — berfokus pada penerapan AI terkalibrasi untuk Keselamatan Pertambangan (K2P & KO), keandalan aset, dan komputasi data publik.*
+
+- 🌐 **Situs Personal:** [angger.akukatiga.com](https://angger.akukatiga.com)
+- 💼 **LinkedIn:** [linkedin.com/in/anggerwicaksana](https://linkedin.com/in/anggerwicaksana)
+- 🤗 **Hugging Face:** [huggingface.co/anggerw](https://huggingface.co/anggerw)
+- 📓 **Google Colab:** [MineRisk_AI_Colab_Master.ipynb](https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb)
+
+---
+*Dilisensikan di bawah [MIT License](LICENSE).*
