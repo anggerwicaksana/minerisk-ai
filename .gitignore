@@ -1,22 +1,44 @@
-# Virtual environments
+# Python & Virtual Environments
 .venv/
 env/
 venv/
 ENV/
+build/
+dist/
+*.egg-info/
 
 # Python bytecode & cache
 __pycache__/
 *.py[cod]
 *$py.class
 *.ipynb_checkpoints/
+.pytest_cache/
 
-# IDE & OS
+# Datasets & Large Data Panels (Keep repository lightweight & production-focused)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Internal Research, Raw Prompts, Planning & Vibecoding Notes
+Deep Research & Planner/
+PRD.md
+product_brief.md
+portfolio_case_study.md
+web_showcase/
+*.draft.md
+*.notes.md
+*.todo.md
+
+# Temporary Files, Logs & Scratch Artifacts
+*.tmp
+*.log
+artifacts/*.tmp
+artifacts/*checkpoint*
+
+# IDE & OS Specific
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Temporary files
-*.tmp
-*.log

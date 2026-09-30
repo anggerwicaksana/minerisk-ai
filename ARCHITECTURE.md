@@ -3,8 +3,7 @@
 ### Predictive Industrial Safety & Health (OSH) Risk Intelligence System
 **Document Version:** 1.0.0  
 **Status:** Approved for Implementation  
-**Target Environments:** Python 3.10+, Google Colab (CPU/T4), Hugging Face Spaces (Gradio)  
-**Parent Documents:** [Product Brief](file:///d:/PROJEK%20-%20BUSINESS/Predictive%20AI/product_brief.md) | [PRD.md](file:///d:/PROJEK%20-%20BUSINESS/Predictive%20AI/PRD.md)
+**System Architecture:** Production Multi-Tier Predictive Machine Learning & OSH Intelligence
 
 ---
 

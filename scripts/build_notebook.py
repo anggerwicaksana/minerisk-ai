@@ -252,7 +252,7 @@ notebook_data = {
     "nbformat_minor": 4
 }
 
-out_file = Path("d:/PROJEK - BUSINESS/Predictive AI/notebooks/MineRisk_AI_Colab_Master.ipynb")
+out_file = Path(__file__).resolve().parent.parent / "notebooks" / "MineRisk_AI_Colab_Master.ipynb"
 out_file.parent.mkdir(parents=True, exist_ok=True)
 with open(out_file, "w") as f:
     json.dump(notebook_data, f, indent=2)

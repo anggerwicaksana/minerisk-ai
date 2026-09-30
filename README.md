@@ -40,7 +40,7 @@ tags:
 | **🌐 24/7 Live Interactive Web Showcase** | [![Hugging Face Spaces](https://img.shields.io/badge/Live_Demo-anggerw%2Fminerisk--ai-orange?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/anggerw/minerisk-ai) | Permanent live interactive UI: US Mine Risk Map, Individual Mine Risk Inspector, "What-If" Sandbox, and Technical Docs. |
 | **🤗 Hugging Face Model Repository** | [![Hugging Face Models](https://img.shields.io/badge/Model_Hub-anggerw%2Fminerisk--ai-blue?style=for-the-badge&logo=huggingface)](https://huggingface.co/anggerw/minerisk-ai) | Calibrated LightGBM model weights (`model_calibrated.joblib`), metadata, and out-of-time test metrics. |
 | **📓 Google Colab Master Notebook** | [![Open In Colab](https://img.shields.io/badge/Colab-Run_All_Notebook-yellow?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb) | End-to-end reproducible pipeline from raw MSHA extraction to probability calibration and SHAP waterfall plots. |
-| **🔌 Model Context Protocol (MCP)** | [![Local MCP Server](https://img.shields.io/badge/MCP_Server-FastMCP_Ready-blueviolet?style=for-the-badge&logo=openai)](file:///d:/PROJEK%20-%20BUSINESS/Predictive%20AI/mcp_server.py) | Exposes 4 callable AI tools directly into Claude Code, Cursor, VSCode, and Antigravity IDE. |
+| **🔌 Model Context Protocol (MCP)** | [![Local MCP Server](https://img.shields.io/badge/MCP_Server-FastMCP_Ready-blueviolet?style=for-the-badge&logo=openai)](mcp_server.py) | Exposes 4 callable AI tools directly into Claude Code, Cursor, VSCode, and Antigravity IDE. |
 
 ### The Problem: Reactive Safety & "Portfolio Data Leakage"
 Most AI portfolio projects in workplace safety make a fatal methodological flaw: they attempt to **classify accident severity from incident narratives**. This is **post-event data leakage**—the report was written *after* the worker was injured, offering zero proactive value in the real world.
@@ -207,7 +207,7 @@ For local development in Antigravity IDE, Claude Desktop, or Cursor, add this se
     "minerisk-ai": {
       "command": "python",
       "args": [
-        "d:\\PROJEK - BUSINESS\\Predictive AI\\mcp_server.py"
+        "mcp_server.py"
       ],
       "env": {
         "PYTHONIOENCODING": "utf-8",

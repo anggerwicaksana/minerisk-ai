@@ -408,10 +408,11 @@ body::before {
   font-size: clamp(2.2rem, 4.2vw, 3.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.15;
-  max-width: 1020px;
+  line-height: 1.16;
+  max-width: 1040px;
   margin: 0 auto 18px;
   color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .hero-title em {
@@ -420,6 +421,9 @@ body::before {
   font-weight: 400;
   color: var(--accent-amber-light);
   letter-spacing: -0.01em;
+  display: block;
+  margin-top: 8px;
+  text-wrap: balance;
 }
 
 .hero-subtitle {
