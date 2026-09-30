@@ -630,12 +630,12 @@ function runSimulation() {
   const simAbatementText = document.getElementById('simAbatementText');
   if (ss > 0) {
     simAbatementText.innerHTML = `
-      <span style="color:#10B981; font-weight:700;">Potensi Pengurangan Risiko Nyata:</span><br>
+      <strong style="color:#10B981; font-weight:700; display:block; margin-bottom:4px;">Potensi Pengurangan Risiko Nyata</strong>
       Jika pengelola tambang segera memperbaiki <strong>${ss} temuan pelanggaran kritis S&S</strong> menjadi 0, estimasi potensi kecelakaan kerja kuartal depan dapat ditekan turun sekitar <strong>-${abatementDelta}%</strong>.
     `;
   } else {
     simAbatementText.innerHTML = `
-      <span style="color:#10B981; font-weight:700;">Kondisi Kepatuhan Ideal:</span><br>
+      <strong style="color:#10B981; font-weight:700; display:block; margin-bottom:4px;">Kondisi Kepatuhan Ideal</strong>
       Tidak ada temuan pelanggaran kritis S&S. Menjaga jam kerja stabil dan melanjutkan inspeksi berkala merupakan langkah paling efektif untuk mempertahankan lingkungan tambang yang aman.
     `;
   }
