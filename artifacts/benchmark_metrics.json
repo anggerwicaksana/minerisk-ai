@@ -1,0 +1,53 @@
+{
+  "test_metrics": {
+    "base_rate": 0.506456820016142,
+    "pr_auc": 0.7194822779520693,
+    "roc_auc": 0.7340009544813386,
+    "brier_score": 0.20845742625944919,
+    "precision_top10": 0.8203834510595358,
+    "recall_top10": 0.16195219123505977,
+    "lift_top10": 1.6198487583470358,
+    "precision_top20": 0.7795156407669022,
+    "recall_top20": 0.30776892430278885,
+    "lift_top20": 1.53915518551425,
+    "f1_at_threshold": 0.687698986975398,
+    "precision_at_threshold": 0.6667913938260056,
+    "recall_at_threshold": 0.7099601593625497,
+    "uncalibrated_brier": 0.20835849983215482,
+    "calibrated_brier": 0.20845742625944919,
+    "uncalibrated_ece": 0.009328648096438649,
+    "calibrated_ece": 0.011397038823921955
+  },
+  "ablation_study": {
+    "Model A (Exposure Only)": {
+      "pr_auc": 0.7148058478883965,
+      "roc_auc": 0.733301666596085,
+      "lift_top10": 1.59394711768466,
+      "brier_score": 0.20864562565974556
+    },
+    "Model B (A + Safety History)": {
+      "pr_auc": 0.718122794232785,
+      "roc_auc": 0.7342546005674766,
+      "lift_top10": 1.6039092871701892,
+      "brier_score": 0.2082638666444471
+    },
+    "Model C (B + Inspections)": {
+      "pr_auc": 0.7135880285494571,
+      "roc_auc": 0.7328669785290562,
+      "lift_top10": 1.5979319854788718,
+      "brier_score": 0.2087284200841227
+    },
+    "Model D (C + Violations)": {
+      "pr_auc": 0.7135588321285358,
+      "roc_auc": 0.733759829854743,
+      "lift_top10": 1.5999244193759774,
+      "brier_score": 0.20847847845164458
+    },
+    "Model E (Full: D + Trends & Interactivity)": {
+      "pr_auc": 0.7209786831334721,
+      "roc_auc": 0.734847853068511,
+      "lift_top10": 1.6198487583470358,
+      "brier_score": 0.20807397263377703
+    }
+  }
+}

@@ -1,0 +1,2057 @@
+{
+  "benchmark": {
+    "test_metrics": {
+      "base_rate": 0.506456820016142,
+      "pr_auc": 0.7194822779520693,
+      "roc_auc": 0.7340009544813386,
+      "brier_score": 0.20845742625944919,
+      "precision_top10": 0.8203834510595358,
+      "recall_top10": 0.16195219123505977,
+      "lift_top10": 1.6198487583470358,
+      "precision_top20": 0.7795156407669022,
+      "recall_top20": 0.30776892430278885,
+      "lift_top20": 1.53915518551425,
+      "f1_at_threshold": 0.687698986975398,
+      "precision_at_threshold": 0.6667913938260056,
+      "recall_at_threshold": 0.7099601593625497,
+      "uncalibrated_brier": 0.20835849983215482,
+      "calibrated_brier": 0.20845742625944919,
+      "uncalibrated_ece": 0.009328648096438649,
+      "calibrated_ece": 0.011397038823921955
+    },
+    "ablation_study": {
+      "Model A (Exposure Only)": {
+        "pr_auc": 0.7148058478883965,
+        "roc_auc": 0.733301666596085,
+        "lift_top10": 1.59394711768466,
+        "brier_score": 0.20864562565974556
+      },
+      "Model B (A + Safety History)": {
+        "pr_auc": 0.718122794232785,
+        "roc_auc": 0.7342546005674766,
+        "lift_top10": 1.6039092871701892,
+        "brier_score": 0.2082638666444471
+      },
+      "Model C (B + Inspections)": {
+        "pr_auc": 0.7135880285494571,
+        "roc_auc": 0.7328669785290562,
+        "lift_top10": 1.5979319854788718,
+        "brier_score": 0.2087284200841227
+      },
+      "Model D (C + Violations)": {
+        "pr_auc": 0.7135588321285358,
+        "roc_auc": 0.733759829854743,
+        "lift_top10": 1.5999244193759774,
+        "brier_score": 0.20847847845164458
+      },
+      "Model E (Full: D + Trends & Interactivity)": {
+        "pr_auc": 0.7209786831334721,
+        "roc_auc": 0.734847853068511,
+        "lift_top10": 1.6198487583470358,
+        "brier_score": 0.20807397263377703
+      }
+    }
+  },
+  "mines": [
+    {
+      "id": "6265150",
+      "name": "Mine Operation 1414 - Valley",
+      "state": "PA",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 135945,
+      "employees": 285,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 86.9,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 173.6,
+          "val": "178090.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 24.1,
+          "val": "222995.0"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 20.6,
+          "val": "-0.3903657464707887"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 8.4,
+          "val": "135945.0"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 7.5,
+          "val": "-87050.0"
+        }
+      ]
+    },
+    {
+      "id": "1204408",
+      "name": "Mine Operation 170 - Creek",
+      "state": "KY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 153939,
+      "employees": 291,
+      "violations": 2,
+      "viol_ss": 1,
+      "prob": 86.8,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 155.3,
+          "val": "176732.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 41.1,
+          "val": "206400.0"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 10.9,
+          "val": "-0.25417028018275106"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 10.7,
+          "val": "3.39496131158672"
+        },
+        {
+          "name": "Insp Hours Q0",
+          "shap": 9.6,
+          "val": "191.3"
+        }
+      ]
+    },
+    {
+      "id": "6705775",
+      "name": "Mine Operation 457 - Valley",
+      "state": "WV",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 221760,
+      "employees": 352,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 85.6,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 143.0,
+          "val": "183347.5"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 29.7,
+          "val": "221760.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 26.3,
+          "val": "199056.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 17.0,
+          "val": "352.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 9.0,
+          "val": "2.999764109458665"
+        }
+      ]
+    },
+    {
+      "id": "1713281",
+      "name": "Mine Operation 216 - Creek",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 175088,
+      "employees": 353,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 85.3,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 156.6,
+          "val": "178792.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 28.8,
+          "val": "173619.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 21.9,
+          "val": "353.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 10.0,
+          "val": "175088.0"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": 6.3,
+          "val": "4.569130951293064"
+        }
+      ]
+    },
+    {
+      "id": "2257016",
+      "name": "Mine Operation 1444 - Hollow",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 199080,
+      "employees": 395,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 85.3,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 121.9,
+          "val": "165127.25"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 36.9,
+          "val": "199080.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 23.4,
+          "val": "163800.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 7.4,
+          "val": "395.0"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 7.1,
+          "val": "35280.0"
+        }
+      ]
+    },
+    {
+      "id": "9541594",
+      "name": "Mine Operation 762 - Alpha",
+      "state": "PA",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 217459,
+      "employees": 373,
+      "violations": 2,
+      "viol_ss": 0,
+      "prob": 84.9,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 136.2,
+          "val": "225853.75"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 32.1,
+          "val": "205770.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 30.0,
+          "val": "217459.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 15.6,
+          "val": "373.0"
+        },
+        {
+          "name": "Injury Count Q0",
+          "shap": -4.5,
+          "val": "5"
+        }
+      ]
+    },
+    {
+      "id": "9622106",
+      "name": "Mine Operation 1082 - Ridge",
+      "state": "WV",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 167240,
+      "employees": 370,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 84.9,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 151.2,
+          "val": "174761.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 31.8,
+          "val": "209924.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 9.8,
+          "val": "167240.0"
+        },
+        {
+          "name": "Injury Count Lag2",
+          "shap": 9.0,
+          "val": "4"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.7,
+          "val": "370.0"
+        }
+      ]
+    },
+    {
+      "id": "4607055",
+      "name": "Mine Operation 956 - Hollow",
+      "state": "TX",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 124660,
+      "employees": 271,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 84.7,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 133.8,
+          "val": "152608.0"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 22.6,
+          "val": "-0.3520434947580708"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 18.6,
+          "val": "192390.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 9.6,
+          "val": "124660.0"
+        },
+        {
+          "name": "State",
+          "shap": 7.8,
+          "val": "TX"
+        }
+      ]
+    },
+    {
+      "id": "7612292",
+      "name": "Mine Operation 1348 - Ridge",
+      "state": "IL",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 214970,
+      "employees": 415,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 84.6,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 128.9,
+          "val": "185657.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 30.5,
+          "val": "197886.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 28.7,
+          "val": "214970.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 14.2,
+          "val": "79.29999999999994"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 5.1,
+          "val": "415.0"
+        }
+      ]
+    },
+    {
+      "id": "5545138",
+      "name": "Mine Operation 159 - Ridge",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 221184,
+      "employees": 384,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 84.5,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 141.8,
+          "val": "199892.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 30.1,
+          "val": "221184.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 19.8,
+          "val": "558"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 19.2,
+          "val": "193291.0"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": -8.0,
+          "val": "0.9042245370370371"
+        }
+      ]
+    },
+    {
+      "id": "7862788",
+      "name": "Mine Operation 741 - Creek",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 99324,
+      "employees": 186,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 84.4,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 124.2,
+          "val": "135241.25"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 32.0,
+          "val": "-0.34400406839661585"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 24.6,
+          "val": "151410.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 13.3,
+          "val": "186.0"
+        },
+        {
+          "name": "Days Lost Q0",
+          "shap": -7.8,
+          "val": "47"
+        }
+      ]
+    },
+    {
+      "id": "8396975",
+      "name": "Mine Operation 1024 - Alpha",
+      "state": "AZ",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 114669,
+      "employees": 279,
+      "violations": 7,
+      "viol_ss": 3,
+      "prob": 83.3,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 103.0,
+          "val": "126479.5"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 19.6,
+          "val": "654.6"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 16.4,
+          "val": "144180.0"
+        },
+        {
+          "name": "State",
+          "shap": 9.5,
+          "val": "AZ"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 8.8,
+          "val": "-29511.0"
+        }
+      ]
+    },
+    {
+      "id": "8154212",
+      "name": "Mine Operation 135 - Valley",
+      "state": "PA",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 139050,
+      "employees": 309,
+      "violations": 2,
+      "viol_ss": 2,
+      "prob": 83.2,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 115.8,
+          "val": "159040.75"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 25.6,
+          "val": "171458.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 16.0,
+          "val": "309.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 9.0,
+          "val": "139050.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 7.3,
+          "val": "123.5"
+        }
+      ]
+    },
+    {
+      "id": "9149820",
+      "name": "Mine Operation 67 - Creek",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 133164,
+      "employees": 324,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 83.1,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 114.3,
+          "val": "129654.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 20.7,
+          "val": "124248.0"
+        },
+        {
+          "name": "Viol Count Lag1",
+          "shap": 16.1,
+          "val": "8"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 13.2,
+          "val": "133164.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 11.2,
+          "val": "324.0"
+        }
+      ]
+    },
+    {
+      "id": "8957310",
+      "name": "Mine Operation 903 - Valley",
+      "state": "OH",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 228400,
+      "employees": 400,
+      "violations": 4,
+      "viol_ss": 1,
+      "prob": 83.1,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 145.7,
+          "val": "197998.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 25.1,
+          "val": "228400.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 19.0,
+          "val": "175769.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": -10.2,
+          "val": "375"
+        },
+        {
+          "name": "Injury Count Lag1",
+          "shap": -7.8,
+          "val": "5"
+        }
+      ]
+    },
+    {
+      "id": "5643959",
+      "name": "Mine Operation 548 - Creek",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 122075,
+      "employees": 257,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 83.0,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 106.9,
+          "val": "138818.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 25.6,
+          "val": "160590.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 11.0,
+          "val": "5"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 10.7,
+          "val": "122075.0"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 6.8,
+          "val": "-38515.0"
+        }
+      ]
+    },
+    {
+      "id": "5193865",
+      "name": "Mine Operation 709 - Alpha",
+      "state": "WV",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 113288,
+      "employees": 289,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 83.0,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 122.2,
+          "val": "145554.5"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 27.2,
+          "val": "171389.0"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 11.3,
+          "val": "-58101.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 9.9,
+          "val": "113288.0"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 8.4,
+          "val": "-0.33899877472431295"
+        }
+      ]
+    },
+    {
+      "id": "2023559",
+      "name": "Mine Operation 500 - Hollow",
+      "state": "AL",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 153010,
+      "employees": 286,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 83.0,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 148.0,
+          "val": "176022.0"
+        },
+        {
+          "name": "Days Lost Q0",
+          "shap": -33.5,
+          "val": "107"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 28.7,
+          "val": "206518.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.2,
+          "val": "286.0"
+        },
+        {
+          "name": "State",
+          "shap": 7.8,
+          "val": "AL"
+        }
+      ]
+    },
+    {
+      "id": "3172348",
+      "name": "Mine Operation 1401 - Hollow",
+      "state": "AZ",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 133215,
+      "employees": 321,
+      "violations": 3,
+      "viol_ss": 1,
+      "prob": 82.9,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 117.2,
+          "val": "151903.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 25.2,
+          "val": "168744.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 17.2,
+          "val": "321.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 12.0,
+          "val": "133215.0"
+        },
+        {
+          "name": "State",
+          "shap": 11.1,
+          "val": "AZ"
+        }
+      ]
+    },
+    {
+      "id": "7884988",
+      "name": "Mine Operation 128 - Ridge",
+      "state": "KY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 118779,
+      "employees": 289,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 82.9,
+      "tier": "Critical",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 121.6,
+          "val": "138840.5"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 27.5,
+          "val": "163438.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 9.4,
+          "val": "118779.0"
+        },
+        {
+          "name": "Hours Pct Change 1Q",
+          "shap": 7.0,
+          "val": "-0.27324567575670433"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 5.6,
+          "val": "15"
+        }
+      ]
+    },
+    {
+      "id": "1368522",
+      "name": "Mine Operation 1239 - Ridge",
+      "state": "TX",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 122516,
+      "employees": 218,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 70.0,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 50.4,
+          "val": "91601.0"
+        },
+        {
+          "name": "State",
+          "shap": 11.2,
+          "val": "TX"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 10.8,
+          "val": "122516.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.9,
+          "val": "218.0"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 4.9,
+          "val": "46556.0"
+        }
+      ]
+    },
+    {
+      "id": "2074088",
+      "name": "Mine Operation 1342 - Creek",
+      "state": "PA",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 82654,
+      "employees": 221,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.9,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 49.3,
+          "val": "89677.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 18.7,
+          "val": "99960.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.4,
+          "val": "221.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 7.2,
+          "val": "127.4"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 4.7,
+          "val": "82654.0"
+        }
+      ]
+    },
+    {
+      "id": "8789108",
+      "name": "Mine Operation 1279 - Alpha",
+      "state": "WV",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 108375,
+      "employees": 255,
+      "violations": 3,
+      "viol_ss": 0,
+      "prob": 69.9,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 72.0,
+          "val": "110524.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 11.7,
+          "val": "114945.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.2,
+          "val": "255.0"
+        },
+        {
+          "name": "State",
+          "shap": -5.9,
+          "val": "WV"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 5.7,
+          "val": "108375.0"
+        }
+      ]
+    },
+    {
+      "id": "9041018",
+      "name": "Mine Operation 363 - Ridge",
+      "state": "WY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 72044,
+      "employees": 166,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.9,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 42.8,
+          "val": "80775.75"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 12.2,
+          "val": "84976.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 7.3,
+          "val": "166.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 5.0,
+          "val": "72044.0"
+        },
+        {
+          "name": "Injury Rolling 4Q Sum",
+          "shap": 3.8,
+          "val": "11"
+        }
+      ]
+    },
+    {
+      "id": "6733075",
+      "name": "Mine Operation 1234 - Valley",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 83538,
+      "employees": 182,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.8,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 53.6,
+          "val": "91341.75"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 14.2,
+          "val": "102695.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.2,
+          "val": "182.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 3.1,
+          "val": "83538.0"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": -2.1,
+          "val": "2.394120041178865"
+        }
+      ]
+    },
+    {
+      "id": "5526119",
+      "name": "Mine Operation 1090 - Alpha",
+      "state": "IL",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 81608,
+      "employees": 202,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 69.8,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 52.7,
+          "val": "91046.5"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.0,
+          "val": "202.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 6.8,
+          "val": "262"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 5.4,
+          "val": "70146.0"
+        },
+        {
+          "name": "State",
+          "shap": -4.2,
+          "val": "IL"
+        }
+      ]
+    },
+    {
+      "id": "5515700",
+      "name": "Mine Operation 1052 - Ridge",
+      "state": "VA",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 77350,
+      "employees": 170,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 69.8,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 50.0,
+          "val": "85814.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 10.8,
+          "val": "94470.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 6.7,
+          "val": "77350.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 6.0,
+          "val": "170.0"
+        },
+        {
+          "name": "Days Lost Q0",
+          "shap": 4.8,
+          "val": "64"
+        }
+      ]
+    },
+    {
+      "id": "8026560",
+      "name": "Mine Operation 112 - Creek",
+      "state": "IN",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 113849,
+      "employees": 181,
+      "violations": 4,
+      "viol_ss": 4,
+      "prob": 69.7,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 59.7,
+          "val": "91660.5"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 20.3,
+          "val": "61180.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 12.8,
+          "val": "113849.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 10.9,
+          "val": "181.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": -10.7,
+          "val": "430.9"
+        }
+      ]
+    },
+    {
+      "id": "5993284",
+      "name": "Mine Operation 1364 - Alpha",
+      "state": "PA",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 96693,
+      "employees": 193,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.6,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 71.2,
+          "val": "98532.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 9.7,
+          "val": "103230.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.1,
+          "val": "193.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 7.0,
+          "val": "118.1"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 6.4,
+          "val": "96693.0"
+        }
+      ]
+    },
+    {
+      "id": "8637043",
+      "name": "Mine Operation 649 - Hollow",
+      "state": "WV",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 93074,
+      "employees": 173,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.6,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 43.3,
+          "val": "83116.75"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 14.1,
+          "val": "78613.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.4,
+          "val": "173.0"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": 8.2,
+          "val": "4.29765562885446"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 8.1,
+          "val": "93074.0"
+        }
+      ]
+    },
+    {
+      "id": "7098927",
+      "name": "Mine Operation 415 - Valley",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 105156,
+      "employees": 207,
+      "violations": 2,
+      "viol_ss": 0,
+      "prob": 69.5,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 47.6,
+          "val": "89717.5"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 16.4,
+          "val": "99395.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.5,
+          "val": "207.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 6.6,
+          "val": "105156.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -4.0,
+          "val": "1.1146066413836726"
+        }
+      ]
+    },
+    {
+      "id": "6118670",
+      "name": "Mine Operation 116 - Creek",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Underground",
+      "hours": 89775,
+      "employees": 175,
+      "violations": 5,
+      "viol_ss": 3,
+      "prob": 69.5,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 44.1,
+          "val": "86290.25"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 10.3,
+          "val": "175.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 6.5,
+          "val": "64106.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 6.0,
+          "val": "89775.0"
+        },
+        {
+          "name": "Coal Metal Ind",
+          "shap": 4.4,
+          "val": "C"
+        }
+      ]
+    },
+    {
+      "id": "5429378",
+      "name": "Mine Operation 717 - Hollow",
+      "state": "AZ",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 85446,
+      "employees": 202,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.5,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 43.0,
+          "val": "88624.5"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 10.2,
+          "val": "93220.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.5,
+          "val": "202.0"
+        },
+        {
+          "name": "State",
+          "shap": 9.2,
+          "val": "AZ"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": -3.2,
+          "val": "184"
+        }
+      ]
+    },
+    {
+      "id": "4275153",
+      "name": "Mine Operation 53 - Creek",
+      "state": "PA",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 98118,
+      "employees": 207,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.5,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 50.8,
+          "val": "93476.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.5,
+          "val": "207.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 9.2,
+          "val": "96600.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 7.3,
+          "val": "98118.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 6.2,
+          "val": "118"
+        }
+      ]
+    },
+    {
+      "id": "3823637",
+      "name": "Mine Operation 446 - Alpha",
+      "state": "KY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 106133,
+      "employees": 211,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 69.4,
+      "tier": "Elevated",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": 54.0,
+          "val": "91013.75"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.4,
+          "val": "211.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 9.2,
+          "val": "82152.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 7.4,
+          "val": "106133.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -2.6,
+          "val": "4.394928252796273"
+        }
+      ]
+    },
+    {
+      "id": "6514081",
+      "name": "Mine Operation 766 - Creek",
+      "state": "IL",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 51984,
+      "employees": 114,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 45.0,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -29.5,
+          "val": "49854.5"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.8,
+          "val": "114.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": -2.9,
+          "val": "237.30000000000007"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 2.9,
+          "val": "48866.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 2.1,
+          "val": "0.0"
+        }
+      ]
+    },
+    {
+      "id": "8875043",
+      "name": "Mine Operation 557 - Creek",
+      "state": "WY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 36960,
+      "employees": 88,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 45.0,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -45.3,
+          "val": "45058.25"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 14.3,
+          "val": "58557.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 5.4,
+          "val": "0.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 4.2,
+          "val": "273.20000000000005"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 2.8,
+          "val": "0"
+        }
+      ]
+    },
+    {
+      "id": "6756068",
+      "name": "Mine Operation 615 - Ridge",
+      "state": "AZ",
+      "commodity": "Metal/Nonmetal",
+      "type": "Facility",
+      "hours": 46965,
+      "employees": 93,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 44.8,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -27.5,
+          "val": "49379.5"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": 9.6,
+          "val": "8.516980730331097"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": -6.9,
+          "val": "22"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 6.7,
+          "val": "49500.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -4.2,
+          "val": "5.0628040846703355"
+        }
+      ]
+    },
+    {
+      "id": "2509473",
+      "name": "Mine Operation 702 - Alpha",
+      "state": "OH",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 51660,
+      "employees": 123,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 44.8,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -30.9,
+          "val": "45713.5"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 9.3,
+          "val": "123.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 6.8,
+          "val": "2.187525635066036"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 2.9,
+          "val": "29.9"
+        },
+        {
+          "name": "Days Lost Q0",
+          "shap": -2.2,
+          "val": "44"
+        }
+      ]
+    },
+    {
+      "id": "2082075",
+      "name": "Mine Operation 862 - Hollow",
+      "state": "WY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 66742,
+      "employees": 151,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 44.7,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -17.4,
+          "val": "53184.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.9,
+          "val": "151.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": -3.0,
+          "val": "233.39999999999998"
+        },
+        {
+          "name": "State",
+          "shap": -2.7,
+          "val": "WY"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": 1.9,
+          "val": "66742.0"
+        }
+      ]
+    },
+    {
+      "id": "7591720",
+      "name": "Mine Operation 1217 - Creek",
+      "state": "CO",
+      "commodity": "Coal",
+      "type": "Facility",
+      "hours": 48312,
+      "employees": 132,
+      "violations": 1,
+      "viol_ss": 1,
+      "prob": 44.7,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -11.5,
+          "val": "52178.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 7.9,
+          "val": "132.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": -5.7,
+          "val": "48312.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": -5.3,
+          "val": "301.20000000000005"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 3.0,
+          "val": "13"
+        }
+      ]
+    },
+    {
+      "id": "8503285",
+      "name": "Mine Operation 610 - Ridge",
+      "state": "WY",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 49455,
+      "employees": 105,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 44.7,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -24.0,
+          "val": "50852.75"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 8.1,
+          "val": "105.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 7.2,
+          "val": "38316.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -5.1,
+          "val": "4.91613080840855"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 4.4,
+          "val": "0.0"
+        }
+      ]
+    },
+    {
+      "id": "5709046",
+      "name": "Mine Operation 678 - Creek",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 42816,
+      "employees": 96,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 44.6,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -43.0,
+          "val": "40717.5"
+        },
+        {
+          "name": "Mine Type",
+          "shap": 8.4,
+          "val": "Surface"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 4.7,
+          "val": "111"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 4.5,
+          "val": "-2.842170943040401e-14"
+        },
+        {
+          "name": "Hours Delta 1Q",
+          "shap": 3.6,
+          "val": "9321.0"
+        }
+      ]
+    },
+    {
+      "id": "8854222",
+      "name": "Mine Operation 920 - Ridge",
+      "state": "WV",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 49104,
+      "employees": 124,
+      "violations": 2,
+      "viol_ss": 1,
+      "prob": 44.6,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -27.5,
+          "val": "49724.25"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": 23.2,
+          "val": "20.36493971977843"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 10.3,
+          "val": "124.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -9.9,
+          "val": "6.033243169865962"
+        },
+        {
+          "name": "Injury Count Q0",
+          "shap": -7.1,
+          "val": "5"
+        }
+      ]
+    },
+    {
+      "id": "6886921",
+      "name": "Mine Operation 1223 - Ridge",
+      "state": "PA",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 54768,
+      "employees": 112,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 44.5,
+      "tier": "Moderate",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -29.0,
+          "val": "46072.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": 7.4,
+          "val": "112.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": 3.4,
+          "val": "2.170503936751515"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": 3.1,
+          "val": "44678.0"
+        },
+        {
+          "name": "Injury Rate Per 200K Q0",
+          "shap": -2.3,
+          "val": "0.0"
+        }
+      ]
+    },
+    {
+      "id": "9578376",
+      "name": "Mine Operation 1268 - Valley",
+      "state": "AL",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 15392,
+      "employees": 32,
+      "violations": 6,
+      "viol_ss": 2,
+      "prob": 20.0,
+      "tier": "Low",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -95.1,
+          "val": "16645.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": -17.0,
+          "val": "17240.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": -12.5,
+          "val": "32.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": -10.2,
+          "val": "15392.0"
+        },
+        {
+          "name": "State",
+          "shap": -4.4,
+          "val": "AL"
+        }
+      ]
+    },
+    {
+      "id": "1774220",
+      "name": "Mine Operation 880 - Alpha",
+      "state": "AL",
+      "commodity": "Metal/Nonmetal",
+      "type": "Underground",
+      "hours": 18144,
+      "employees": 36,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 20.0,
+      "tier": "Low",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -90.8,
+          "val": "18876.5"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": -13.1,
+          "val": "18144.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": -12.2,
+          "val": "83"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": -11.4,
+          "val": "36.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -9.5,
+          "val": "7.946283126067782"
+        }
+      ]
+    },
+    {
+      "id": "9347143",
+      "name": "Mine Operation 1181 - Alpha",
+      "state": "AL",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 12636,
+      "employees": 26,
+      "violations": 1,
+      "viol_ss": 0,
+      "prob": 19.9,
+      "tier": "Low",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -124.8,
+          "val": "12868.5"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": -21.4,
+          "val": "26.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": -9.9,
+          "val": "12432.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": -8.8,
+          "val": "12636.0"
+        },
+        {
+          "name": "Days Lost Rolling 4Q",
+          "shap": 4.9,
+          "val": "0"
+        }
+      ]
+    },
+    {
+      "id": "7997653",
+      "name": "Mine Operation 1468 - Creek",
+      "state": "TX",
+      "commodity": "Metal/Nonmetal",
+      "type": "Surface",
+      "hours": 25392,
+      "employees": 46,
+      "violations": 2,
+      "viol_ss": 1,
+      "prob": 19.9,
+      "tier": "Low",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -67.1,
+          "val": "26591.75"
+        },
+        {
+          "name": "Viol Count Lag1",
+          "shap": -22.3,
+          "val": "7"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": -16.6,
+          "val": "46.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": -12.3,
+          "val": "29754.0"
+        },
+        {
+          "name": "Injury Rate Rolling 4Q",
+          "shap": -7.8,
+          "val": "0.0"
+        }
+      ]
+    },
+    {
+      "id": "8532068",
+      "name": "Mine Operation 815 - Alpha",
+      "state": "KY",
+      "commodity": "Coal",
+      "type": "Surface",
+      "hours": 14949,
+      "employees": 33,
+      "violations": 0,
+      "viol_ss": 0,
+      "prob": 19.7,
+      "tier": "Low",
+      "drivers": [
+        {
+          "name": "Hours Rolling 4Q Mean",
+          "shap": -121.7,
+          "val": "13233.0"
+        },
+        {
+          "name": "Hours Worked Lag1",
+          "shap": -16.8,
+          "val": "12325.0"
+        },
+        {
+          "name": "Avg Employees Q0",
+          "shap": -10.4,
+          "val": "33.0"
+        },
+        {
+          "name": "Hours Worked Q0",
+          "shap": -8.1,
+          "val": "14949.0"
+        },
+        {
+          "name": "Insp Hours Rolling 4Q",
+          "shap": 7.3,
+          "val": "50.5"
+        }
+      ]
+    }
+  ]
+}
