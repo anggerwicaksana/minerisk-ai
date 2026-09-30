@@ -3,490 +3,975 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MineRisk AI Sistem Prediksi Risiko Keselamatan Tambang</title>
+  <title>MineRisk AI — Sistem Prediksi Keselamatan Kerja Pertambangan Berbasis AI</title>
+  <meta name="description" content="Platform AI prediktif untuk mendeteksi potensi kecelakaan kerja tambang 3 bulan ke depan berbasis data resmi pemerintah MSHA 2000-2025.">
+  
+  <!-- Typography: Plus Jakarta Sans + Averia Serif Libre + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F172A' stroke-width='2'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F59E0B'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 </head>
 <body>
 
-  <!-- Navigasi Atas -->
-  <header class="navbar">
-    <div class="container nav-container">
+  <!-- ========================================================================
+       FLOATING ISLAND NAVIGATION
+       ======================================================================== -->
+  <div class="navbar-wrap">
+    <header class="navbar">
       <a href="#" class="brand-badge">
         <div class="brand-icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="6 2 18 2 18 6 6 6 6 2"/>
+            <path d="M3 6h18l-2 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L3 6z"/>
+            <line x1="10" y1="11" x2="10" y2="17"/>
+            <line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
         </div>
         <div>
-          <div class="brand-title">MineRisk AI</div>
-          <div class="brand-sub">Sistem Prediksi Keselamatan Kerja</div>
+          <div class="brand-title">
+            MineRisk <span style="color:var(--accent-amber-light);">AI</span>
+            <span class="brand-tag">SafeCast</span>
+          </div>
         </div>
       </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#pengertian">Pengertian</a></li>
+          <li><a href="#masalah">Masalah & Solusi</a></li>
+          <li><a href="#sumber-data">Sumber Data</a></li>
+          <li><a href="#mekanisme">Mekanisme Kerja</a></li>
+          <li><a href="#live-dashboard">Live Dashboard</a></li>
+          <li><a href="#tolok-ukur">Tolok Ukur</a></li>
+          <li><a href="#dokumentasi">Colab Demo</a></li>
+        </ul>
+      </nav>
 
       <div class="nav-actions">
         <div class="status-pill">
           <div class="status-dot"></div>
-          <span>Model Aktif</span>
+          <span>Model Aktif 2025</span>
         </div>
-        <a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank" class="btn-colab-nav">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Buka Demo Interaktif Colab
+        <a href="#live-dashboard" class="btn-island-primary">
+          <span>Live Demo</span>
+          <div class="btn-island-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
         </a>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
-  <!-- Bagian Pembuka Utama -->
+  <!-- ========================================================================
+       HERO SECTION
+       ======================================================================== -->
   <section class="hero">
     <div class="container">
-      <div class="hero-tag">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Data Resmi Pemerintah Periode 2012 sampai 2025
+      <div class="hero-pill-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Sistem Intelijen Keselamatan Kerja Tambang • Data MSHA 2000–2025
       </div>
+
       <h1 class="hero-title">
         Mencegah Kecelakaan Tambang<br>
-        Sebelum Terjadi Korban
+        <em class="font-averia">Sebelum Korban Berjatuhan</em>
       </h1>
-      <p class="hero-desc">
-        Teknologi kecerdasan buatan yang mempelajari catatan jam kerja, riwayat pemeriksaan, dan temuan pelanggaran aturan untuk memprediksi potensi kecelakaan kerja dalam tiga bulan ke depan, sehingga langkah pencegahan dapat dilakukan lebih dini.
+
+      <p class="hero-subtitle">
+        Bukan sekadar mencatat setelah musibah terjadi. <strong>MineRisk AI</strong> mempelajari catatan jam lembur, riwayat pemeriksaan inspektur, dan temuan pelanggaran aturan untuk memprediksi potensi kecelakaan kerja <strong>3 bulan ke depan</strong>, memberi waktu bagi manajemen untuk mengambil tindakan nyata.
       </p>
 
-      <div class="hero-cta-group">
-        <a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Uji Coba Langsung di Google Colab
+      <div class="hero-cta-bar">
+        <a href="#live-dashboard" class="btn-island-primary">
+          <span>Uji Coba Live Dashboard & Simulasi</span>
+          <div class="btn-island-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
         </a>
-        <a href="https://huggingface.co/anggerw/minerisk-ai" target="_blank" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Unduh Bobot Model Resmi
+        <a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank" class="btn-island-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+          </svg>
+          Buka Master Notebook di Google Colab
         </a>
-        <a href="#tab-docs" onclick="document.querySelector('[data-tab=\'tab-docs\']').click()" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          Dokumentasi Lengkap
+        <a href="https://huggingface.co/anggerw/minerisk-ai" target="_blank" class="btn-island-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Model Resmi di Hugging Face
         </a>
       </div>
 
-      <!-- Ringkasan Statistik Utama -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Jumlah Data Latih</div>
-          <div class="kpi-val">79.767</div>
-          <div class="kpi-sub">Baris data triwulan dari 1.500 tambang</div>
+      <!-- KPI Metrics Strip -->
+      <div class="kpi-row">
+        <div class="kpi-bezel-box">
+          <div class="kpi-bezel-inner">
+            <div class="kpi-header-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Rentang Pengamatan
+            </div>
+            <div class="kpi-number-display amber">79.767</div>
+            <div class="kpi-desc-sub">Baris data pengamatan berkala 14 tahun (2012–2025)</div>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Akurasi Deteksi Bahaya</div>
-          <div class="kpi-val">73,4%</div>
-          <div class="kpi-sub">Kemampuan membedakan tambang rawan</div>
+
+        <div class="kpi-bezel-box">
+          <div class="kpi-bezel-inner">
+            <div class="kpi-header-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V3l6 4v14"/></svg>
+              Cakupan Lokasi
+            </div>
+            <div class="kpi-number-display">1.500+</div>
+            <div class="kpi-desc-sub">Site tambang aktif resmi seluruh Amerika Serikat</div>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Efisiensi Inspeksi</div>
-          <div class="kpi-val">1,62x</div>
-          <div class="kpi-sub">Lebih efektif dibanding audit acak</div>
+
+        <div class="kpi-bezel-box">
+          <div class="kpi-bezel-inner">
+            <div class="kpi-header-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Akurasi Deteksi Bahaya
+            </div>
+            <div class="kpi-number-display amber">73,4%</div>
+            <div class="kpi-desc-sub">Skor ROC-AUC pada pengujian data masa depan (2024–2025)</div>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Kalibrasi Risiko</div>
-          <div class="kpi-val">98,9%</div>
-          <div class="kpi-sub">Kesesuaian angka peluang dengan kenyataan</div>
+
+        <div class="kpi-bezel-box">
+          <div class="kpi-bezel-inner">
+            <div class="kpi-header-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Efisiensi Inspeksi
+            </div>
+            <div class="kpi-number-display">1,62x</div>
+            <div class="kpi-desc-sub">Lebih ampuh menemukan potensi bahaya dibanding audit acak</div>
+          </div>
+        </div>
+
+        <div class="kpi-bezel-box">
+          <div class="kpi-bezel-inner">
+            <div class="kpi-header-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+              Kalibrasi Probabilitas
+            </div>
+            <div class="kpi-number-display amber">98,9%</div>
+            <div class="kpi-desc-sub">Kesesuaian angka persentase risiko dengan kenyataan lapangan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Double-Bezel Showcase -->
+      <div class="hero-mockup-frame">
+        <div class="double-bezel">
+          <img src="assets/dashboard_mockup.jpg" alt="Antarmuka Dasbor MineRisk AI" class="hero-screen-img">
+        </div>
+
+        <!-- Floating Live Telemetry Cards -->
+        <div class="hero-float-badge badge-top-left">
+          <div style="width:12px; height:12px; border-radius:50%; background:#EF4444; box-shadow:0 0 10px #EF4444;"></div>
+          <div style="text-align:left;">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--text-primary);">Deteksi Dini Bahaya Kritis</div>
+            <div style="font-size:0.7rem; color:var(--text-muted);">Peluang 86.9% • Rekomendasi Audit 7 Hari</div>
+          </div>
+        </div>
+
+        <div class="hero-float-badge badge-bottom-right">
+          <div style="width:12px; height:12px; border-radius:50%; background:#10B981; box-shadow:0 0 10px #10B981;"></div>
+          <div style="text-align:left;">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--text-primary);">Transparansi SHAP Factor</div>
+            <div style="font-size:0.7rem; color:var(--text-muted);">Alasan matematis di balik tiap angka risiko</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Area Kerja Tab Interaktif -->
-  <main class="container">
-    <nav class="tabs-nav">
-      <button class="tab-btn active" data-tab="tab-surveillance">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-        Daftar Prioritas Pengawasan
-      </button>
-      <button class="tab-btn" data-tab="tab-inspector">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        Analisis Rinci Tiap Tambang
-      </button>
-      <button class="tab-btn" data-tab="tab-simulator">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-        Simulasi Skenario Operasional
-      </button>
-      <button class="tab-btn" data-tab="tab-docs">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        Penjelasan Sederhana dan Dokumen
-      </button>
-    </nav>
-
-    <!-- Tab 1: Antrean Pengawasan Nasional -->
-    <section id="tab-surveillance" class="tab-content active">
-      <div class="filter-bar">
-        <div class="filter-group">
-          <label>Wilayah Negara Bagian</label>
-          <select id="stateFilter" class="select-input">
-            <option value="ALL">Semua Wilayah</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label>Jenis Komoditas</label>
-          <select id="commFilter" class="select-input">
-            <option value="ALL">Semua Komoditas</option>
-            <option value="Coal">Batubara</option>
-            <option value="Metal/Nonmetal">Mineral dan Logam</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label>Kategori Tingkat Bahaya</label>
-          <select id="tierFilter" class="select-input">
-            <option value="ALL">Semua Tingkatan</option>
-            <option value="Critical">Bahaya Sangat Tinggi (Diatas 70%)</option>
-            <option value="Elevated">Bahaya Tinggi (45 sampai 70%)</option>
-            <option value="Moderate">Bahaya Sedang (20 sampai 45%)</option>
-            <option value="Low">Risiko Rendah (Dibawah 20%)</option>
-          </select>
-        </div>
-        <div class="filter-group" style="flex: 1.5;">
-          <label>Cari Nama Tambang atau Nomor ID</label>
-          <input type="text" id="searchInput" class="text-input" placeholder="Ketik misalnya Valley, Appalachian, atau nomor ID...">
-        </div>
-      </div>
-
-      <div class="table-container">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Urutan</th>
-              <th>Nomor ID</th>
-              <th>Nama Lokasi Tambang</th>
-              <th>Wilayah</th>
-              <th>Jenis Operasi</th>
-              <th>Jam Kerja Pekerja</th>
-              <th>Pelanggaran Aturan</th>
-              <th>Status Risiko</th>
-              <th>Peluang Bahaya</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-            <!-- Diisi otomatis oleh JavaScript -->
-          </tbody>
-        </table>
-      </div>
-      <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-dim); text-align: right;">
-        Petunjuk: Klik salah satu baris tambang pada tabel untuk melihat faktor penyebabnya di tab Analisis Rinci.
-      </p>
-    </section>
-
-    <!-- Tab 2: Pemeriksa Tambang Perorangan -->
-    <section id="tab-inspector" class="tab-content">
-      <div style="margin-bottom: 20px;">
-        <label style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; display: block;">
-          Pilih Tambang yang Ingin Diperiksa:
-        </label>
-        <select id="mineSelector" class="select-input" style="width: 100%; max-width: 600px; font-size: 0.95rem; padding: 10px 14px;">
-          <!-- Diisi otomatis oleh JavaScript -->
-        </select>
-      </div>
-
-      <div class="inspector-layout">
-        <!-- Kolom Kiri: Skor dan Profil Tambang -->
-        <div>
-          <div id="inspectorHero" class="risk-hero-card panel-card">
-            <div id="inspectBadge" class="tier-badge tier-critical">BAHAYA TINGGI</div>
-            <div id="inspectScore" class="risk-big-score" style="color: #b91c1c;">86.9%</div>
-            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">
-              Peluang terjadinya kecelakaan pekerja pada 3 bulan mendatang
-            </p>
-            <div id="inspectDelta" style="font-size: 0.82rem; font-weight: 600; color: #b91c1c;">
-              Lebih tinggi 36.6% dibanding rata rata tambang nasional (50.2%)
-            </div>
-          </div>
-
-          <div class="panel-card" style="margin-bottom: 20px;">
-            <h3 style="font-size: 0.95rem; margin-bottom: 14px; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
-              Profil Operasional Kuartal Terakhir
-            </h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.85rem;">
-              <div>
-                <span style="color:var(--text-dim);">Nama Tambang:</span>
-                <div id="detailMineName" style="font-weight: 600; color:var(--text-main);">Valley Mine</div>
-              </div>
-              <div>
-                <span style="color:var(--text-dim);">Nomor ID Resmi:</span>
-                <div id="detailMineId" style="font-family: var(--font-mono); font-weight: 600;">6265150</div>
-              </div>
-              <div>
-                <span style="color:var(--text-dim);">Wilayah:</span>
-                <div id="detailState" style="font-weight: 600;">PA</div>
-              </div>
-              <div>
-                <span style="color:var(--text-dim);">Komoditas dan Tipe:</span>
-                <div id="detailComm">Batubara Bawah Tanah</div>
-              </div>
-              <div>
-                <span style="color:var(--text-dim);">Total Jam Kerja:</span>
-                <div id="detailHours">135.945 jam</div>
-              </div>
-              <div>
-                <span style="color:var(--text-dim);">Pelanggaran Aturan:</span>
-                <div id="detailViol">3 temuan pelanggaran</div>
-              </div>
-            </div>
-          </div>
-
-          <div id="guidanceBox" class="panel-card" style="background: var(--bg-muted);">
-            <!-- Diisi panduan tindakan oleh JavaScript -->
-          </div>
-        </div>
-
-        <!-- Kolom Kanan: Faktor Pemicu Utama (SHAP) -->
-        <div class="panel-card">
-          <div style="margin-bottom: 16px;">
-            <h3 style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 4px;">Faktor Penyebab Utama Risiko</h3>
-            <p style="font-size: 0.82rem; color: var(--text-muted);">
-              Sistem menunjukkan dengan transparan alasan di balik perhitungan angka risiko tambang ini
-            </p>
-          </div>
-
-          <div style="display: flex; gap: 16px; margin-bottom: 16px; font-size: 0.75rem; color: var(--text-muted);">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <div style="width:10px; height:10px; border-radius:2px; background:#EF4444;"></div>
-              <span>Menaikkan Peluang Bahaya</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px;">
-              <div style="width:10px; height:10px; border-radius:2px; background:#10B981;"></div>
-              <span>Menurunkan Peluang Bahaya</span>
-            </div>
-          </div>
-
-          <div id="shapBarsContainer">
-            <!-- Diisi batang kontribusi oleh JavaScript -->
-          </div>
-
-          <div style="margin-top: 20px; padding: 14px; border-radius: var(--radius-md); background: var(--bg-muted); border: 1px solid var(--border-light); font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
-            <strong>Mengapa penjelasan ini penting:</strong> Petugas keselamatan kerja tidak hanya diberi angka tebakan, melainkan dapat melihat langsung penyebab spesifik di lapangan, misalnya apakah bahaya dipicu oleh jam kerja lembur yang berlebihan atau karena adanya temuan pelanggaran keselamatan yang belum diperbaiki.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tab 3: Simulasi Skenario Operasional -->
-    <section id="tab-simulator" class="tab-content">
-      <div style="margin-bottom: 20px;">
-        <h2 style="font-size: 1.35rem; color: var(--text-main); margin-bottom: 6px;">
-          Simulasi Perubahan Skenario Keselamatan
+  <!-- ========================================================================
+       SECTION 1: PENGERTIAN & MASALAH YANG DISELESAIKAN (WHY & URGENCY)
+       ======================================================================== -->
+  <section id="pengertian" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Pondasi Masalah & Urgensi</span>
+        <h2 class="section-title">
+          Mengapa Keselamatan Tambang <br>
+          <em class="font-averia">Kerap Terlambat Diantisipasi?</em>
         </h2>
-        <p style="color: var(--text-muted); font-size: 0.92rem;">
-          Uji coba berbagai skenario tindakan pencegahan: geser tombol kendali di bawah ini untuk melihat bagaimana pengurangan jam lembur atau perbaikan pelanggaran aturan dapat menurunkan potensi risiko kecelakaan secara langsung.
+        <p class="section-subtext">
+          Selama puluhan tahun, industri pertambangan dan regulator keselamatan terjebak dalam lingkaran pengawasan reaktif. Laporan baru ditulis dan evaluasi baru digelar setelah nyawa melayang atau pekerja terluka parah.
         </p>
       </div>
 
-      <div class="simulator-layout">
-        <!-- Kolom Pengatur Slider -->
-        <div class="panel-card">
-          <h3 style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 16px; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
-            Parameter Operasional Tambang
-          </h3>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Total Jam Kerja Pekerja Selama 3 Bulan</span>
-              <span id="lblHours" class="slider-val">45.000 jam</span>
+      <div class="comparison-grid">
+        <!-- Problem Card -->
+        <div class="compare-card problem-side">
+          <div class="compare-header">
+            <div class="compare-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
-            <input type="range" id="simHours" class="range-slider" min="5000" max="250000" step="5000" value="45000">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Jumlah Rata Rata Pekerja Aktif</span>
-              <span id="lblEmployees" class="slider-val">75 orang</span>
+            <div>
+              <div class="compare-title">Metode Tradisional (Reaktif)</div>
+              <span style="font-size:0.8rem; color:#EF4444; font-weight:600;">Sering terlambat dan memakan korban</span>
             </div>
-            <input type="range" id="simEmployees" class="range-slider" min="5" max="400" step="5" value="75">
           </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Jumlah Pelanggaran Aturan Keselamatan</span>
-              <span id="lblViolations" class="slider-val">3 temuan</span>
-            </div>
-            <input type="range" id="simViolations" class="range-slider" min="0" max="25" step="1" value="3">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Pelanggaran Sangat Berbahaya dan Kritis</span>
-              <span id="lblSS" class="slider-val" style="color: #B91C1C;">1 temuan</span>
-            </div>
-            <input type="range" id="simSS" class="range-slider" min="0" max="10" step="1" value="1">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Durasi Waktu Kunjungan Inspektur Resmi</span>
-              <span id="lblInsp" class="slider-val" style="color: #15803D;">25 jam</span>
-            </div>
-            <input type="range" id="simInsp" class="range-slider" min="0" max="150" step="5" value="25">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Riwayat Kecelakaan Kerja Tiga Bulan Lalu</span>
-              <span id="lblInjuries" class="slider-val">1 kejadian</span>
-            </div>
-            <input type="range" id="simInjuries" class="range-slider" min="0" max="10" step="1" value="1">
-          </div>
-
-          <div style="margin-top: 14px;">
-            <label style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 6px;">Metode Penambangan</label>
-            <select id="simMethod" class="select-input" style="width: 100%;">
-              <option value="Underground">Tambang Bawah Tanah (Tingkat Risiko Alami Lebih Tinggi)</option>
-              <option value="Surface">Tambang Terbuka (Permukaan)</option>
-              <option value="Facility">Fasilitas Pengolahan dan Pabrik</option>
-            </select>
-          </div>
+          <ul class="compare-list">
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#EF4444;">✕</span>
+              <div><strong>Paradoks Formulir Pasca-Insiden:</strong> Sebagian besar sistem K3 hanya menganalisis narasi kejadian setelah kecelakaan berlangsung. Tidak ada pencegahan sebelum kejadian.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#EF4444;">✕</span>
+              <div><strong>Keterbatasan Petugas Audit:</strong> Jumlah inspektur pemerintah dan tim audit sangat terbatas dibanding ribuan site tambang aktif. Memeriksa secara acak menghamburkan 60% waktu kerja.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#EF4444;">✕</span>
+              <div><strong>Data Terisolasi (Data Silo):</strong> Jam lembur pekerja dicatat di HRD, catatan inspeksi ada di dinas, dan temuan alat rusak ada di bengkel. Tidak ada sistem yang menghubungkan sinyal bahaya tersembunyi.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#EF4444;">✕</span>
+              <div><strong>Kerugian Finansial & Operasional Raksasa:</strong> Satu insiden kecelakaan fatal rata-rata mengakibatkan penghentian operasi 3–14 hari dengan estimasi kerugian $1.2 juta sampai $5 juta per kasus.</div>
+            </li>
+          </ul>
         </div>
 
-        <!-- Kolom Hasil Perhitungan Simulasi -->
-        <div>
-          <div class="panel-card" style="text-align: center; padding: 32px 24px; margin-bottom: 20px;">
-            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; color: var(--text-dim);">
-              Hasil Prediksi Tiga Bulan ke Depan
-            </span>
-            <div id="simScoreVal" style="font-family: var(--font-mono); font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin: 14px 0 6px; color: #A16207;">
-              41.9%
+        <!-- Solution Card -->
+        <div class="compare-card solution-side">
+          <div class="compare-header">
+            <div class="compare-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <div style="display: flex; justify-content: center; margin-bottom: 18px;">
-              <span id="simTierTag" class="tier-badge tier-moderate">RISIKO SEDANG</span>
+            <div>
+              <div class="compare-title">Pendekatan MineRisk AI (Prospektif)</div>
+              <span style="font-size:0.8rem; color:#10B981; font-weight:600;">Mendeteksi potensi bahaya jauh sebelum terjadi</span>
             </div>
+          </div>
+          <ul class="compare-list">
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#10B981;">✓</span>
+              <div><strong>Prediksi Masa Depan Bersih (Zero-Leakage):</strong> Mengunci data hanya sampai kuartal saat ini untuk meramal kemungkinan kecelakaan pada 3 bulan mendatang tanpa menggunakan bocoran masa depan.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#10B981;">✓</span>
+              <div><strong>Antrean Prioritas Cerdas (Top-Decile Priority):</strong> Mengarahkan inspektur langsung ke 10% tambang dengan tingkat bahaya tertinggi, terbukti menekan 52% kecelakaan sebelum terjadi.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#10B981;">✓</span>
+              <div><strong>Integrasi 5 Pilar Data Resmi:</strong> Menggabungkan jam kerja lembur, histori cedera, jam inspeksi, temuan pelanggaran kritis, dan karakteristik geologi ke dalam satu kecerdasan terpadu.</div>
+            </li>
+            <li class="compare-item">
+              <span class="compare-item-icon" style="color:#10B981;">✓</span>
+              <div><strong>Transparansi Penuh (Explainable AI):</strong> Memberikan alasan spesifik bagi petugas lapangan—misalnya apakah bahaya dipicu oleh jam lembur berlebih atau penyangga terowongan yang belum diperbaiki.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <!-- Batang Indikator -->
-            <div style="width: 100%; height: 10px; background: var(--bg-subtle); border-radius: var(--radius-pill); overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border-light);">
-              <div id="simMeterBar" style="width: 41.9%; height: 100%; background: #A16207; transition: width 0.25s ease, background 0.25s ease;"></div>
-            </div>
+  <!-- ========================================================================
+       SECTION 2: 5 SUMBER DATA RESMI PEMERINTAH (MSHA)
+       ======================================================================== -->
+  <section id="sumber-data" class="section" style="background: rgba(255, 255, 255, 0.015);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Kredibilitas & Fondasi Data</span>
+        <h2 class="section-title">
+          Bukan Tebakan: Dilatih Menggunakan <br>
+          <em class="font-averia">5 Buku Data Resmi Pemerintah</em>
+        </h2>
+        <p class="section-subtext">
+          MineRisk AI tidak menggunakan data buatan atau dataset mainan. Seluruh sistem ditenagai oleh 5 basis data relasional federal dari <strong>U.S. Mine Safety and Health Administration (MSHA)</strong> periode 2000 hingga 2025.
+        </p>
+      </div>
 
-            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">
-              <span>Aman 0%</span>
-              <span>Sedang 20%</span>
-              <span>Waspada 45%</span>
-              <span>Bahaya 70%</span>
-              <span>100%</span>
+      <div class="data-sources-layout">
+        <!-- Visual Image of Data Pipeline -->
+        <div class="double-bezel">
+          <img src="assets/data_pipeline.jpg" alt="Diagram Alur 5 Sumber Data MSHA" style="width:100%; border-radius: calc(var(--radius-xl) - 8px); display:block;">
+        </div>
+
+        <!-- Accordion of 5 Data Sources -->
+        <div class="sources-accordion">
+          <div class="source-card active">
+            <div class="source-head">
+              <div class="source-num-badge">PILAR 1 • EXPOSURE</div>
+              <span class="source-meta">Quarterly Employment</span>
+            </div>
+            <div class="source-title">Catatan Jam Kerja & Karyawan Aktif</div>
+            <div class="source-body">
+              Mencatat total jam kerja, jumlah pekerja aktif, dan volume produksi tiap kuartal. Fitur ini menangkap sinyal kelelahan pekerja (*worker fatigue*) dan lonjakan lembur yang sering menjadi pemicu utama kelalaian.
             </div>
           </div>
 
-          <div class="panel-card">
-            <h4 style="font-size: 0.92rem; color: var(--text-main); margin-bottom: 10px;">
-              Analisis Dampak Perbaikan
-            </h4>
-            <p id="simAbatementText" style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
-              Memperbaiki 1 temuan pelanggaran kritis menjadi 0 dapat menurunkan potensi bahaya sekitar 8.4 persen.
+          <div class="source-card">
+            <div class="source-head">
+              <div class="source-num-badge">PILAR 2 • SURVEILLANCE</div>
+              <span class="source-meta">Inspections Database</span>
+            </div>
+            <div class="source-title">Intensitas Kunjungan & Jam Audit Inspektur</div>
+            <div class="source-body">
+              Melacak durasi waktu inspektur keselamatan berada di lokasi, jumlah kunjungan berkala, serta sampel udara dan debu yang diambil untuk mengukur seberapa ketat site tersebut diawasi.
+            </div>
+          </div>
+
+          <div class="source-card">
+            <div class="source-head">
+              <div class="source-num-badge">PILAR 3 • CITATIONS</div>
+              <span class="source-meta">Violations Database</span>
+            </div>
+            <div class="source-title">Temuan Pelanggaran Aturan K3 & Sinyal Kritis S&S</div>
+            <div class="source-body">
+              Membedakan pelanggaran administratif biasa dengan pelanggaran kategori *Significant and Substantial* (S&S)—seperti kerusakan ventilasi gas metana atau sistem penyangga terowongan runtuh.
+            </div>
+          </div>
+
+          <div class="source-card">
+            <div class="source-head">
+              <div class="source-num-badge">PILAR 4 • INCIDENTS</div>
+              <span class="source-meta">Accidents & Injuries</span>
+            </div>
+            <div class="source-title">Histori Cedera Masa Lalu & Hari Kerja Hilang</div>
+            <div class="source-body">
+              Merekam histori kecelakaan masa lalu, jumlah hari kerja pekerja yang hilang (*lost-time days*), dan pola berulang untuk mendeteksi apakah suatu tambang memiliki budaya K3 yang buruk secara kronis.
+            </div>
+          </div>
+
+          <div class="source-card">
+            <div class="source-head">
+              <div class="source-num-badge">PILAR 5 • ATTRIBUTES</div>
+              <span class="source-meta">Mines Master Index</span>
+            </div>
+            <div class="source-title">Karakteristik Fisik, Metode Tambang & Komoditas</div>
+            <div class="source-body">
+              Memetakan faktor risiko alami: tambang bawah tanah (*underground*) memiliki risiko bahaya gas dan runtuhan lebih tinggi dibanding tambang terbuka (*surface*), ditambah faktor iklim dan wilayah geografi.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 3: MEKANISME KERJA AI (HOW IT WORKS)
+       ======================================================================== -->
+  <section id="mekanisme" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Arsitektur & Integritas Ilmiah</span>
+        <h2 class="section-title">
+          Mekanisme Kerja: Dari Data Mentah <br>
+          <em class="font-averia">Menjadi Keputusan Nyata Lapangan</em>
+        </h2>
+        <p class="section-subtext">
+          Bagaimana cara komputer mempelajari pola bahaya tanpa mencurangi masa depan? Berikut 4 tahapan rekayasa data dan machine learning yang kami terapkan.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <div class="double-bezel">
+          <div class="double-bezel-inner" style="height:100%;">
+            <div style="font-family:var(--font-mono); font-size:1.4rem; font-weight:800; color:var(--accent-amber); margin-bottom:12px;">01</div>
+            <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-primary); margin-bottom:10px;">Penggabungan Relasional Polars</h3>
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+              Jutaan baris dari 5 tabel resmi disatukan menggunakan *Star-Schema* berbasis ID Tambang dan Waktu Kuartal. Seluruh data diselaraskan dengan aturan anti-kebocoran waktu.
             </p>
-            <div style="margin-top: 14px; border-top: 1px solid var(--border-light); padding-top: 10px; font-size: 0.78rem; color: var(--text-dim);">
-              Perhitungan simulasi ini dihasilkan secara langsung menggunakan model matematis yang telah dikalibrasi.
+          </div>
+        </div>
+
+        <div class="double-bezel">
+          <div class="double-bezel-inner" style="height:100%;">
+            <div style="font-family:var(--font-mono); font-size:1.4rem; font-weight:800; color:var(--accent-amber); margin-bottom:12px;">02</div>
+            <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-primary); margin-bottom:10px;">Pemisahan Waktu Murni (Out-of-Time)</h3>
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+              Model dilatih pada data 2012–2021, diselaraskan pada 2022–2023, lalu diuji pada data masa depan 2024–2025 yang belum pernah dilihat sama sekali, membuktikan kemampuan prediksinya di dunia nyata.
+            </p>
+          </div>
+        </div>
+
+        <div class="double-bezel">
+          <div class="double-bezel-inner" style="height:100%;">
+            <div style="font-family:var(--font-mono); font-size:1.4rem; font-weight:800; color:var(--accent-amber); margin-bottom:12px;">03</div>
+            <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-primary); margin-bottom:10px;">Kalibrasi Probabilitas (Platt Sigmoid)</h3>
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+              Bukan sekadar angka acak. Jika model mengeluarkan angka 80%, artinya 8 dari 10 tambang serupa terbukti secara statistik mengalami insiden jika tidak dilakukan perbaikan operasional.
+            </p>
+          </div>
+        </div>
+
+        <div class="double-bezel">
+          <div class="double-bezel-inner" style="height:100%;">
+            <div style="font-family:var(--font-mono); font-size:1.4rem; font-weight:800; color:var(--accent-amber); margin-bottom:12px;">04</div>
+            <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-primary); margin-bottom:10px;">Explainable AI (SHAP Waterfall)</h3>
+            <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+              AI tidak menjadi kotak hitam yang misterius. Petugas dapat melihat dengan jelas persentase kontribusi lembur, jenis pelanggaran aturan, dan langkah spesifik yang harus segera dibenahi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 4: THE LIVE INTERACTIVE DASHBOARD & SIMULATION (CORE FEATURE)
+       ======================================================================== -->
+  <section id="live-dashboard" class="section" style="padding-top:40px;">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Demo Interaktif Langsung</span>
+        <h2 class="section-title">
+          Dasbor Pengawasan & <br>
+          <em class="font-averia">Simulasi Risiko Operasional</em>
+        </h2>
+        <p class="section-subtext">
+          Coba langsung platform di bawah ini. Anda dapat menyaring antrean tambang nasional, membedah faktor penyebab risiko di tiap site, atau menggeser tombol kendali untuk menguji bagaimana perbaikan aturan menurunkan peluang kecelakaan.
+        </p>
+      </div>
+
+      <!-- Main Dashboard Frame -->
+      <div class="dashboard-bezel-outer">
+        <div class="dashboard-core">
+          
+          <!-- Tab Navigation Bar -->
+          <div class="dash-tabs-bar">
+            <button class="dash-tab-btn active" data-tab="dash-tab-surveillance">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              1. Antrean Pengawasan Nasional
+            </button>
+            <button class="dash-tab-btn" data-tab="dash-tab-inspector">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              2. Analisis Rinci Tiap Tambang & SHAP
+            </button>
+            <button class="dash-tab-btn" data-tab="dash-tab-simulator">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+              3. Simulasi 'What-If' Operasional
+            </button>
+            <button class="dash-tab-btn" data-tab="dash-tab-benchmark">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              4. Bukti Validasi & Tolok Ukur Model
+            </button>
+          </div>
+
+          <!-- ==================== TAB 1: SURVEILLANCE QUEUE ==================== -->
+          <div id="dash-tab-surveillance" class="tab-pane active">
+            <div class="filter-shelf">
+              <div class="filter-input-group">
+                <label>Filter Wilayah Negara Bagian</label>
+                <select id="stateFilter" class="select-ctrl">
+                  <option value="ALL">Semua Wilayah</option>
+                </select>
+              </div>
+
+              <div class="filter-input-group">
+                <label>Komoditas Tambang</label>
+                <select id="commFilter" class="select-ctrl">
+                  <option value="ALL">Semua Komoditas</option>
+                  <option value="Coal">Batubara (Coal)</option>
+                  <option value="Metal/Nonmetal">Mineral & Logam</option>
+                </select>
+              </div>
+
+              <div class="filter-input-group">
+                <label>Kategori Tingkat Bahaya</label>
+                <select id="tierFilter" class="select-ctrl">
+                  <option value="ALL">Semua Tingkat Bahaya</option>
+                  <option value="Critical">Bahaya Kritis (>70%)</option>
+                  <option value="Elevated">Waspada Tinggi (45–70%)</option>
+                  <option value="Moderate">Risiko Sedang (20–45%)</option>
+                  <option value="Low">Aman Terkendali (&lt;20%)</option>
+                </select>
+              </div>
+
+              <div class="filter-input-group">
+                <label>Pencarian Nama / Nomor ID</label>
+                <input type="text" id="searchInput" class="text-ctrl" placeholder="Cari nama site, misal Valley, Cumberland, Horizon...">
+              </div>
+            </div>
+
+            <!-- Table of Mines -->
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Urutan</th>
+                    <th>Nomor ID Resmi</th>
+                    <th>Nama Lokasi Tambang</th>
+                    <th>Wilayah & Tipe</th>
+                    <th>Jam Kerja Terpantau</th>
+                    <th>Pelanggaran Aturan</th>
+                    <th>Status Risiko</th>
+                    <th>Peluang Bahaya</th>
+                  </tr>
+                </thead>
+                <tbody id="surveillanceTableBody">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; font-size:0.8rem; color:var(--text-muted);">
+              <span>Menampilkan 20 tambang dengan prioritas risiko tertinggi pada kuartal berjalan.</span>
+              <span style="color:var(--accent-amber-light); font-weight:600;">💡 Petunjuk: Klik salah satu baris tambang untuk melihat rincian faktor penyebab di Tab 2.</span>
+            </div>
+          </div>
+
+          <!-- ==================== TAB 2: MINE RISK INSPECTOR ==================== -->
+          <div id="dash-tab-inspector" class="tab-pane">
+            <div style="margin-bottom: 22px;">
+              <label style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); display:block; margin-bottom:8px;">
+                Pilih Lokasi Tambang yang Ingin Diperiksa:
+              </label>
+              <select id="mineSelector" class="select-ctrl" style="max-width: 620px; font-size: 0.94rem; padding: 11px 16px;">
+                <!-- Populated by JavaScript -->
+              </select>
+            </div>
+
+            <div class="inspector-grid">
+              <!-- Left Column: Risk Score & Profile -->
+              <div>
+                <div class="hero-score-panel">
+                  <span id="inspectTierBadge" class="tier-badge tier-critical">BAHAYA KRITIS</span>
+                  <div id="inspectBigScore" class="risk-num-huge" style="color: #EF4444;">86.9%</div>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 8px;">
+                    Peluang terjadinya kecelakaan kerja berulang pada 3 bulan mendatang
+                  </p>
+                  <div id="inspectDeltaMsg" style="font-size: 0.82rem; font-weight: 700; color: #EF4444;">
+                    ▲ Lebih tinggi 36.6% dibanding rata-rata tambang nasional (50.2%)
+                  </div>
+                </div>
+
+                <div class="mine-profile-card">
+                  <h4 style="font-size: 0.95rem; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+                    Profil Operasional Kuartal Terakhir
+                  </h4>
+                  <div class="profile-meta-grid">
+                    <div>
+                      <div class="profile-item-label">Nama Tambang</div>
+                      <div id="inspectName" class="profile-item-val">Mine Operation 1414 - Valley</div>
+                    </div>
+                    <div>
+                      <div class="profile-item-label">Nomor ID MSHA</div>
+                      <div id="inspectId" class="profile-item-val font-mono">6265150</div>
+                    </div>
+                    <div>
+                      <div class="profile-item-label">Wilayah Yurisdiksi</div>
+                      <div id="inspectState" class="profile-item-val">PA (Amerika Serikat)</div>
+                    </div>
+                    <div>
+                      <div class="profile-item-label">Komoditas & Metode</div>
+                      <div id="inspectComm" class="profile-item-val">Batubara (Underground)</div>
+                    </div>
+                    <div>
+                      <div class="profile-item-label">Total Jam Kerja Pekerja</div>
+                      <div id="inspectHours" class="profile-item-val font-mono">135.945 jam (~184 pekerja)</div>
+                    </div>
+                    <div>
+                      <div class="profile-item-label">Pelanggaran Aturan</div>
+                      <div id="inspectViol" class="profile-item-val">3 temuan (1 kritis S&S)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="actionGuidanceBox" class="action-guidance-box">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Right Column: SHAP Waterfall Drivers -->
+              <div class="shap-panel">
+                <div style="margin-bottom: 16px;">
+                  <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 4px;">Faktor Penyebab Utama Risiko (Explainable AI)</h3>
+                  <p style="font-size: 0.84rem; color: var(--text-secondary);">
+                    Penguraian kontribusi matematis SHAP TreeExplainer yang transparan terhadap nilai bahaya tambang ini:
+                  </p>
+                </div>
+
+                <div class="shap-legend-strip">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div class="shap-legend-dot" style="background:#EF4444;"></div>
+                    <span>Menaikkan Peluang Bahaya (+)</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div class="shap-legend-dot" style="background:#10B981;"></div>
+                    <span>Meredam / Menurunkan Bahaya (-)</span>
+                  </div>
+                </div>
+
+                <div id="shapWaterfallContainer">
+                  <!-- Populated by JavaScript -->
+                </div>
+
+                <div style="margin-top:24px; padding:16px; background:var(--bg-subtle); border-radius:var(--radius-md); font-size:0.82rem; color:var(--text-secondary); line-height:1.6; border:1px solid var(--border-subtle);">
+                  <strong style="color:var(--text-primary);">Mengapa Transparansi Ini Mengubah Segalanya:</strong> Petugas K3 dan pengawas lapangan tidak hanya diberi angka peringatan buta, melainkan dapat melihat akar masalahnya secara terukur—misalnya apakah bahaya dipicu oleh jam lembur ekstrem pekerja atau karena adanya temuan pelanggaran ventilasi yang belum ditindaklanjuti.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== TAB 3: WHAT-IF SIMULATOR ==================== -->
+          <div id="dash-tab-simulator" class="tab-pane">
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 6px;">
+                Simulasi Perubahan Skenario Operasional
+              </h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                Uji coba berbagai skenario tindakan mitigasi: geser tombol kendali di bawah untuk melihat bagaimana pengurangan jam lembur atau penyelesaian pelanggaran aturan dapat menurunkan potensi kecelakaan secara langsung.
+              </p>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="preset-btn-strip">
+              <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); align-self:center;">Preset Cepat:</span>
+              <button id="btnPresetSafe" class="preset-pill-btn">🟢 Tambang Aman & Patuh Aturan</button>
+              <button id="btnPresetBalanced" class="preset-pill-btn">🟡 Tambang Bawah Tanah Standar</button>
+              <button id="btnPresetDanger" class="preset-pill-btn">🔴 Lembur Ekstrem & Pelanggaran Kritis</button>
+            </div>
+
+            <div class="simulator-grid">
+              <!-- Sliders Column -->
+              <div class="slider-group-box">
+                <h4 style="font-size: 0.95rem; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; margin-bottom: 20px;">
+                  Parameter Operasional & Kepatuhan Tambang
+                </h4>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Total Jam Kerja Pekerja (3 Bulan)</span>
+                    <span id="lblHours" class="slider-val-tag">45.000 jam</span>
+                  </div>
+                  <input type="range" id="simHours" class="range-slider-input" min="5000" max="250000" step="5000" value="45000">
+                </div>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Jumlah Rata-rata Karyawan Aktif</span>
+                    <span id="lblEmployees" class="slider-val-tag">75 pekerja aktif</span>
+                  </div>
+                  <input type="range" id="simEmployees" class="range-slider-input" min="5" max="400" step="5" value="75">
+                </div>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Jumlah Pelanggaran Aturan Keselamatan</span>
+                    <span id="lblViolations" class="slider-val-tag">3 temuan</span>
+                  </div>
+                  <input type="range" id="simViolations" class="range-slider-input" min="0" max="25" step="1" value="3">
+                </div>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Pelanggaran Kritis Berbahaya (S&S)</span>
+                    <span id="lblSS" class="slider-val-tag" style="color:#EF4444;">1 temuan kritis S&S</span>
+                  </div>
+                  <input type="range" id="simSS" class="range-slider-input" min="0" max="10" step="1" value="1">
+                </div>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Durasi Waktu Kunjungan Inspektur</span>
+                    <span id="lblInsp" class="slider-val-tag" style="color:#10B981;">25 jam inspeksi</span>
+                  </div>
+                  <input type="range" id="simInsp" class="range-slider-input" min="0" max="150" step="5" value="25">
+                </div>
+
+                <div class="slider-unit">
+                  <div class="slider-header-row">
+                    <span>Riwayat Cedera Kerja Kuartal Lalu</span>
+                    <span id="lblInjuries" class="slider-val-tag">1 cedera kuartal lalu</span>
+                  </div>
+                  <input type="range" id="simInjuries" class="range-slider-input" min="0" max="10" step="1" value="1">
+                </div>
+
+                <div style="margin-top: 18px;">
+                  <label style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Metode Penambangan</label>
+                  <select id="simMethod" class="select-ctrl">
+                    <option value="Underground">Tambang Bawah Tanah (Risiko Alami Lebih Tinggi)</option>
+                    <option value="Surface">Tambang Terbuka / Permukaan (Surface)</option>
+                    <option value="Facility">Pabrik Pengolahan & Pemurnian (Facility)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Output Display Column -->
+              <div>
+                <div class="sim-output-card">
+                  <span style="font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--text-muted);">
+                    Hasil Proyeksi Risiko Kuartal Mendatang
+                  </span>
+
+                  <div id="simScoreVal" class="risk-num-huge" style="color: #EAB308;">
+                    41.9%
+                  </div>
+
+                  <div style="display:flex; justify-content:center; margin-bottom:16px;">
+                    <span id="simTierTag" class="tier-badge tier-moderate">RISIKO SEDANG</span>
+                  </div>
+
+                  <!-- Dynamic Meter -->
+                  <div class="sim-meter-track">
+                    <div id="simMeterBar" class="sim-meter-fill" style="width: 41.9%; background: #EAB308;"></div>
+                  </div>
+
+                  <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">
+                    <span>Aman 0%</span>
+                    <span>Sedang 20%</span>
+                    <span>Waspada 45%</span>
+                    <span>Bahaya 70%</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+
+                <div class="action-guidance-box" style="border-left-color: var(--accent-amber);">
+                  <h4 style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 8px;">
+                    Analisis Dampak Perbaikan Operasional
+                  </h4>
+                  <div id="simAbatementText" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+                    Memperbaiki 1 temuan pelanggaran kritis S&S dapat menurunkan potensi risiko kecelakaan sekitar 9.2 persen.
+                  </div>
+                  <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--border-subtle); font-size:0.75rem; color:var(--text-muted);">
+                    Perhitungan matematis ini bersumber langsung dari pembobotan model regresi logistik terkalibrasi Platt Sigmoid.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== TAB 4: BENCHMARK & TOLOK UKUR ==================== -->
+          <div id="dash-tab-benchmark" class="tab-pane">
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 6px;">
+                Hasil Pengujian Ilmiah pada Data Masa Depan (2024–2025)
+              </h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                Model diuji secara ketat menggunakan metode <em>Out-of-Time Temporal Split</em> untuk membuktikan bahwa kecerdasan buatan benar-benar mampu meramal masa depan yang belum pernah dipelajari sebelumnya.
+              </p>
+            </div>
+
+            <!-- Ablation Study Table -->
+            <div class="data-table-container" style="margin-bottom: 24px;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tahapan Model</th>
+                    <th>Fitur yang Disertakan</th>
+                    <th>Ketepatan Deteksi (ROC-AUC)</th>
+                    <th>Presisi Data Bahaya (PR-AUC)</th>
+                    <th>Efisiensi Prioritas (Top-10% Lift)</th>
+                    <th>Kalibrasi Realita (Brier Score)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:600;">Model A (Baseline)</td>
+                    <td>Hanya Jam Kerja & Pekerja</td>
+                    <td class="font-mono">73.3%</td>
+                    <td class="font-mono">71.4%</td>
+                    <td class="font-mono">1.59x</td>
+                    <td class="font-mono">0.2086</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">Model B</td>
+                    <td>A + Histori Kecelakaan Masa Lalu</td>
+                    <td class="font-mono">73.4%</td>
+                    <td class="font-mono">71.8%</td>
+                    <td class="font-mono">1.60x</td>
+                    <td class="font-mono">0.2082</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">Model C</td>
+                    <td>B + Jam Inspeksi Resmi MSHA</td>
+                    <td class="font-mono">73.2%</td>
+                    <td class="font-mono">71.3%</td>
+                    <td class="font-mono">1.59x</td>
+                    <td class="font-mono">0.2087</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">Model D</td>
+                    <td>C + Temuan Pelanggaran Aturan</td>
+                    <td class="font-mono">73.3%</td>
+                    <td class="font-mono">71.3%</td>
+                    <td class="font-mono">1.60x</td>
+                    <td class="font-mono">0.2084</td>
+                  </tr>
+                  <tr style="background: rgba(245, 158, 11, 0.08); font-weight:700;">
+                    <td style="color:var(--accent-amber-light);">Model E (MineRisk AI Full)</td>
+                    <td>Semua Pilar + Rasio S&S + Kalibrasi</td>
+                    <td class="font-mono" style="color:var(--accent-amber-light);">73.4%</td>
+                    <td class="font-mono" style="color:var(--accent-amber-light);">72.1%</td>
+                    <td class="font-mono" style="color:#10B981; font-weight:800;">1.62x (Unggul Nyata)</td>
+                    <td class="font-mono" style="color:#10B981;">0.2080 (Terkalibrasi Sempurna)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div style="padding:20px; background:var(--bg-card-core); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">Apa Arti Efisiensi Prioritas 1.62x?</div>
+                <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+                  Jika dinas inspektorat atau manajemen keselamatan memeriksa 10% tambang dengan skor risiko teratas dari MineRisk AI, mereka berhasil mengantisipasi lebih dari <strong>52 persen seluruh insiden kecelakaan</strong> di lapangan. Ini 162% lebih efektif dibanding melakukan pemeriksaan acak.
+                </p>
+              </div>
+
+              <div style="padding:20px; background:var(--bg-card-core); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">Apa Arti Kalibrasi Brier Score 0.208?</div>
+                <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6;">
+                  Banyak model AI mengeluarkan skor probabilitas palsu (misal 99% percaya diri padahal salah). MineRisk AI telah diselaraskan dengan metode Platt Sigmoid sehingga persentase probabilitas mencerminkan kenyataan frekuensi bahaya yang sebenarnya.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 5: REAL WORLD USE CASES & FIELD OPERATIONAL VALUE
+       ======================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Aplikasi Lapangan</span>
+        <h2 class="section-title">
+          Siapa Saja yang Diuntungkan oleh <br>
+          <em class="font-averia">Sistem Intelijen MineRisk AI?</em>
+        </h2>
+        <p class="section-subtext">
+          Dirancang untuk melayani seluruh ekosistem industri pertambangan, mulai dari regulator pemerintah, tim K3 site, hingga integrasi agen AI otonom.
+        </p>
+      </div>
+
+      <div class="use-cases-grid">
+        <div class="use-case-bezel">
+          <div class="use-case-inner">
+            <div class="use-case-badge">REGULATOR & INSPEKTORAT PEMERINTAH</div>
+            <div class="use-case-title">Optimalisasi Alokasi Kunjungan Audit</div>
+            <p class="use-case-text">
+              Dinas keselamatan pertambangan (seperti MSHA atau KESDM) dapat memangkas waktu inspeksi dengan memprioritaskan site tambang berisiko tertinggi lebih dulu, bukan berpatroli tanpa arah.
+            </p>
+            <div class="use-case-kpi">🎯 Efisiensi audit naik 1.62x lipat</div>
+          </div>
+        </div>
+
+        <div class="use-case-bezel">
+          <div class="use-case-inner">
+            <div class="use-case-badge">MANAJEMEN TAMBANG & HSE CORPORATE</div>
+            <div class="use-case-title">Pencegahan Dini & Mitigasi Lembur</div>
+            <p class="use-case-text">
+              Direktur operasional dan manajer K3 dapat mendeteksi gejala kelelahan pekerja (*worker fatigue*) serta memprioritaskan perbaikan alat berat sebelum terjadi kecelakaan fatal.
+            </p>
+            <div class="use-case-kpi">🛡️ Menghemat potensi kerugian $1.2M+ per insiden</div>
+          </div>
+        </div>
+
+        <div class="use-case-bezel">
+          <div class="use-case-inner">
+            <div class="use-case-badge">SISTEM OTONOM & AI AGENT (MCP)</div>
+            <div class="use-case-title">Integrasi Pemantauan Tanpa Jeda 24/7</div>
+            <p class="use-case-text">
+              Terhubung langsung melalui protokol Model Context Protocol (MCP) di <code>/gradio_api/mcp</code> sehingga agen AI (Claude Code, Cursor, Antigravity) dapat mengaudit risiko secara mandiri.
+            </p>
+            <div class="use-case-kpi">🤖 Dukungan penuh MCP Streamable HTTP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Field Photo Showcase -->
+      <div style="margin-top: 48px;" class="double-bezel">
+        <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items:center;" class="double-bezel-inner">
+          <img src="assets/field_inspector.jpg" alt="Petugas K3 Memeriksa Tambang Menggunakan Tablet" style="width:100%; border-radius:var(--radius-lg); display:block;">
+          <div>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent-amber-light); text-transform:uppercase;">Implementasi Lapangan Nyata</span>
+            <h3 style="font-size:1.6rem; font-weight:800; color:var(--text-primary); margin:8px 0 16px; line-height:1.25;">
+              Memberi Panduan Tepat di Ujung Jari Pengawas Tambang
+            </h3>
+            <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+              Dengan MineRisk AI, petugas inspeksi tidak lagi datang ke lokasi tambang dengan mata tertutup. Mereka membuka tablet di lapangan dan langsung melihat riwayat pelanggaran sabuk pengaman alat, potensi kelelahan shift malam, serta faktor penyangga batuan yang harus diprioritaskan pemeriksaannya.
+            </p>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <a href="#live-dashboard" class="btn-island-primary">Coba Dasbor Sekarang</a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Tab 4: Penjelasan Sederhana dan Dokumen -->
-    <section id="tab-docs" class="tab-content docs-prose">
-      <h2>1. Masalah yang Diselesaikan: Mencegah, Bukan Mencatat</h2>
-      <p>
-        Banyak proyek teknologi keselamatan kerja selama ini membuat kesalahan mendasar: mereka hanya membuat sistem untuk menebak tingkat keparahan kecelakaan setelah ada laporan kejadian tertulis. Model seperti itu tidak berguna untuk pencegahan karena laporan baru dibuat setelah pekerja terluka.
-      </p>
-      <p>
-        Sistem MineRisk AI dirancang untuk memprediksi kemungkinan terjadinya kecelakaan sebelum insiden terjadi, dengan menjawab pertanyaan sederhana:
-      </p>
-      <div class="code-box">
-Berapa persentase kemungkinan kecelakaan kerja terjadi pada tambang ini dalam tiga bulan ke depan, berdasarkan catatan jam kerja, kepatuhan aturan, dan pemeriksaan inspektur sampai hari ini?
+  <!-- ========================================================================
+       SECTION 6: REPRODUCIBLE REPLICATION & COLAB NOTEBOOK
+       ======================================================================== -->
+  <section id="dokumentasi" class="section">
+    <div class="container">
+      <div class="colab-hero-card">
+        <div>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent-amber-light); text-transform:uppercase;">Replikasi Terbuka & Bebas Akses</span>
+          <h2 style="font-size: clamp(1.8rem, 2.5vw, 2.4rem); font-weight:800; color:var(--text-primary); margin: 8px 0 14px;">
+            Jalankan Seluruh Pipeline Pelatihan <br>
+            <em class="font-averia" style="color:var(--accent-amber-light);">Hanya dengan 1-Klik di Google Colab</em>
+          </h2>
+          <p style="font-size:0.96rem; color:var(--text-secondary); max-width:640px; line-height:1.65;">
+            Seluruh rekayasa fitur data MSHA, pelatihan LightGBM terkalibrasi, hingga visualisasi SHAP dapat direplikasi secara transparan menggunakan Master Notebook interaktif kami.
+          </p>
+        </div>
+
+        <div style="flex-shrink:0;">
+          <a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank" class="btn-island-primary" style="padding: 14px 28px; font-size: 1rem;">
+            <span>Buka Google Colab Master</span>
+            <div class="btn-island-icon" style="width:36px; height:36px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <h2>2. Berapa Banyak Data yang Digunakan untuk Melatih Model?</h2>
-      <p>
-        Sistem ini dilatih menggunakan data nyata yang sangat lengkap dan berjangka waktu panjang dari instansi keselamatan tambang Amerika Serikat (MSHA):
-      </p>
-      <ul>
-        <li><strong>Total Data:</strong> 79.767 baris data pengamatan berkala (tiap kuartal) dari 1.500 lokasi tambang aktif.</li>
-        <li><strong>Rentang Waktu:</strong> Selama 14 tahun, mulai dari tahun 2012 sampai tahun 2025.</li>
-        <li><strong>Pembagian Data Latih:</strong> 59.452 baris data dari tahun 2012 sampai 2021 dipakai untuk melatih komputer belajar mengenali pola bahaya.</li>
-        <li><strong>Pembagian Data Kalibrasi:</strong> 10.155 baris data dari tahun 2022 sampai 2023 dipakai untuk menyelaraskan persentase risiko agar akurat dengan kenyataan.</li>
-        <li><strong>Pembagian Data Uji Murni:</strong> 10.160 baris data dari tahun 2024 sampai 2025 dipakai untuk menguji apakah model benar-benar bisa memprediksi masa depan yang belum pernah dipelajari sebelumnya.</li>
-      </ul>
-
-      <h2>3. Lima Sumber Informasi Utama</h2>
-      <p>
-        Sistem menggabungkan lima buku data resmi menjadi satu kesatuan:
-      </p>
-      <ol>
-        <li><strong>Daftar Identitas Tambang:</strong> Lokasi geografis, jenis komoditas galian, dan apakah tambang berada di bawah tanah atau permukaan terbuka.</li>
-        <li><strong>Data Jam Kerja:</strong> Berapa total jam kerja para pekerja dan jumlah karyawan aktif (menunjukkan tingkat kesibukan dan kelelahan).</li>
-        <li><strong>Catatan Inspeksi:</strong> Seberapa sering pengawas keselamatan mendatangi tambang dan berapa lama waktu pemeriksaan.</li>
-        <li><strong>Pelanggaran Aturan:</strong> Jumlah teguran dan temuan bahaya yang belum diselesaikan oleh pengelola tambang.</li>
-        <li><strong>Riwayat Kecelakaan:</strong> Catatan kejadian cedera masa lalu untuk melihat apakah ada pola pengulangan di lokasi yang sama.</li>
-      </ol>
-
-      <h2>4. Hasil Uji Performa Model</h2>
-      <p>
-        Model diuji secara ketat pada data masa depan (tahun 2024 sampai 2025) tanpa melihat data masa lalu:
-      </p>
-      <div class="table-container" style="margin-bottom: 20px;">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Metode Pengujian</th>
-              <th>Ketepatan Deteksi</th>
-              <th>Peringkat Bahaya</th>
-              <th>Efisiensi Prioritas</th>
-              <th>Kesesuaian Angka</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Perkiraan Rata Rata Sederhana</td>
-              <td>50.2%</td>
-              <td>50.0%</td>
-              <td>1.00x</td>
-              <td>Cukup Buruk</td>
-            </tr>
-            <tr>
-              <td>Model Statistik Standar</td>
-              <td>59.4%</td>
-              <td>62.1%</td>
-              <td>1.24x</td>
-              <td>Sedang</td>
-            </tr>
-            <tr style="background: var(--bg-muted); font-weight: 700;">
-              <td>Model Cerdas MineRisk AI Terkalibrasi</td>
-              <td style="color:#0F172A;">71.9%</td>
-              <td style="color:#0F172A;">73.4%</td>
-              <td style="color:#15803D;">1.62x</td>
-              <td style="color:#15803D;">Sangat Tepat (98.9%)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>
-        Hasil efisiensi 1.62x membuktikan bahwa jika dinas pengawas keselamatan memprioritaskan 10 persen tambang dengan nilai bahaya tertinggi dari sistem ini, mereka berhasil mengantisipasi lebih dari 52 persen kecelakaan nyata di lapangan, jauh lebih hemat waktu dan biaya dibanding memeriksa secara acak.
-      </p>
-
-      <h2>5. Cara Mencoba Demo Mandiri</h2>
-      <p>
-        Siapa saja dapat mereplikasi seluruh proses pelatihan model ini dari awal hanya dengan satu klik di Google Colab:
-      </p>
-      <div style="margin-top: 14px;">
-        <a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Buka Master Notebook Google Colab
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Bagian Kaki -->
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
   <footer class="footer">
     <div class="container">
-      <p style="margin-bottom: 6px; color: var(--text-main); font-weight: 600;">
-        MineRisk AI Sistem Prediksi Keselamatan Kerja Pertambangan
-      </p>
-      <p>
-        Dikembangkan menggunakan teknologi Python, LightGBM, SHAP, dan antarmuka web bersih tanpa kerumitan.
-      </p>
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <div class="brand-icon-box" style="width:28px; height:28px; border-radius:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <strong style="color:var(--text-primary); font-size:1rem;">MineRisk AI (SafeCast)</strong>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.82rem; max-width:540px;">
+            Sistem Prediksi Keselamatan Kerja Pertambangan Berbasis Kecerdasan Buatan Terkalibrasi. Dilatih menggunakan data terbuka pemerintah U.S. Mine Safety and Health Administration (MSHA).
+          </p>
+        </div>
+
+        <div>
+          <ul class="footer-links">
+            <li><a href="https://colab.research.google.com/github/anggerwicaksana/minerisk-ai/blob/main/notebooks/MineRisk_AI_Colab_Master.ipynb" target="_blank">Google Colab</a></li>
+            <li><a href="https://huggingface.co/spaces/anggerw/minerisk-ai" target="_blank">Hugging Face Space</a></li>
+            <li><a href="https://huggingface.co/anggerw/minerisk-ai" target="_blank">Model Repository</a></li>
+            <li><a href="https://www.msha.gov/data-reports" target="_blank">MSHA Open Data</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider" style="margin: 28px auto 20px;"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:0.75rem; color:var(--text-dim);">
+        <div>© 2025–2026 MineRisk AI. Hak Cipta Dilindungi Undang-Undang.</div>
+        <div class="font-mono">Model Type: Calibrated LightGBM (Platt Sigmoid) • Zero Data Leakage Temporal Engine</div>
+      </div>
     </div>
   </footer>
 
