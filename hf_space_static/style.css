@@ -422,160 +422,274 @@ body::before {
 }
 
 /* ==========================================================================
-   HERO SECTION WITH FRONT SCREENSHOT SHOWCASE
+   HERO SECTION: ASYMMETRIC COMMAND COCKPIT ARCHITECTURE
    ========================================================================== */
 .hero {
-  padding: 32px 0 64px;
-  text-align: center;
+  padding: 20px 0 48px;
+  position: relative;
 }
 
-.hero-eyebrow-text {
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 1080px) {
+  .hero-split-grid {
+    grid-template-columns: 1.02fr 1.18fr;
+    min-height: calc(100vh - 120px);
+    gap: 40px;
+  }
+}
+
+.hero-left-col {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-eyebrow-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.78rem;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-amber-light);
-  margin-bottom: 20px;
-  background: none;
-  border: none;
-  padding: 0;
+  width: fit-content;
+  margin-bottom: 16px;
 }
 
-.hero-eyebrow-text .eyebrow-spark {
-  color: var(--accent-amber);
-  font-size: 0.7rem;
+.eyebrow-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  box-shadow: 0 0 10px var(--accent-amber);
+  animation: beaconBlink 1.8s ease-in-out infinite;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-size: clamp(2.3rem, 3.5vw, 3.7rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.16;
-  max-width: 1040px;
-  margin: 0 auto 18px;
-  color: var(--text-primary);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin-bottom: 12px;
   text-wrap: balance;
 }
 
-.hero-title em {
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent-amber-light);
-  letter-spacing: -0.01em;
+.hero-title-accent {
+  background: linear-gradient(135deg, #FBBF24, #F59E0B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title-sub {
   display: block;
-  margin-top: 8px;
-  text-wrap: balance;
+  font-size: clamp(1.15rem, 1.7vw, 1.65rem);
+  font-weight: 600;
+  color: #94A3B8;
+  letter-spacing: -0.02em;
+  margin-top: 6px;
+  line-height: 1.25;
 }
 
 .hero-subtitle {
-  font-size: clamp(0.98rem, 1.2vw, 1.14rem);
+  font-size: clamp(0.92rem, 1.05vw, 1.04rem);
   color: var(--text-secondary);
-  max-width: 860px;
-  margin: 0 auto 28px;
-  line-height: 1.68;
+  max-width: 540px;
+  margin: 0 0 24px 0;
+  line-height: 1.65;
   font-weight: 400;
 }
 
-/* Supporting Information Triad Cards (Glassmorphism) */
-.hero-support-grid {
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+/* Metric Strip */
+.hero-metric-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  width: fit-content;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.metric-chip {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-chip-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent-amber-light);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-chip-lbl {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.metric-chip-sep {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Developer Attribution Badge */
+.dev-author-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px 6px 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  width: fit-content;
+}
+
+.dev-author-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1E293B, #0F172A);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-amber-light);
+}
+
+.dev-author-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dev-author-info a {
+  color: var(--accent-amber-light);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.dev-author-info a:hover {
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
+.hero-right-col {
+  position: relative;
+  width: 100%;
+}
+
+/* ==========================================================================
+   STRATEGIC TRIAD FOUNDATION SECTION (DIRECTLY UNDER HERO)
+   ========================================================================== */
+.section-triad {
+  padding: 16px 0 52px;
+  position: relative;
+}
+
+.triad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 1080px;
-  margin: 0 auto 32px;
-  text-align: left;
+  gap: 18px;
+  max-width: 1360px;
+  margin: 0 auto;
 }
 
 @media (max-width: 860px) {
-  .hero-support-grid {
+  .triad-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.support-card {
-  background: var(--glass-surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 20px 22px;
-  box-shadow: var(--glass-shadow);
-  transition: all 0.3s var(--ease-spring);
+.triad-card {
+  background: var(--bg-card-shell);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 6px;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
 }
 
-.support-card:hover {
-  background: var(--glass-surface-hover);
+.triad-card:hover {
+  transform: translateY(-3px);
   border-color: rgba(245, 158, 11, 0.35);
-  transform: translateY(-2px);
 }
 
-.support-card-tag {
+.triad-card-inner {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: calc(var(--radius-lg) - 6px);
+  padding: 22px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.triad-card-tag {
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent-amber-light);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.support-card-title {
-  font-size: 1rem;
+.triad-card-title {
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
 
-.support-card-desc {
-  font-size: 0.82rem;
+.triad-card-desc {
+  font-size: 0.84rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
-}
-
-/* Developer Callout in Hero */
-.dev-author-strip {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 6px 14px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
-}
-
-.dev-author-strip a {
-  color: var(--accent-amber-light);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.dev-author-strip a:hover {
-  text-decoration: underline;
-}
-
-.hero-cta-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
 }
 
 /* ==========================================================================
    FRONT LIVE CODED TELEMETRY HUD (ZERO RASTER IMAGES • PURE CODE & SVG)
    ========================================================================== */
 .hero-telemetry-hud {
-  max-width: 1160px;
-  margin: 0 auto 52px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
   position: relative;
 }
 
@@ -583,8 +697,8 @@ body::before {
   background: rgba(10, 10, 10, 0.88);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.24);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   padding: 16px;
   position: relative;
@@ -595,11 +709,11 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px 16px;
+  padding: 6px 10px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .hud-window-controls {
@@ -658,15 +772,24 @@ body::before {
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* 3-Column Cockpit Grid */
+/* 3-Column / Responsive Split Cockpit Grid */
 .hud-cockpit-grid {
   display: grid;
-  grid-template-columns: 1fr 1.28fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
+  grid-template-columns: 1fr 1.22fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .hud-cockpit-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hud-pod-shap {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
   .hud-cockpit-grid {
     grid-template-columns: 1fr;
   }
@@ -1070,19 +1193,23 @@ body::before {
 }
 
 .section-title {
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(1.85rem, 2.8vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.18;
   margin-bottom: 14px;
+  text-wrap: balance;
 }
 
-.section-title em {
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-weight: 400;
+.section-title em,
+.section-title .section-title-highlight {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
   color: var(--accent-amber-light);
+  display: block;
+  margin-top: 4px;
 }
 
 .section-subtext {
@@ -2818,3 +2945,22 @@ body::before {
 .footer-links a:hover {
   color: var(--accent-amber);
 }
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION (WCAG COMPLIANCE)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hud-radar-beam-group {
+    animation: none !important;
+  }
+  .hud-blip-wave {
+    animation: none !important;
+  }
+}
+
