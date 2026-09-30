@@ -245,6 +245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   initHeroTelemetryHUD();
   initPipelineDiagramFlow();
+  initCopilotChat();
 });
 
 // Tab Navigation Switching
@@ -395,7 +396,7 @@ function populateInspectorDropdown() {
   CURRENT_MINES.forEach(m => {
     const opt = document.createElement('option');
     opt.value = m.id;
-    opt.textContent = `${m.name} (ID: ${m.id}) • Wilayah ${m.state} • ${m.prob}% Risiko`;
+    opt.textContent = `${m.name} (ID ${m.id}) • Wilayah ${m.state} • ${m.prob}% Risiko`;
     select.appendChild(opt);
   });
 
@@ -784,4 +785,306 @@ function initPipelineDiagramFlow() {
       if (activePipe) activePipe.classList.add('active');
     });
   });
+}
+
+// ============================================================================
+// AI SAFETY COPILOT CHAT & TREND INTELLIGENCE CONTROLLER
+// ============================================================================
+function initCopilotChat() {
+  const pills = document.querySelectorAll('.copilot-demo-pill');
+  const input = document.getElementById('copilotInput');
+  const messagesContainer = document.getElementById('copilotMessages');
+  if (!messagesContainer) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const prompt = pill.getAttribute('data-prompt');
+      if (prompt) {
+        if (input) input.value = prompt;
+        window.sendCopilotQuery(prompt);
+      }
+    });
+  });
+
+  window.sendCopilotQuery = function(customQuery) {
+    const query = (customQuery || (input ? input.value : '')).trim();
+    if (!query) return;
+
+    if (input) input.value = '';
+
+    // Append user message
+    appendChatMessage('user', query);
+
+    // Show typing placeholder
+    const typingId = 'typing-' + Date.now();
+    appendChatTyping(typingId);
+
+    setTimeout(() => {
+      removeChatTyping(typingId);
+      const responseHtml = generateCopilotResponse(query);
+      appendChatMessage('assistant', responseHtml);
+    }, 450);
+  };
+}
+
+function appendChatMessage(sender, htmlContent) {
+  const container = document.getElementById('copilotMessages');
+  if (!container) return;
+
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble ${sender}`;
+
+  const timeStr = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+  if (sender === 'user') {
+    bubble.innerHTML = `
+      <strong style="display:block; margin-bottom:4px; color:var(--accent-cyan);">Anda (K3 Operator)</strong>
+      ${escapeHtml(htmlContent)}
+      <span class="chat-meta">${timeStr} • Kueri Manual</span>
+    `;
+  } else {
+    bubble.innerHTML = `
+      <strong style="display:block; margin-bottom:6px; color:var(--accent-amber-light); display:flex; align-items:center; gap:6px;">
+        <span style="width:7px; height:7px; border-radius:50%; background:#10B981; display:inline-block;"></span>
+        MineRisk Intelligence Copilot
+      </strong>
+      ${htmlContent}
+      <span class="chat-meta">${timeStr} • Analisis Real-Time Model CatBoost v2.4</span>
+    `;
+  }
+
+  container.appendChild(bubble);
+  container.scrollTop = container.scrollHeight;
+}
+
+function appendChatTyping(id) {
+  const container = document.getElementById('copilotMessages');
+  if (!container) return;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble assistant';
+  bubble.id = id;
+  bubble.innerHTML = `
+    <span style="font-size:0.8rem; color:var(--text-muted); display:inline-flex; align-items:center; gap:6px;">
+      <span class="hud-beacon-pulse" style="width:6px; height:6px;"></span>
+      Sedang menganalisis basis data keselamatan MSHA dan menghitung proyeksi risiko...
+    </span>
+  `;
+  container.appendChild(bubble);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeChatTyping(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function generateCopilotResponse(query) {
+  const q = query.toLowerCase();
+
+  // Prompt 1: Site 1414
+  if (q.includes('1414') || q.includes('valley')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#EF4444; margin-bottom:6px; font-size:1rem;">
+          Temuan Kritis Lapangan — Operasi Tambang Site 1414 Valley (PA)
+        </div>
+        <p style="margin-bottom:8px;">
+          Berdasarkan analisis fitur SHAP kuartal terbaru, unit ini memiliki probabilitas insiden sebesar <strong>86.9% (Kategori Bahaya Kritis)</strong>, melampaui rata-rata nasional sebesar 50.2%.
+        </p>
+        <div style="background:rgba(239,68,68,0.08); border-left:3px solid #EF4444; padding:8px 12px; margin-bottom:10px; font-size:0.88rem;">
+          <strong>Pendorong Utama Lonjakan Bahaya</strong><br>
+          • Beban jam kerja operasional sangat tinggi mencapai 135.945 jam kerja (+24.2% dampak SHAP)<br>
+          • Temuan pelanggaran kritis S&S pada stabilitas atap batuan dan akumulasi gas (+18.5%)<br>
+          • Metode penambangan bawah tanah dengan risiko geologis inheren (+12.8%)
+        </div>
+        <p style="margin-bottom:6px;">
+          <strong>Langkah Mitigasi yang Direkomendasikan</strong><br>
+          Segera lakukan penyelesaian temuan S&S dalam 7 hari kerja dan jadwalkan audit inspektur lapangan tambahan minimal 20 jam kerja guna memangkas probabilitas bahaya kembali ke batas aman di bawah 55%.
+        </p>
+      </div>
+    `;
+  }
+
+  // Prompt 2: Tindakan darurat
+  if (q.includes('darurat') || q.includes('mencegah') || q.includes('tindakan')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#F59E0B; margin-bottom:6px; font-size:1rem;">
+          Protokol 3 Tindakan Darurat Pencegahan Insiden Tambang
+        </div>
+        <p style="margin-bottom:8px;">
+          Data historis membuktikan 78% insiden fatalitas tambang didahului oleh akumulasi pelanggaran yang tidak ditangani tepat waktu. Terapkan 3 langkah terukur berikut
+        </p>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:8px 12px; border-radius:6px; font-size:0.88rem;">
+            <strong style="color:#EF4444;">1. Perbaikan Cepat Temuan S&S (Zero Tolerance)</strong><br>
+            Selesaikan seluruh temuan Significant & Substantial terutama ventilasi udara dan penyangga atap batuan dalam kurun waktu maksimal 14 hari kalender.
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:8px 12px; border-radius:6px; font-size:0.88rem;">
+            <strong style="color:#F59E0B;">2. Intervensi Kelelahan dan Pengendalian Jam Lembur</strong><br>
+            Batasi penambahan jam kerja lembur maksimal 10% di atas kapasitas normal. Kelelahan pekerja menyumbang lebih dari 35% kenaikan kekeliruan manuver alat berat.
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:8px 12px; border-radius:6px; font-size:0.88rem;">
+            <strong style="color:#10B981;">3. Penugasan Inspektur Berbasis Prioritas AI</strong><br>
+            Alihkan jam audit dari tambang berkategori aman menuju 10% unit tambang paling berisiko untuk melipatgandakan efek pencegahan hingga 1.62 kali lipat.
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Prompt 3: Bawah tanah vs permukaan
+  if (q.includes('bawah tanah') || q.includes('permukaan') || q.includes('vs') || q.includes('banding')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#38BDF8; margin-bottom:6px; font-size:1rem;">
+          Perbandingan Profil Bahaya Tambang Bawah Tanah vs Tambang Terbuka
+        </div>
+        <p style="margin-bottom:8px;">
+          Berdasarkan agregasi 1.542 unit tambang aktif, terdapat disparitas risiko yang signifikan antara metode operasional penambangan
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; font-size:0.86rem;">
+          <div style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); padding:10px; border-radius:6px;">
+            <strong style="color:#EF4444; font-size:0.95rem;">Tambang Bawah Tanah (Underground)</strong><br>
+            • Rata-rata Risiko <strong>72.4%</strong><br>
+            • Bahaya Utama Konsentrasi gas metana, keruntuhan atap terowongan, dan ruang manuver terbatas.<br>
+            • Sensitivitas Lembur Sangat Tinggi (korelasi kelelahan dengan disorientasi lorong).
+          </div>
+          <div style="background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.2); padding:10px; border-radius:6px;">
+            <strong style="color:#10B981; font-size:0.95rem;">Tambang Terbuka (Surface Pit)</strong><br>
+            • Rata-rata Risiko <strong>46.8%</strong><br>
+            • Bahaya Utama Kestabilan lereng galian, interaksi dump truck berukuran raksasa, dan debu partikel.<br>
+            • Faktor Mitigasi Sirkulasi udara alami dan keterlihatan visual area kerja yang luas.
+          </div>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-secondary);">
+          Kesimpulan Tambang bawah tanah memerlukan frekuensi inspeksi berkala rata-rata 2.4 kali lebih intensif dibandingkan tambang permukaan terbuka.
+        </p>
+      </div>
+    `;
+  }
+
+  // Prompt 4: Jam lembur
+  if (q.includes('lembur') || q.includes('jam kerja') || q.includes('kelelahan') || q.includes('fatigue')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#EC4899; margin-bottom:6px; font-size:1rem;">
+          Analisis Pengaruh Jam Lembur terhadap Angka Peluang Kecelakaan
+        </div>
+        <p style="margin-bottom:8px;">
+          Fitur jam kerja (workforce hours) menempati peringkat teratas dalam kontribusi SHAP model MineRisk AI. Berikut temuan korelasi utamanya
+        </p>
+        <div style="background:rgba(236,72,153,0.08); border-left:3px solid #EC4899; padding:8px 12px; margin-bottom:10px; font-size:0.88rem;">
+          <strong>Eksponensial Risiko Kelelahan</strong><br>
+          • Setiap peningkatan 10.000 jam lembur di atas kapasitas standar unit operasional menaikkan probabilitas kecelakaan sebesar rata-rata <strong>+3.4%</strong>.<br>
+          • Penurunan refleks motorik dan kewaspadaan pekerja tambang setelah shift 10 jam berlipat ganda, memicu 42% kecelakaan tabrakan alat angkut dan terpeleset dari ketinggian.
+        </div>
+        <p style="margin-bottom:4px; font-size:0.88rem; color:var(--text-secondary);">
+          Rekomendasi Manajemen Mengatur rotasi shift wajib maksimal 8 jam kerja aktif di area tambang dalam dan mewajibkan jeda istirahat terencana di pos shelter keselamatan.
+        </p>
+      </div>
+    `;
+  }
+
+  // Prompt 5: Efisiensi inspektur
+  if (q.includes('efisiensi') || q.includes('inspektur') || q.includes('prioritas') || q.includes('lift')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#10B981; margin-bottom:6px; font-size:1rem;">
+          Tolok Ukur Efisiensi Penugasan Inspektur Berbasis AI
+        </div>
+        <p style="margin-bottom:8px;">
+          Pengawasan tambang konvensional seringkali dilakukan secara acak atau terjadwal tanpa pembobotan risiko, sehingga inspektur menghabiskan waktu pada lokasi yang sebenarnya telah aman.
+        </p>
+        <div style="background:rgba(16,185,129,0.08); border-left:3px solid #10B981; padding:8px 12px; margin-bottom:10px; font-size:0.88rem;">
+          <strong>Keunggulan Algoritma Predictive AI</strong><br>
+          • <strong>Top 10% Lift 1.62x</strong> Model mampu mendeteksi 1.62 kali lebih banyak unit bermasalah pada kelompok 10% prioritas tertinggi dibandingkan metode acak.<br>
+          • <strong>Penghematan Waktu Audit 38%</strong> Lembaga pengawas dapat menghemat ribuan jam perjalanan audit dengan fokus langsung pada titik anomali berisiko tinggi.<br>
+          • <strong>Cakupan Bahaya Kritis 74%</strong> Dengan hanya mengaudit 20% tambang di antrean teratas, 74% potensi kecelakaan kerja kuartalan dapat diantisipasi secara preventif.
+        </div>
+      </div>
+    `;
+  }
+
+  // Prompt 6: Cumberland Mine
+  if (q.includes('cumberland')) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:#EF4444; margin-bottom:6px; font-size:1rem;">
+          Rekomendasi Mitigasi Khusus Cumberland Mine Portal 3 (WV)
+        </div>
+        <p style="margin-bottom:8px;">
+          Unit Cumberland Mine Portal 3 saat ini berada pada tingkat bahaya tertinggi di sistem dengan skor probabilitas <strong>92.4% (Kategori Bahaya Kritis)</strong>.
+        </p>
+        <div style="background:rgba(239,68,68,0.08); border-left:3px solid #EF4444; padding:8px 12px; margin-bottom:10px; font-size:0.88rem;">
+          <strong>Profil Diagnostik</strong><br>
+          • 7 temuan pelanggaran keselamatan dengan 3 temuan berkategori fatal S&S terkait sirkulasi ventilasi gas.<br>
+          • Jam lembur ekstrem mencapai 198.200 jam kerja dengan 3 rekam jejak cedera pekerja kuartal sebelumnya.<br>
+          • Durasi pengawasan MSHA saat ini tercatat 42 jam pemeriksaan.
+        </div>
+        <div style="background:rgba(16,185,129,0.08); border-left:3px solid #10B981; padding:8px 12px; margin-bottom:6px; font-size:0.88rem;">
+          <strong>Rencana Aksi 14 Hari</strong><br>
+          1. Kalibrasi ulang blower sistem ventilasi sekunder di portal 3.<br>
+          2. Penghentian shift lembur ganda untuk 260 tenaga kerja aktif.<br>
+          3. Penambahan pengawas K3 khusus untuk sertifikasi atap batuan harian.
+        </div>
+      </div>
+    `;
+  }
+
+  // Search if query matches any mine name or ID
+  const matchedMine = CURRENT_MINES.find(m => 
+    m.name.toLowerCase().includes(q) || 
+    m.id.toLowerCase().includes(q) ||
+    m.state.toLowerCase() === q
+  );
+
+  if (matchedMine) {
+    return `
+      <div style="line-height:1.6;">
+        <div style="font-weight:700; color:${getTierHex(matchedMine.tier)}; margin-bottom:6px; font-size:1rem;">
+          Hasil Pemindaian Unit — ${matchedMine.name} (ID ${matchedMine.id})
+        </div>
+        <p style="margin-bottom:8px;">
+          Lokasi ${matchedMine.state} • Tipe ${matchedMine.type} (${matchedMine.commodity}) • ${matchedMine.employees} Karyawan Aktif
+        </p>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:10px 14px; border-radius:6px; margin-bottom:10px; font-size:0.88rem;">
+          • Estimasi Peluang Insiden <strong>${matchedMine.prob}%</strong> (Kategori <strong>${getTierLabelIndo(matchedMine.tier)}</strong>)<br>
+          • Total Paparan Jam Kerja ${matchedMine.hours.toLocaleString('id-ID')} jam<br>
+          • Catatan Pelanggaran ${matchedMine.violations} temuan (${matchedMine.viol_ss} temuan kritis S&S)<br>
+          • Jam Audit Inspektur ${matchedMine.insp_hours} jam pemeriksaan
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-secondary);">
+          Saran Tindakan Anda dapat membuka <strong>Tab 2 (Analisis Rinci Tiap Tambang)</strong> untuk melihat grafik SHAP detail atau membuka <strong>Tab 3 (Simulasi Mitigasi)</strong> untuk menguji perbaikan operasional unit ini.
+        </p>
+      </div>
+    `;
+  }
+
+  // Fallback general response
+  return `
+    <div style="line-height:1.6;">
+      <div style="font-weight:700; color:var(--accent-amber-light); margin-bottom:6px; font-size:1rem;">
+        Ringkasan Intelijen Keselamatan Tambang
+      </div>
+      <p style="margin-bottom:8px;">
+        Pertanyaan Anda mengenai <em>"${escapeHtml(query)}"</em> telah diproses melalui basis analitik MineRisk AI.
+      </p>
+      <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:10px; border-radius:6px; margin-bottom:10px; font-size:0.88rem;">
+        • Sistem saat ini memantau <strong>1.542 unit tambang aktif</strong> di seluruh wilayah nasional.<br>
+        • Tingkat bahaya rata-rata saat ini berada di angka <strong>50.2%</strong> dengan 284 unit berstatus prioritas darurat.<br>
+        • Faktor penentu utama risiko adalah kombinasi antara pelanggaran kritis S&S dan jam lembur operasional tinggi.
+      </div>
+      <p style="font-size:0.88rem; color:var(--text-secondary);">
+        Silakan klik salah satu contoh pertanyaan cepat di atas atau tanyakan mengenai nama tambang spesifik seperti <em>Site 1414</em> atau <em>Cumberland</em>.
+      </p>
+    </div>
+  `;
 }

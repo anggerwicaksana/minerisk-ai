@@ -77,7 +77,7 @@
       </div>
 
       <h1 class="hero-title">
-        MineRisk AI: Inovasi Prediksi Risiko K3 <br>
+        MineRisk AI — Inovasi Prediksi Risiko K3 <br>
         <em class="font-averia">Berbasis Machine Learning untuk Mengantisipasi Kecelakaan Tambang</em>
       </h1>
 
@@ -1000,8 +1000,8 @@
           <!-- Tab Navigation Bar -->
           <div class="dash-tabs-bar">
             <button class="dash-tab-btn active" data-tab="dash-tab-surveillance">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              1. Antrean Pengawasan Nasional
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              1. Statistik & Antrean Pengawasan
             </button>
             <button class="dash-tab-btn" data-tab="dash-tab-inspector">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1009,16 +1009,164 @@
             </button>
             <button class="dash-tab-btn" data-tab="dash-tab-simulator">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-              3. Simulasi 'What-If' Operasional
+              3. Simulasi Mitigasi 'What-If'
+            </button>
+            <button class="dash-tab-btn" data-tab="dash-tab-copilot">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              4. Asisten AI & Tanya Jawab Tren
             </button>
             <button class="dash-tab-btn" data-tab="dash-tab-benchmark">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              4. Tolok Ukur Validasi Ilmiah
+              5. Tolok Ukur Validasi Ilmiah
             </button>
           </div>
 
-          <!-- ==================== TAB 1: SURVEILLANCE QUEUE ==================== -->
+          <!-- ==================== TAB 1: SURVEILLANCE & STATISTICAL OVERVIEW ==================== -->
           <div id="dash-tab-surveillance" class="tab-pane active">
+            <!-- 4 Key Figures Grid -->
+            <div class="stat-kpi-grid">
+              <div class="stat-kpi-card">
+                <div class="stat-kpi-head">
+                  <span>TOTAL UNIT AKTIF</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                </div>
+                <div class="stat-kpi-val amber">1.542 Site</div>
+                <div class="stat-kpi-sub">Tambang beroperasi aktif dalam pengawasan MSHA</div>
+              </div>
+
+              <div class="stat-kpi-card">
+                <div class="stat-kpi-head">
+                  <span>BAHAYA KRITIS (TIER 1)</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div class="stat-kpi-val danger">14 Lokasi</div>
+                <div class="stat-kpi-sub">Peluang insiden &gt;70% butuh audit prioritas minggu ini</div>
+              </div>
+
+              <div class="stat-kpi-card">
+                <div class="stat-kpi-head">
+                  <span>BASELINE NASIONAL</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <div class="stat-kpi-val">50.2%</div>
+                <div class="stat-kpi-sub">Rata-rata probabilitas kecelakaan industri tambang</div>
+              </div>
+
+              <div class="stat-kpi-card">
+                <div class="stat-kpi-head">
+                  <span>EFISIENSI PENUGASAN</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="stat-kpi-val green">1.62x Lipat</div>
+                <div class="stat-kpi-sub">+52% insiden tertangani pada 10% inspeksi teratas</div>
+              </div>
+            </div>
+
+            <!-- Actionable Intelligence Highlights Grid -->
+            <div class="actionable-intelligence-box">
+              <div class="actionable-header">
+                <div class="actionable-tag">
+                  <span class="actionable-pulse-dot"></span>
+                  <span>RANGKUMAN INTELIJEN K3 & TINDAKAN PRIORITAS OPERASIONAL</span>
+                </div>
+                <span style="font-size:0.75rem; color:var(--text-muted);">Diperbarui berdasarkan integrasi data MSHA kuartal berjalan</span>
+              </div>
+
+              <div class="actionable-grid">
+                <div class="action-item-card">
+                  <span class="action-item-badge danger">TINDAKAN MENDESAK</span>
+                  <div class="action-item-title">Eskalasi Lembur & Bahaya Runtuhan Atap</div>
+                  <p class="action-item-desc">
+                    3 tambang bawah tanah di PA dan WV mencatat lonjakan jam kerja &gt;30%. Batasi jam lembur berturut-turut dan lakukan inspeksi baut batuan (*rock bolt*) dalam 7 hari ke depan.
+                  </p>
+                </div>
+
+                <div class="action-item-card">
+                  <span class="action-item-badge success">POTENSI PENURUNAN RISIKO</span>
+                  <div class="action-item-title">Penyelesaian Temuan S&S Tertunda</div>
+                  <p class="action-item-desc">
+                    Menuntaskan 1 temuan pelanggaran kritis yang tertunda terbukti memangkas proyeksi kecelakaan sebesar -9.2% pada kuartal berikutnya, memberikan perbaikan cepat dengan dampak tertinggi.
+                  </p>
+                </div>
+
+                <div class="action-item-card">
+                  <span class="action-item-badge info">LEVERAGE PENGAWASAN</span>
+                  <div class="action-item-title">Intensifikasi Jam Inspeksi MSHA</div>
+                  <p class="action-item-desc">
+                    Unit tambang dengan durasi audit pengawas di atas 20 jam per kuartal secara konsisten memiliki risiko insiden fatal 24% lebih rendah dibanding unit yang jarang diaudit.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sektoral Risk & Trend Comparison Box -->
+            <div class="trend-visual-box">
+              <div class="trend-bars-col">
+                <div style="font-size:0.8rem; font-weight:700; color:var(--text-primary); margin-bottom:4px;">
+                  Distribusi Tingkat Risiko Berdasarkan Metode Penambangan
+                </div>
+
+                <div class="trend-bar-row">
+                  <div class="trend-bar-meta">
+                    <span style="color:var(--text-secondary);">Tambang Bawah Tanah (Underground Coal)</span>
+                    <span style="font-weight:700; color:#EF4444;">72.4% — Zona Bahaya Kritis</span>
+                  </div>
+                  <div class="trend-bar-track">
+                    <div class="trend-bar-fill" style="width: 72.4%; background: linear-gradient(90deg, #F97316, #EF4444);"></div>
+                  </div>
+                </div>
+
+                <div class="trend-bar-row">
+                  <div class="trend-bar-meta">
+                    <span style="color:var(--text-secondary);">Tambang Permukaan / Terbuka (Surface Coal)</span>
+                    <span style="font-weight:700; color:#EAB308;">46.8% — Zona Waspada Sedang</span>
+                  </div>
+                  <div class="trend-bar-track">
+                    <div class="trend-bar-fill" style="width: 46.8%; background: linear-gradient(90deg, #EAB308, #F59E0B);"></div>
+                  </div>
+                </div>
+
+                <div class="trend-bar-row">
+                  <div class="trend-bar-meta">
+                    <span style="color:var(--text-secondary);">Tambang Batu Pecah & Mineral (Quarry)</span>
+                    <span style="font-weight:700; color:#10B981;">24.1% — Zona Terkendali</span>
+                  </div>
+                  <div class="trend-bar-track">
+                    <div class="trend-bar-fill" style="width: 24.1%; background: linear-gradient(90deg, #059669, #10B981);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mini SVG Trendline Chart -->
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:0.78rem; font-weight:700; color:var(--text-primary);">Tren Risiko Industri 8 Kuartal</span>
+                  <span style="font-size:0.7rem; color:#10B981; font-weight:700;">-14.8% Turun Pasca-Audit</span>
+                </div>
+                <svg viewBox="0 0 280 90" style="width:100%; height:auto; overflow:visible;">
+                  <defs>
+                    <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(245, 158, 11, 0.35)"/>
+                      <stop offset="100%" stop-color="transparent"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Baseline line -->
+                  <line x1="10" y1="45" x2="270" y2="45" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <!-- Area fill -->
+                  <polygon points="15,25 50,32 90,20 130,38 170,52 210,48 245,62 270,68 270,85 15,85" fill="url(#trendGrad)"/>
+                  <!-- Sparkline path -->
+                  <polyline points="15,25 50,32 90,20 130,38 170,52 210,48 245,62 270,68" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Trend dots -->
+                  <circle cx="15" cy="25" r="3.5" fill="#EF4444"/>
+                  <circle cx="90" cy="20" r="3.5" fill="#EF4444"/>
+                  <circle cx="270" cy="68" r="3.5" fill="#10B981"/>
+                  <!-- Labels -->
+                  <text x="12" y="85" fill="rgba(255,255,255,0.4)" font-size="8">Q1 2024</text>
+                  <text x="130" y="85" fill="rgba(255,255,255,0.4)" font-size="8">Q4 2024</text>
+                  <text x="245" y="85" fill="rgba(255,255,255,0.4)" font-size="8">Q4 2025</text>
+                </svg>
+              </div>
+            </div>
             <div class="filter-shelf">
               <div class="filter-input-group">
                 <label>Wilayah Negara Bagian</label>
@@ -1300,7 +1448,75 @@
             </div>
           </div>
 
-          <!-- ==================== TAB 4: BENCHMARK & TOLOK UKUR ==================== -->
+          <!-- ==================== TAB 4: AI SAFETY ASSISTANT & CHAT COPILOT ==================== -->
+          <div id="dash-tab-copilot" class="tab-pane">
+            <div class="copilot-container">
+              <!-- Copilot Header -->
+              <div class="copilot-header">
+                <div class="copilot-id-block">
+                  <div class="copilot-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="14" r="1.5" fill="currentColor"/><circle cx="15" cy="14" r="1.5" fill="currentColor"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                  </div>
+                  <div>
+                    <div class="copilot-title">MineRisk Safety Copilot (Asisten Cerdas K3 Tambang)</div>
+                    <div class="copilot-sub">Model intelijen keselamatan yang siap menganalisis data tren, profil site, dan simulasi perbaikan secara interaktif</div>
+                  </div>
+                </div>
+
+                <div class="copilot-online-badge">
+                  <span class="hud-beacon-pulse"></span>
+                  <span>COPILOT ONLINE & DATA TERHUBUNG</span>
+                </div>
+              </div>
+
+              <!-- Clickable Mockup Demo Prompts -->
+              <div class="copilot-prompt-shelf">
+                <div class="copilot-shelf-label">
+                  <span>💡 Pertanyaan Cepat — Klik salah satu contoh di bawah untuk melihat analisis instan</span>
+                </div>
+                <div class="copilot-pills-row">
+                  <button class="copilot-demo-pill" data-prompt="Analisis tren risiko Site 1414 Valley">
+                    💬 Analisis tren risiko Site 1414 Valley
+                  </button>
+                  <button class="copilot-demo-pill" data-prompt="Apa tindakan darurat untuk mencegah insiden kuartal ini?">
+                    💬 Apa tindakan darurat untuk mencegah insiden kuartal ini?
+                  </button>
+                  <button class="copilot-demo-pill" data-prompt="Bandingkan risiko tambang bawah tanah vs permukaan">
+                    💬 Bandingkan risiko tambang bawah tanah vs permukaan
+                  </button>
+                  <button class="copilot-demo-pill" data-prompt="Kenapa jam lembur sangat mempengaruhi peluang kecelakaan?">
+                    💬 Kenapa jam lembur sangat mempengaruhi peluang kecelakaan?
+                  </button>
+                  <button class="copilot-demo-pill" data-prompt="Berapa efisiensi penugasan inspektur berbasis AI?">
+                    💬 Berapa efisiensi penugasan inspektur berbasis AI?
+                  </button>
+                  <button class="copilot-demo-pill" data-prompt="Tampilkan rekomendasi mitigasi untuk Cumberland Mine">
+                    💬 Rekomendasi mitigasi Cumberland Mine
+                  </button>
+                </div>
+              </div>
+
+              <!-- Chat Messages Viewport -->
+              <div class="copilot-messages" id="copilotMessages">
+                <div class="chat-bubble assistant">
+                  <strong style="display:block; margin-bottom:4px; color:var(--accent-amber-light);">MineRisk Copilot</strong>
+                  Halo! Saya asisten intelijen MineRisk AI. Anda dapat menanyakan analisis tren bahaya pada unit tambang tertentu, rekomendasi K3 lapangan, atau klik salah satu contoh pertanyaan di atas untuk melihat simulasi jawaban berbasis data MSHA.
+                  <span class="chat-meta">Sistem Siap • Terhubung ke 1.542 Unit Tambang</span>
+                </div>
+              </div>
+
+              <!-- Chat Input Bar -->
+              <form id="copilotForm" class="copilot-input-area" onsubmit="event.preventDefault(); window.sendCopilotQuery();">
+                <input type="text" id="copilotInput" class="copilot-input-field" placeholder="Ketik pertanyaan atau analisis yang Anda butuhkan (contoh — Bagaimana kondisi Site 1414?)..." autocomplete="off">
+                <button type="submit" class="copilot-send-btn">
+                  <span>Kirim</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ==================== TAB 5: BENCHMARK & TOLOK UKUR ==================== -->
           <div id="dash-tab-benchmark" class="tab-pane">
             <div style="margin-bottom: 24px;">
               <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 6px;">
