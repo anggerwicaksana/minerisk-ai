@@ -243,6 +243,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (CURRENT_MINES.length > 0) {
     inspectMine(CURRENT_MINES[0].id);
   }
+  initHeroTelemetryHUD();
+  initPipelineDiagramFlow();
 });
 
 // Tab Navigation Switching
@@ -639,4 +641,147 @@ function runSimulation() {
       Tidak ada temuan pelanggaran kritis S&S. Menjaga jam kerja stabil dan melanjutkan inspeksi berkala merupakan langkah paling efektif untuk mempertahankan lingkungan tambang yang aman.
     `;
   }
+}
+
+// ============================================================================
+// HERO LIVE CODED TELEMETRY HUD CONTROLLER (ZERO RASTER IMAGES)
+// ============================================================================
+function initHeroTelemetryHUD() {
+  const radarBlips = document.querySelectorAll('.hud-radar-blip');
+  if (!radarBlips.length) return;
+
+  const needle = document.getElementById('hudGaugeNeedle');
+  const track = document.getElementById('hudGaugeTrack');
+  const probVal = document.getElementById('hudProbVal');
+  const tierPill = document.getElementById('hudTierPill');
+  const siteName = document.getElementById('hudSiteName');
+  const siteLoc = document.getElementById('hudSiteLoc');
+  const siteHours = document.getElementById('hudSiteHours');
+  const shapList = document.getElementById('hudShapList');
+  const alertText = document.getElementById('hudAlertText');
+
+  function updateHUDWithMine(mine) {
+    if (!mine) return;
+
+    // Angle: 0% is -90deg, 100% is +90deg
+    const angle = ((mine.prob - 50) * 1.76).toFixed(1);
+    if (needle) {
+      needle.style.transform = `rotate(${angle}deg)`;
+      needle.style.stroke = getTierHex(mine.tier);
+    }
+
+    // Arc stroke dashoffset: full arc is 235.6
+    if (track) {
+      const offset = (235.6 * (1 - mine.prob / 100.0)).toFixed(1);
+      track.style.strokeDashoffset = offset;
+    }
+
+    if (probVal) {
+      probVal.textContent = `${mine.prob.toFixed(1)}%`;
+      probVal.style.color = getTierHex(mine.tier);
+      probVal.style.textShadow = `0 0 20px ${getTierHex(mine.tier)}66`;
+    }
+
+    if (tierPill) {
+      tierPill.textContent = `KATEGORI ${getTierLabelIndo(mine.tier).toUpperCase()}`;
+      tierPill.style.color = getTierHex(mine.tier);
+      tierPill.style.borderColor = `${getTierHex(mine.tier)}55`;
+      tierPill.style.background = `${getTierHex(mine.tier)}22`;
+    }
+
+    if (siteName) siteName.textContent = mine.name;
+    if (siteLoc) siteLoc.textContent = `${mine.state} • ${mine.type} ${mine.commodity}`;
+    if (siteHours) siteHours.textContent = `${mine.hours.toLocaleString('id-ID')} Jam Kerja`;
+
+    // Update SHAP list in HUD
+    if (shapList && mine.drivers && mine.drivers.length) {
+      const topDrivers = mine.drivers.slice(0, 4);
+      shapList.innerHTML = topDrivers.map(d => {
+        const isPos = d.shap > 0;
+        const sign = isPos ? '+' : '';
+        const pct = Math.min(100, Math.max(15, Math.abs(d.shap) * 3.2)).toFixed(0);
+        return `
+          <div class="hud-shap-item">
+            <div class="hud-shap-head">
+              <span class="hud-shap-name">${d.name}</span>
+              <span class="hud-shap-val ${isPos ? 'pos' : 'neg'}">${sign}${d.shap.toFixed(1)}%</span>
+            </div>
+            <div class="hud-shap-track">
+              <div class="hud-shap-fill ${isPos ? 'pos' : 'neg'}" style="width: ${pct}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Update tailored alert text
+    if (alertText) {
+      if (mine.tier === 'Critical') {
+        alertText.innerHTML = `Peringatan Dini Aktif — Tingginya jam lembur dan temuan S&S pada <strong>${mine.name}</strong> menandakan eskalasi risiko insiden dalam 90 hari ke depan.`;
+      } else if (mine.tier === 'Elevated' || mine.tier === 'High') {
+        alertText.innerHTML = `Perhatian K3 Terarah — <strong>${mine.name}</strong> menunjukkan beban kerja meningkat yang memerlukan audit berkala sebelum menjadi temuan kritis.`;
+      } else {
+        alertText.innerHTML = `Pengawasan Standar — <strong>${mine.name}</strong> berada dalam koridor risiko terkendali dengan kepatuhan inspeksi yang baik.`;
+      }
+    }
+  }
+
+  radarBlips.forEach(blip => {
+    blip.addEventListener('click', () => {
+      radarBlips.forEach(b => b.classList.remove('active'));
+      blip.classList.add('active');
+      const idx = parseInt(blip.getAttribute('data-mine-idx'), 10) || 0;
+      if (CURRENT_MINES[idx]) {
+        updateHUDWithMine(CURRENT_MINES[idx]);
+      }
+    });
+
+    blip.addEventListener('mouseenter', () => {
+      const idx = parseInt(blip.getAttribute('data-mine-idx'), 10) || 0;
+      if (CURRENT_MINES[idx]) {
+        updateHUDWithMine(CURRENT_MINES[idx]);
+      }
+    });
+  });
+}
+
+// ============================================================================
+// DATA PIPELINE ANIMATED FLOW CONTROLLER
+// ============================================================================
+function initPipelineDiagramFlow() {
+  const feederNodes = document.querySelectorAll('.flow-node');
+  const sourceCards = document.querySelectorAll('.source-card');
+  const pipes = document.querySelectorAll('.flow-pipe');
+
+  feederNodes.forEach((node, idx) => {
+    node.addEventListener('mouseenter', () => {
+      feederNodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+
+      // Highlight corresponding conduit
+      pipes.forEach(p => p.classList.remove('active'));
+      const activePipe = document.querySelector(`.flow-pipe.p${idx + 1}`);
+      if (activePipe) activePipe.classList.add('active');
+
+      // Highlight corresponding source accordion card
+      if (sourceCards[idx]) {
+        sourceCards.forEach(c => c.classList.remove('active'));
+        sourceCards[idx].classList.add('active');
+      }
+    });
+  });
+
+  sourceCards.forEach((card, idx) => {
+    card.addEventListener('mouseenter', () => {
+      sourceCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      feederNodes.forEach(n => n.classList.remove('active'));
+      if (feederNodes[idx]) feederNodes[idx].classList.add('active');
+
+      pipes.forEach(p => p.classList.remove('active'));
+      const activePipe = document.querySelector(`.flow-pipe.p${idx + 1}`);
+      if (activePipe) activePipe.classList.add('active');
+    });
+  });
 }

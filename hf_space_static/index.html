@@ -141,23 +141,221 @@
       </div>
 
       <!-- ====================================================================
-           FRONT SCREENSHOT SHOWCASE (IMMEDIATELY DISPLAYED AT TOP)
+           FRONT LIVE CODED TELEMETRY HUD (ZERO RASTER IMAGES • PURE CODE & SVG)
            ==================================================================== -->
-      <div class="hero-front-screenshot">
-        <div class="hero-screenshot-frame">
-          <div class="hero-screenshot-inner">
-            <img src="assets/dashboard_mockup.jpg" alt="Tampilan Antarmuka Dasbor MineRisk AI SafeCast" class="hero-screen-img">
-            <div class="hero-screen-caption">
-              <div>
-                <div class="hero-caption-title">Tampilan Pusat Pemantauan Risiko Tambang Nasional (Live Control Center)</div>
-                <div class="hero-caption-sub">Menampilkan tolok ukur probabilitas 86.9% kategori kritis, sebaran titik rawan geospasial, dan transparansi faktor pemicu SHAP.</div>
+      <div class="hero-telemetry-hud" id="hero-hud">
+        <div class="hud-frame">
+          <!-- Top Window Chrome & Live Radar Indicator -->
+          <div class="hud-header">
+            <div class="hud-window-controls">
+              <span class="hud-dot red"></span>
+              <span class="hud-dot yellow"></span>
+              <span class="hud-dot green"></span>
+            </div>
+            <div class="hud-title-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span>MINERISK AI ✦ RADAR INTELIJEN KESELAMATAN TAMBANG</span>
+            </div>
+            <div class="hud-live-beacon">
+              <span class="hud-beacon-pulse"></span>
+              <span>LIVE TELEMETRI MSHA</span>
+            </div>
+          </div>
+
+          <!-- HUD Main Operational Cockpit Grid -->
+          <div class="hud-cockpit-grid">
+            <!-- Left Pod: Animated Radial Risk Gauge & Key Metrics -->
+            <div class="hud-pod hud-pod-gauge">
+              <div class="hud-pod-label">PREDIKSI PROBABILITAS BAHAYA 3 BULAN</div>
+              
+              <!-- SVG Radial Gauge -->
+              <div class="hud-gauge-wrapper">
+                <svg class="hud-gauge-svg" viewBox="0 0 200 120">
+                  <defs>
+                    <linearGradient id="hudGaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#10B981" />
+                      <stop offset="35%" stop-color="#EAB308" />
+                      <stop offset="70%" stop-color="#F97316" />
+                      <stop offset="100%" stop-color="#EF4444" />
+                    </linearGradient>
+                    <filter id="hudGaugeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+                  <!-- Background Track Arc -->
+                  <path d="M 25 105 A 75 75 0 0 1 175 105" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="14" stroke-linecap="round" />
+                  <!-- Colored Gradient Arc (Dash offset corresponds to ~86.9%) -->
+                  <path id="hudGaugeTrack" d="M 25 105 A 75 75 0 0 1 175 105" fill="none" stroke="url(#hudGaugeGrad)" stroke-width="14" stroke-dasharray="235.6" stroke-dashoffset="31" stroke-linecap="round" filter="url(#hudGaugeGlow)" />
+                  <!-- Gauge Needle Pivot -->
+                  <circle cx="100" cy="105" r="7" fill="#F59E0B" />
+                  <!-- Needle Line (Rotates via CSS/JS) -->
+                  <line id="hudGaugeNeedle" x1="100" y1="105" x2="100" y2="38" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" style="transform-origin: 100px 105px; transform: rotate(66deg); transition: transform 0.6s var(--ease-spring);" />
+                </svg>
+
+                <div class="hud-gauge-digital">
+                  <div class="hud-digit-val" id="hudProbVal">86.9%</div>
+                  <div class="hud-tier-pill danger" id="hudTierPill">KATEGORI KRITIS</div>
+                </div>
               </div>
-              <div>
-                <a href="#live-dashboard" class="btn-island-primary" style="font-size:0.8rem; padding:6px 14px;">
-                  <span>Gunakan Dasbor Interaktif</span>
-                  <div class="btn-island-icon" style="width:24px; height:24px;">↗</div>
-                </a>
+
+              <!-- Quick Site Info Strip -->
+              <div class="hud-site-spec">
+                <div class="hud-spec-row">
+                  <span class="hud-spec-key">Unit Tambang</span>
+                  <span class="hud-spec-val" id="hudSiteName">Mine Operation 1414</span>
+                </div>
+                <div class="hud-spec-row">
+                  <span class="hud-spec-key">Wilayah Operasi</span>
+                  <span class="hud-spec-val" id="hudSiteLoc">Pennsylvania (PA) • Underground Coal</span>
+                </div>
+                <div class="hud-spec-row">
+                  <span class="hud-spec-key">Total Jam Kerja</span>
+                  <span class="hud-spec-val" id="hudSiteHours">135.945 Jam Kerja</span>
+                </div>
               </div>
+            </div>
+
+            <!-- Center Pod: Geospatial Radar Screen with Animated Sweep & Interactive Nodes -->
+            <div class="hud-pod hud-pod-radar">
+              <div class="hud-radar-topbar">
+                <span class="hud-pod-label">SEKTOR GEOSPASIAL & RADAR PENGAWASAN</span>
+                <span class="hud-radar-coords">37.42° N, 105.81° W</span>
+              </div>
+
+              <div class="hud-radar-screen">
+                <!-- SVG Vector Radar Display -->
+                <svg class="hud-radar-svg" viewBox="0 0 280 240">
+                  <defs>
+                    <radialGradient id="hudRadarSweepGrad" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(245, 158, 11, 0.28)" />
+                      <stop offset="70%" stop-color="rgba(245, 158, 11, 0.08)" />
+                      <stop offset="100%" stop-color="transparent" />
+                    </radialGradient>
+                  </defs>
+
+                  <!-- Tactical Grid Background -->
+                  <line x1="140" y1="15" x2="140" y2="225" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 3" />
+                  <line x1="20" y1="120" x2="260" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 3" />
+                  
+                  <!-- Concentric Range Circles -->
+                  <circle cx="140" cy="120" r="35" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                  <circle cx="140" cy="120" r="70" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                  <circle cx="140" cy="120" r="102" fill="none" stroke="rgba(245, 158, 11, 0.16)" stroke-width="1.2" />
+
+                  <!-- Rotating Radar Beam Sweep -->
+                  <g class="hud-radar-beam-group">
+                    <line x1="140" y1="120" x2="140" y2="18" stroke="rgba(245, 158, 11, 0.85)" stroke-width="2" />
+                    <polygon points="140,120 140,18 200,32" fill="url(#hudRadarSweepGrad)" />
+                  </g>
+
+                  <!-- Range Labels -->
+                  <text x="144" y="54" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Plus Jakarta Sans">25 KM</text>
+                  <text x="144" y="22" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Plus Jakarta Sans">50 KM</text>
+
+                  <!-- Interactive Mine Site Blips / Hotspots -->
+                  <!-- Site 1: AZ-104 / Valley 1414 (Critical - Red) -->
+                  <g class="hud-radar-blip active" data-mine-idx="0" transform="translate(178, 68)">
+                    <circle class="hud-blip-wave red" cx="0" cy="0" r="9" />
+                    <circle class="hud-blip-core red" cx="0" cy="0" r="4.5" />
+                    <text x="8" y="3" fill="#EF4444" font-size="9" font-weight="700">Site 1414 (86.9%)</text>
+                  </g>
+
+                  <!-- Site 2: Cumberland Portal 3 (High - Orange) -->
+                  <g class="hud-radar-blip" data-mine-idx="1" transform="translate(85, 82)">
+                    <circle class="hud-blip-wave orange" cx="0" cy="0" r="9" />
+                    <circle class="hud-blip-core orange" cx="0" cy="0" r="4.5" />
+                    <text x="8" y="3" fill="#F97316" font-size="9" font-weight="700">Cumberland (76.5%)</text>
+                  </g>
+
+                  <!-- Site 3: Black Thunder (Medium - Amber) -->
+                  <g class="hud-radar-blip" data-mine-idx="2" transform="translate(205, 168)">
+                    <circle class="hud-blip-wave amber" cx="0" cy="0" r="9" />
+                    <circle class="hud-blip-core amber" cx="0" cy="0" r="4.5" />
+                    <text x="8" y="3" fill="#EAB308" font-size="9" font-weight="700">Black Thunder (54.1%)</text>
+                  </g>
+
+                  <!-- Site 4: Lee Ranch Quarry (Low - Green) -->
+                  <g class="hud-radar-blip" data-mine-idx="3" transform="translate(68, 175)">
+                    <circle class="hud-blip-wave green" cx="0" cy="0" r="9" />
+                    <circle class="hud-blip-core green" cx="0" cy="0" r="4.5" />
+                    <text x="8" y="3" fill="#10B981" font-size="9" font-weight="700">Lee Ranch (18.2%)</text>
+                  </g>
+                </svg>
+
+                <div class="hud-radar-hint">
+                  <span>✦ Klik salah satu titik radar di atas untuk memantau detail site seketika</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Pod: Realtime SHAP Drivers Breakdown -->
+            <div class="hud-pod hud-pod-shap">
+              <div class="hud-pod-label">FAKTOR KONTRIBUSI SHAP (EXPLAINABLE AI)</div>
+              
+              <div class="hud-shap-list" id="hudShapList">
+                <div class="hud-shap-item">
+                  <div class="hud-shap-head">
+                    <span class="hud-shap-name">Beban Jam Lembur Tinggi</span>
+                    <span class="hud-shap-val pos">+24.2%</span>
+                  </div>
+                  <div class="hud-shap-track">
+                    <div class="hud-shap-fill pos" style="width: 78%;"></div>
+                  </div>
+                </div>
+
+                <div class="hud-shap-item">
+                  <div class="hud-shap-head">
+                    <span class="hud-shap-name">Temuan Pelanggaran S&S Terbuka</span>
+                    <span class="hud-shap-val pos">+18.5%</span>
+                  </div>
+                  <div class="hud-shap-track">
+                    <div class="hud-shap-fill pos" style="width: 60%;"></div>
+                  </div>
+                </div>
+
+                <div class="hud-shap-item">
+                  <div class="hud-shap-head">
+                    <span class="hud-shap-name">Karakteristik Underground</span>
+                    <span class="hud-shap-val pos">+12.8%</span>
+                  </div>
+                  <div class="hud-shap-track">
+                    <div class="hud-shap-fill pos" style="width: 42%;"></div>
+                  </div>
+                </div>
+
+                <div class="hud-shap-item">
+                  <div class="hud-shap-head">
+                    <span class="hud-shap-name">Pemeriksaan Berkala MSHA Aktif</span>
+                    <span class="hud-shap-val neg">-8.2%</span>
+                  </div>
+                  <div class="hud-shap-track">
+                    <div class="hud-shap-fill neg" style="width: 28%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Realtime Alert Dispatch Box -->
+              <div class="hud-alert-dispatch">
+                <div class="hud-alert-indicator"></div>
+                <div class="hud-alert-text" id="hudAlertText">
+                  Peringatan Dini Aktif — Tingginya jam lembur dan temuan S&S menandakan eskalasi risiko fatalitas dalam 90 hari ke depan.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom HUD Status Bar & Action Link -->
+          <div class="hud-footer-strip">
+            <div class="hud-footer-meta">
+              <span class="meta-tag">KALIBRASI</span>
+              <span>Model E LightGBM • Isotonic Calibrated • Brier Score 0.2080</span>
+            </div>
+            <div>
+              <a href="#live-dashboard" class="btn-island-primary" style="font-size:0.82rem; padding:8px 16px;">
+                <span>Eksplorasi Dasbor & Simulasi Lengkap</span>
+                <div class="btn-island-icon" style="width:24px; height:24px;">↘</div>
+              </a>
             </div>
           </div>
         </div>
@@ -444,9 +642,113 @@
       </div>
 
       <div class="data-sources-layout">
-        <!-- Visual Diagram Image -->
-        <div class="double-bezel">
-          <img src="assets/data_pipeline.jpg" alt="Visualisasi Arsitektur 5 Aliran Data MSHA" style="width:100%; border-radius: calc(var(--radius-xl) - 8px); display:block;">
+        <!-- Coded SVG Data Pipeline Architecture Diagram (Zero Raster Images) -->
+        <div class="pipeline-diagram-frame">
+          <div class="pipeline-diagram-header">
+            <div class="diagram-tag">INTEGRASI ARSITEKTUR DATA RESMI MSHA</div>
+            <div class="diagram-live-chip">
+              <span class="live-dot-glow"></span>
+              <span>SINKRONISASI 5 PILAR DATA</span>
+            </div>
+          </div>
+
+          <div class="pipeline-flow-board">
+            <!-- Left: 5 Data Feeder Nodes -->
+            <div class="flow-feeder-col">
+              <div class="flow-node active" data-pilar="1">
+                <div class="flow-node-badge">PILAR 1</div>
+                <div class="flow-node-title">Jam Kerja & Karyawan</div>
+                <div class="flow-node-sub">Quarterly Employment</div>
+              </div>
+
+              <div class="flow-node" data-pilar="2">
+                <div class="flow-node-badge">PILAR 2</div>
+                <div class="flow-node-title">Inspeksi Pengawas</div>
+                <div class="flow-node-sub">Inspection Records</div>
+              </div>
+
+              <div class="flow-node" data-pilar="3">
+                <div class="flow-node-badge">PILAR 3</div>
+                <div class="flow-node-title">Pelanggaran Kritis S&S</div>
+                <div class="flow-node-sub">Violations Database</div>
+              </div>
+
+              <div class="flow-node" data-pilar="4">
+                <div class="flow-node-badge">PILAR 4</div>
+                <div class="flow-node-title">Histori Insiden & Cedera</div>
+                <div class="flow-node-sub">Accidents & Injuries</div>
+              </div>
+
+              <div class="flow-node" data-pilar="5">
+                <div class="flow-node-badge">PILAR 5</div>
+                <div class="flow-node-title">Identitas Operasi Tambang</div>
+                <div class="flow-node-sub">Mines Master Database</div>
+              </div>
+            </div>
+
+            <!-- Center Flow SVG with Animated Glowing Conduits -->
+            <div class="flow-conduit-svg-wrap">
+              <svg class="flow-conduit-svg" viewBox="0 0 160 380" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.3" />
+                    <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#10B981" stop-opacity="0.9" />
+                  </linearGradient>
+                </defs>
+
+                <!-- 5 Connecting Bezier Conduits from Feeder nodes into Center Engine -->
+                <path class="flow-pipe p1" d="M 0 35 C 70 35, 90 190, 160 190" />
+                <path class="flow-pipe p2" d="M 0 110 C 60 110, 100 190, 160 190" />
+                <path class="flow-pipe p3" d="M 0 190 L 160 190" />
+                <path class="flow-pipe p4" d="M 0 270 C 60 270, 100 190, 160 190" />
+                <path class="flow-pipe p5" d="M 0 345 C 70 345, 90 190, 160 190" />
+              </svg>
+
+              <!-- Central Machine Learning Core -->
+              <div class="flow-engine-core">
+                <div class="engine-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="engine-title">MINERISK ENGINE</div>
+                <div class="engine-sub">Temporal Split 2000–2023 → 2024–2025</div>
+                <div class="engine-badge">Model E LightGBM</div>
+              </div>
+
+              <!-- Right Flow Bezier Conduits Out to Results -->
+              <svg class="flow-conduit-svg-out" viewBox="0 0 140 380" preserveAspectRatio="none">
+                <path class="flow-pipe out1" d="M 0 190 C 60 190, 80 75, 140 75" />
+                <path class="flow-pipe out2" d="M 0 190 L 140 190" />
+                <path class="flow-pipe out3" d="M 0 190 C 60 190, 80 305, 140 305" />
+              </svg>
+            </div>
+
+            <!-- Right: 3 Output Nodes -->
+            <div class="flow-output-col">
+              <div class="flow-out-card">
+                <div class="flow-out-badge">OUTPUT 1</div>
+                <div class="flow-out-title">Probabilitas Bahaya 3 Bulan</div>
+                <div class="flow-out-desc">Skor risiko terkalibrasi realistis (0–100%)</div>
+              </div>
+
+              <div class="flow-out-card">
+                <div class="flow-out-badge">OUTPUT 2</div>
+                <div class="flow-out-title">Transparansi Faktor SHAP</div>
+                <div class="flow-out-desc">Explainable AI pemicu insiden</div>
+              </div>
+
+              <div class="flow-out-card">
+                <div class="flow-out-badge">OUTPUT 3</div>
+                <div class="flow-out-title">Tindakan Prioritas Lapangan</div>
+                <div class="flow-out-desc">Rekomendasi inspeksi & perbaikan</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-diagram-footer">
+            <span class="diagram-foot-icon">✦</span>
+            <span>Mencegah kebocoran masa depan (*Look-Ahead Data Leakage*) melalui pemisahan data temporal yang ketat</span>
+          </div>
         </div>
 
         <!-- Accordion of 5 Data Sources -->
