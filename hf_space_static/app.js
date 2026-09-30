@@ -1,10 +1,8 @@
 /**
  * MineRisk-AI (SafeCast) - Reactive Intelligence & Simulation Controller
- * Integrates:
- * 1. National Mine-Quarter Surveillance Queue
- * 2. Deep-Dive Mine Inspector & Explainable AI (SHAP Waterfall)
- * 3. What-If Operational Safety Sandbox Simulator
- * 4. Temporal Out-of-Time Verification Benchmark
+ * Architecture: Plus Jakarta Sans + Averia Serif Libre (Zero JetBrains Mono)
+ * Industrial Badging (No rounded pills) • Explainable AI • What-If Sandbox
+ * Lead Engineer: Angger Wicaksana (angger.akukatiga.com)
  */
 
 // Fallback baseline in case network fetch is blocked or file:// is used
@@ -267,7 +265,7 @@ function initDashboardTabs() {
   });
 }
 
-// Attempt to load full 20+ records from json, fallback gracefully if local file://
+// Attempt to load full 20+ records from json
 async function loadRemoteData() {
   try {
     const res = await fetch('data/showcase_data.json');
@@ -343,16 +341,16 @@ function renderSurveillanceTable(mines) {
     const badgeLabel = getTierLabelIndo(m.tier);
 
     tr.innerHTML = `
-      <td style="font-family: var(--font-mono); color: var(--text-muted); font-weight: 600;">#${idx + 1}</td>
-      <td style="font-family: var(--font-mono); font-weight: 700; color: var(--text-primary);">${m.id}</td>
+      <td style="color: var(--text-muted); font-weight: 700;">#${idx + 1}</td>
+      <td style="font-weight: 700; color: var(--text-primary); letter-spacing:0.02em;">${m.id}</td>
       <td style="font-weight: 600; color: var(--text-primary);">${m.name}</td>
-      <td><span style="font-family: var(--font-mono);">${m.state}</span> • ${m.type}</td>
-      <td style="font-family: var(--font-mono);">${m.hours.toLocaleString()} jam</td>
-      <td style="font-family: var(--font-mono); color: ${m.viol_ss > 0 ? '#EF4444' : 'var(--text-secondary)'};">
+      <td>${m.state} • ${m.type}</td>
+      <td class="tabular-nums">${m.hours.toLocaleString()} jam</td>
+      <td class="tabular-nums" style="color: ${m.viol_ss > 0 ? '#EF4444' : 'var(--text-secondary)'};">
         ${m.violations} <span style="font-size:0.75rem; color:var(--text-muted);">(${m.viol_ss} S&S)</span>
       </td>
-      <td><span class="tier-badge ${tierClass}">${badgeLabel}</span></td>
-      <td style="font-family: var(--font-mono); font-size: 1.05rem; font-weight: 800; color: ${getTierHex(m.tier)};">
+      <td><span class="tier-tag ${tierClass}">${badgeLabel}</span></td>
+      <td class="tabular-nums" style="font-size: 1.05rem; font-weight: 800; color: ${getTierHex(m.tier)};">
         ${m.prob}%
       </td>
     `;
@@ -422,7 +420,7 @@ function inspectMine(mineId) {
 
   const badgeEl = document.getElementById('inspectTierBadge');
   badgeEl.textContent = getTierLabelIndo(mine.tier);
-  badgeEl.className = `tier-badge tier-${mine.tier.toLowerCase()}`;
+  badgeEl.className = `tier-tag tier-${mine.tier.toLowerCase()}`;
 
   const deltaEl = document.getElementById('inspectDeltaMsg');
   deltaEl.textContent = isHigher 
@@ -468,7 +466,7 @@ function renderShapBars(drivers) {
       <div class="shap-track">
         <div class="${isPos ? 'shap-fill-pos' : 'shap-fill-neg'}" style="width: ${widthPct}%;"></div>
       </div>
-      <div class="shap-val-text" style="color: ${isPos ? '#EF4444' : '#10B981'};">
+      <div class="shap-val-text tabular-nums" style="color: ${isPos ? '#EF4444' : '#10B981'};">
         ${isPos ? '+' : ''}${d.shap}%
       </div>
     `;
@@ -485,29 +483,29 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#EF4444';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="font-size:1.1rem;">⚠️</span>
-        <strong style="color: #EF4444; font-size: 0.95rem;">TINDAKAN MITIGASI DARURAT (PRIORITAS 1)</strong>
+        <span style="color:#EF4444; font-weight:800;">[!]</span>
+        <strong style="color: #EF4444; font-size: 0.95rem;">TINDAKAN MITIGASI PRIORITAS TINGGI</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
-        Operasi tambang <strong>${mine.name}</strong> menunjukkan beban jam kerja pekerja yang berlebih disertai akumulasi ${mine.viol_ss} pelanggaran kritis S&S (terkait struktur terowongan atau ventilasi). Direkomendasikan melakukan inspeksi keselamatan komprehensif dalam <strong>7 hari ke depan</strong> serta evaluasi pembagian shift lembur untuk mencegah kelelahan fatal.
+        Operasi tambang <strong>${mine.name}</strong> menunjukkan beban lembur pekerja berlebih disertai akumulasi ${mine.viol_ss} pelanggaran kritis S&S (ventilasi/penyangga batuan). Disarankan segera melaksanakan audit keselamatan lapangan dalam <strong>7 hari ke depan</strong> dan mengevaluasi rotasi istirahat pekerja shift malam.
       </p>
     `;
   } else if (tier === 'Elevated') {
     box.style.borderLeftColor = '#F97316';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="font-size:1.1rem;">🟠</span>
+        <span style="color:#F97316; font-weight:800;">[▲]</span>
         <strong style="color: #F97316; font-size: 0.95rem;">PENGAWASAN INTENSIF DIPERLUKAN</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
-        Tingkat risiko berada di atas rata-rata nasional. Tim HSE internal wajib menyelesaikan perbaikan temuan inspeksi sebelum kuartal baru dimulai dan menggelar <em>safety stand-down</em> untuk mengingatkan prosedur kerja aman.
+        Tingkat risiko berada di atas rata-rata industri nasional. Tim K3 internal wajib menyelesaikan perbaikan temuan inspeksi sebelum kuartal baru dimulai dan menggelar <em>briefing keselamatan</em> rutin.
       </p>
     `;
   } else if (tier === 'Moderate') {
     box.style.borderLeftColor = '#EAB308';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="font-size:1.1rem;">🟡</span>
+        <span style="color:#EAB308; font-weight:800;">[●]</span>
         <strong style="color: #EAB308; font-size: 0.95rem;">PENGAWASAN RUTIN BERKALA</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
@@ -518,11 +516,11 @@ function renderActionGuidance(mine) {
     box.style.borderLeftColor = '#10B981';
     box.innerHTML = `
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-        <span style="font-size:1.1rem;">🟢</span>
+        <span style="color:#10B981; font-weight:800;">[✓]</span>
         <strong style="color: #10B981; font-size: 0.95rem;">STATUS OPERASIONAL AMAN & STABIL</strong>
       </div>
       <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
-        Rekam jejak keselamatan kerja sangat baik dengan nol pelanggaran berisiko tinggi. Jadikan prosedur operasi site ini sebagai rujukan praktik terbaik keselamatan bagi unit tambang lainnya.
+        Rekam jejak keselamatan kerja sangat baik dengan nol pelanggaran kritis. Pertahankan prosedur kerja aman yang sudah berjalan.
       </p>
     `;
   }
@@ -543,7 +541,7 @@ function initSimulatorControls() {
     methodEl.addEventListener('change', runSimulation);
   }
 
-  // Setup Presets
+  // Presets
   const btnSafe = document.getElementById('btnPresetSafe');
   if (btnSafe) {
     btnSafe.addEventListener('click', () => {
@@ -596,7 +594,7 @@ function runSimulation() {
   document.getElementById('lblInsp').textContent = `${insp} jam inspeksi`;
   document.getElementById('lblInjuries').textContent = `${inj} cedera kuartal lalu`;
 
-  // Model formula (Platt Calibrated Logistic from LightGBM fit)
+  // Logistic model formula
   const logHrs = Math.log(Math.max(1000, hours) + 1);
   const ssRatio = ss / (viol + 1.0);
   const violRate = viol / (insp + 1.0);
@@ -621,7 +619,7 @@ function runSimulation() {
 
   const simTierTag = document.getElementById('simTierTag');
   simTierTag.textContent = getTierLabelIndo(tier);
-  simTierTag.className = `tier-badge tier-${tier.toLowerCase()}`;
+  simTierTag.className = `tier-tag tier-${tier.toLowerCase()}`;
 
   const simMeterBar = document.getElementById('simMeterBar');
   simMeterBar.style.width = `${probPct}%`;
