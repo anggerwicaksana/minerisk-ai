@@ -1,65 +1,67 @@
 /* ==========================================================================
-   MINERISK-AI (SAFECAST) | HIGH-END DESIGN SYSTEM & STYLESHEET
-   Typography: Plus Jakarta Sans + Averia Serif Libre ONLY (No JetBrains Mono)
-   Aesthetic: Industrial Luxury Dark-Tech • Double-Bezel Haptics • Non-Pill Industrial Badges
-   Author & Lead Engineer: Angger Wicaksana (angger.akukatiga.com)
+   MINERISK-AI | MISSION-CRITICAL SAFETY INTELLIGENCE PLATFORM
+   Typography: Plus Jakarta Sans (Pure Grotesk Display & Tabular System)
+   Aesthetic: Industrial Luxury OLED Dark-Tech • Double-Bezel Haptics • Button-in-Button
+   Lead Engineer: Angger Wicaksana (angger.akukatiga.com)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
 
 :root {
-  /* Surfaces */
-  --bg-deep: #060911;
-  --bg-page: #090E1A;
-  --bg-surface: #0D1527;
-  --bg-surface-elevated: #121D34;
-  --bg-card-core: #0F182B;
-  --bg-subtle: #16223A;
-  --bg-glass: rgba(13, 21, 39, 0.82);
+  /* True OLED Pitch Black Surfaces (Zero Navy / Zero Blue Tint) */
+  --bg-deep: #000000;
+  --bg-page: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-surface-elevated: #121212;
+  --bg-card-shell: rgba(255, 255, 255, 0.03);
+  --bg-card-core: #0d0d0d;
+  --bg-subtle: #161616;
+  --bg-glass: rgba(8, 8, 8, 0.88);
   
-  /* Borders & Hairlines */
+  /* Borders & Hairlines - Crisp Neutral Contrast */
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.14);
-  --border-active: rgba(245, 158, 11, 0.5);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-active: rgba(245, 158, 11, 0.55);
 
-  /* Typography */
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --text-dim: #475569;
+  /* Typography - Ultra High Contrast OLED */
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-dim: #52525B;
   
-  /* Amber / Gold Safety Accent */
+  /* Amber / Gold Safety Accent (Pops brilliantly against true OLED black) */
   --accent-amber: #F59E0B;
   --accent-amber-light: #FBBF24;
   --accent-amber-dark: #D97706;
+  --accent-glow: rgba(245, 158, 11, 0.16);
   
   /* Industrial Risk Semantic Accents (Crisp & High-Contrast) */
   --risk-critical: #EF4444;
-  --risk-critical-bg: rgba(239, 68, 68, 0.1);
+  --risk-critical-bg: rgba(239, 68, 68, 0.12);
   --risk-critical-border: #EF4444;
 
   --risk-elevated: #F97316;
-  --risk-elevated-bg: rgba(249, 115, 22, 0.1);
+  --risk-elevated-bg: rgba(249, 115, 22, 0.12);
   --risk-elevated-border: #F97316;
 
   --risk-moderate: #EAB308;
-  --risk-moderate-bg: rgba(234, 179, 8, 0.1);
+  --risk-moderate-bg: rgba(234, 179, 8, 0.12);
   --risk-moderate-border: #EAB308;
 
   --risk-low: #10B981;
-  --risk-low-bg: rgba(16, 185, 129, 0.1);
+  --risk-low-bg: rgba(16, 185, 129, 0.12);
   --risk-low-border: #10B981;
 
-  /* Typography Variables: Only Plus Jakarta Sans & Averia */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-editorial: 'Averia Serif Libre', Georgia, serif;
+  /* Typography Variables: Pure Plus Jakarta Sans */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
 
-  /* Glassmorphism System Tokens */
-  --glass-surface: rgba(13, 21, 38, 0.62);
-  --glass-surface-hover: rgba(18, 29, 52, 0.78);
+  /* Glassmorphism System Tokens - Neutral OLED Obsidian */
+  --glass-surface: rgba(12, 12, 12, 0.76);
+  --glass-surface-hover: rgba(20, 20, 20, 0.90);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(245, 158, 11, 0.35);
-  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(245, 158, 11, 0.45);
+  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.07);
   --glass-blur: blur(20px);
 
   /* Haptic Radii */
@@ -71,20 +73,22 @@
   --radius-pill: 9999px;
 
   /* Physics & Shadows */
-  --shadow-bezel: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 24px 50px -15px rgba(0, 0, 0, 0.7);
+  --shadow-bezel: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 24px 50px -15px rgba(0, 0, 0, 0.9);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-/* Base Reset */
+/* Base Reset & Universal Typography Inheritance (Zero Arial Fallback) */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: inherit;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  font-family: var(--font-sans);
 }
 
 body {
@@ -99,7 +103,20 @@ body {
   min-height: 100vh;
 }
 
-/* Ambient Radial Mesh */
+/* UNIVERSAL FORM & TYPOGRAPHY ENFORCEMENT */
+button, input, select, textarea, optgroup, option {
+  font-family: var(--font-sans) !important;
+}
+
+svg, svg text, svg tspan {
+  font-family: var(--font-sans) !important;
+}
+
+table, thead, tbody, tfoot, tr, th, td {
+  font-family: inherit;
+}
+
+/* Ambient Radial Mesh - Pure OLED Black with Warm Amber Glow */
 body::before {
   content: "";
   position: fixed;
@@ -108,17 +125,16 @@ body::before {
   transform: translateX(-50%);
   width: 1440px;
   height: 900px;
-  background: radial-gradient(circle 600px at 50% 100px, rgba(245, 158, 11, 0.07), transparent 70%),
-              radial-gradient(circle 500px at 15% 350px, rgba(56, 189, 248, 0.04), transparent 60%),
-              radial-gradient(circle 500px at 85% 450px, rgba(245, 158, 11, 0.03), transparent 60%);
+  background: radial-gradient(circle 700px at 50% 80px, rgba(245, 158, 11, 0.07), transparent 70%),
+              radial-gradient(circle 600px at 85% 450px, rgba(245, 158, 11, 0.03), transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   position: relative;
   z-index: 1;
 }
@@ -127,6 +143,33 @@ body::before {
   .container {
     padding: 0 16px;
   }
+}
+
+/* Typographic & Terminology Helpers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.section-title-highlight {
+  display: block;
+  color: var(--accent-amber-light);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 4px;
+}
+
+.term-tag {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.24);
+  color: var(--accent-amber-light);
+  font-size: 0.88em;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: var(--radius-xs);
+  vertical-align: baseline;
+  letter-spacing: 0.02em;
 }
 
 /* Typographic Helpers */
@@ -211,7 +254,7 @@ body::before {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1E293B, #0F172A);
+  background: linear-gradient(135deg, #1c1c1c, #0a0a0a);
   border: 1px solid rgba(245, 158, 11, 0.4);
   display: flex;
   align-items: center;
@@ -314,7 +357,8 @@ body::before {
   align-items: center;
   gap: 10px;
   background: linear-gradient(135deg, #F59E0B, #D97706);
-  color: #060911;
+  color: #000000;
+  font-family: var(--font-sans);
   font-weight: 700;
   font-size: 0.86rem;
   padding: 6px 8px 6px 18px;
@@ -340,11 +384,11 @@ body::before {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #060911;
+  color: #000000;
   transition: transform 0.25s var(--ease-spring);
 }
 
@@ -358,6 +402,7 @@ body::before {
   gap: 8px;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.86rem;
   padding: 8px 18px;
@@ -535,11 +580,11 @@ body::before {
 }
 
 .hud-frame {
-  background: rgba(10, 16, 28, 0.78);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   padding: 16px;
   position: relative;
@@ -628,8 +673,8 @@ body::before {
 }
 
 .hud-pod {
-  background: rgba(6, 10, 18, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(14, 14, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-lg);
   padding: 18px 20px;
   display: flex;
@@ -737,8 +782,8 @@ body::before {
 
 .hud-radar-screen {
   position: relative;
-  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.04), rgba(4, 7, 14, 0.9) 70%);
-  border: 1px solid rgba(245, 158, 11, 0.18);
+  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.05), #000000 70%);
+  border: 1px solid rgba(245, 158, 11, 0.22);
   border-radius: var(--radius-md);
   padding: 8px;
   display: flex;
@@ -1252,7 +1297,7 @@ body::before {
    CODED SVG DATA PIPELINE ARCHITECTURE (ZERO RASTER IMAGES)
    ========================================================================== */
 .pipeline-diagram-frame {
-  background: rgba(10, 16, 28, 0.75);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
@@ -1412,12 +1457,12 @@ body::before {
 .flow-engine-core {
   position: relative;
   z-index: 2;
-  background: rgba(6, 10, 18, 0.9);
+  background: rgba(10, 10, 10, 0.95);
   border: 1px solid rgba(245, 158, 11, 0.4);
   border-radius: var(--radius-lg);
   padding: 16px 14px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 24px rgba(245, 158, 11, 0.15);
   max-width: 170px;
 }
 
@@ -1737,7 +1782,7 @@ body::before {
 }
 
 .dashboard-core {
-  background: rgba(10, 16, 28, 0.72);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
@@ -1776,6 +1821,7 @@ body::before {
   gap: 8px;
   background: transparent;
   color: var(--text-secondary);
+  font-family: var(--font-sans) !important;
   font-size: 0.86rem;
   font-weight: 600;
   padding: 9px 16px;
@@ -1886,7 +1932,7 @@ body::before {
 
 /* Actionable Intelligence Highlights Grid */
 .actionable-intelligence-box {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(10, 16, 28, 0.7) 60%);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(10, 10, 10, 0.88) 60%);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid rgba(245, 158, 11, 0.25);
@@ -1938,8 +1984,8 @@ body::before {
 }
 
 .action-item-card {
-  background: rgba(6, 10, 18, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(14, 14, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-md);
   padding: 16px;
   display: flex;
@@ -1993,8 +2039,8 @@ body::before {
 
 /* Sektoral Risk Bar & Trend Chart Box */
 .trend-visual-box {
-  background: rgba(6, 10, 18, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(12, 12, 12, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-lg);
   padding: 20px 22px;
   margin-bottom: 24px;
@@ -2047,7 +2093,7 @@ body::before {
 .copilot-container {
   display: flex;
   flex-direction: column;
-  background: rgba(8, 13, 24, 0.75);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
@@ -2081,7 +2127,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #060911;
+  color: #000000;
   font-weight: 800;
   box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
 }
@@ -2207,7 +2253,7 @@ body::before {
   align-items: center;
   gap: 12px;
   padding: 16px 24px;
-  background: rgba(6, 10, 18, 0.8);
+  background: rgba(8, 8, 8, 0.95);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -2219,7 +2265,7 @@ body::before {
   padding: 12px 18px;
   color: var(--text-primary);
   font-size: 0.88rem;
-  font-family: inherit;
+  font-family: var(--font-sans) !important;
   outline: none;
   transition: all 0.2s ease;
 }
@@ -2232,7 +2278,8 @@ body::before {
 
 .copilot-send-btn {
   background: var(--accent-amber);
-  color: #060911;
+  color: #000000;
+  font-family: var(--font-sans) !important;
   font-weight: 700;
   font-size: 0.86rem;
   border: none;
@@ -2648,6 +2695,7 @@ body::before {
 
 .preset-tag-btn {
   font-size: 0.78rem;
+  font-family: var(--font-sans) !important;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
@@ -2668,7 +2716,7 @@ body::before {
    DEVELOPER SPOTLIGHT SECTION
    ========================================================================== */
 .dev-showcase-card {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(13, 21, 39, 0.75) 50%);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(10, 10, 10, 0.85) 50%);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid rgba(245, 158, 11, 0.3);
@@ -2679,7 +2727,7 @@ body::before {
   justify-content: space-between;
   gap: 32px;
   margin: 40px auto;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 800px) {
@@ -2700,7 +2748,7 @@ body::before {
   justify-content: center;
   font-size: 2rem;
   font-weight: 800;
-  color: #060911;
+  color: #000000;
   box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
   flex-shrink: 0;
 }
@@ -2716,6 +2764,7 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  font-family: var(--font-sans) !important;
   font-size: 0.84rem;
   font-weight: 600;
   padding: 8px 16px;
@@ -2741,7 +2790,7 @@ body::before {
   border-top: 1px solid var(--border-subtle);
   padding: 60px 0 40px;
   margin-top: 80px;
-  background: #04060B;
+  background: #000000;
 }
 
 .footer-inner {
